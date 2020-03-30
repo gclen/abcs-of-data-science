@@ -8,3 +8,5 @@ ABCs of data science is intended for anyone who wants to learn more about data s
 a high level overview of various data science concepts, so that they can explore these topics further. 
 
 ABCs of data science was created by [Graham Clendenning](https://github.com/gclen) who has worked as a data scientist in the public sector since 2015.
+
+![]({{ site.baseurl }}/images/abc_logo.png)

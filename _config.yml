@@ -11,6 +11,7 @@ description: A gentle introduction to many data science concepts for readers of 
 github_username: gclen
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "abcs-of-data-science"
+related_image: /images/abc_logo.png
 
 # OPTIONAL: override baseurl and url if using a custom domain
 # Note: leave out the trailing / from this value. 
