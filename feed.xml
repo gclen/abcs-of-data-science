@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-03-29T20:52:12-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">A is for Artificial Intelligence</title><link href="https://abcsofdatascience.ca/blog/a-is-for-ai" rel="alternate" type="text/html" title="A is for Artificial Intelligence" /><published>2020-01-15T00:00:00-06:00</published><updated>2020-01-15T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/a-is-for-ai</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/a-is-for-ai">&lt;p&gt;I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-03-30T10:23:30-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">B is for Bias</title><link href="https://abcsofdatascience.ca/blog/b-is-for-bias" rel="alternate" type="text/html" title="B is for Bias" /><published>2020-02-01T00:00:00-06:00</published><updated>2020-02-01T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/b-is-for-bias</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/b-is-for-bias">&lt;p&gt;The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.&lt;/p&gt;
+
+&lt;h3 id=&quot;bias-variance-tradeoff&quot;&gt;Bias-variance tradeoff&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff&quot;&gt;bias-variance tradeoff&lt;/a&gt; refers to tuning models such that they don’t under/overfit your data. A model has high bias if it underfits the training set (e.g. if you are trying to fit a line to non-linear data). A model has high variance if it overfits the training set (i.e. doesn’t generalize well). This could occur if you have a huge non-linear function with a large number of parameters. The bias-variance tradeoff is trying to find a model that minimizes both of these phenomena.&lt;/p&gt;
+
+&lt;h3 id=&quot;unjust-bias-and-the-importance-of-having-a-human-in-the-loop&quot;&gt;Unjust bias and the importance of having a human in the loop&lt;/h3&gt;
+
+&lt;p&gt;Machine learning models are useful for helping humans sort through large piles of data. However, it is critical to have a human in the loop in order to validate predictions. It’s particularly important when ML models are used to predict things like university admissions or welfare benefits which have a huge impact on people’s lives. As we talked about in the previous blog, there are two key points to always keep in mind about AI/ML&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;It’s not magic&lt;/li&gt;
+  &lt;li&gt;It’s not perfect&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Problems arise when people treat the output of ML models as completely objective (or magic) with no opportunities to overrule these predictions.&lt;/p&gt;
+
+&lt;p&gt;Bias refers to a model that is prejudiced in favour of particular categories. Unjust bias occurs when there is a mismatch between the models view of the world and how we think the world should be. There are many reasons that this can happen but two of the big ones are:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The training data is not truly representative. It may favour certain categories over others leading to better predictions on those categories. As the saying goes: “garbage in, garbage out”.&lt;/li&gt;
+  &lt;li&gt;The training data is truly representative of past behaviour. However, this might be different than what we want the future behaviour to be.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are a couple of famous examples of biased models which demonstrate this behaviour.&lt;/p&gt;
+
+&lt;h3 id=&quot;facial-recognition&quot;&gt;Facial recognition&lt;/h3&gt;
+
+&lt;p&gt;Facial recognition tools are increasingly being utilized by organizations such as law enforcement agencies. Model fairness is critical in this case since if a model is biased against particular subgroups it will have a disproportionate impact on the lives of people in that subgroup.
+Researchers studied 3 commercially available facial recognition tools from Microsoft, IBM, and FACE++ (study is &lt;a href=&quot;http://gendershades.org/&quot;&gt;here&lt;/a&gt;). The researchers found that the models performed much better on men and also had higher accuracy on lighter skinned people. In the worst case there was a 34.4% difference in accuracy between lighter skinned men compared to darker skinned women. This shows when the training data does not accurately represent all subgroups the result is a biased model.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/b_is_for_bias/gendershades.png&quot; alt=&quot;&quot; title=&quot;Taken from http://gendershages.org&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;amazons-hiring-model&quot;&gt;Amazon’s hiring model&lt;/h3&gt;
+
+&lt;p&gt;Like many companies, Amazon receives huge numbers of applicants and sorting through these applications is incredibly time intensive. They had a historical set of applications and know which of those candidates were hired. So, they developed a machine learning model to sort through the applications and rank the candidates in terms of their likelihood to be hired. However, this essentially turned into a gender detection model since the vast majority of their previous hires were men. For example, the model would penalize resumes which included the word “women’s”. This is a case where a model can make accurate predictions based on historical data, however this does not match with how hiring should be done. Despite the fact that Amazon scrapped this model, they are far from the only company who would like to automate portions of their hiring process. Creating a fair and unbiased method of doing so that is interpretable is still an open research question. You should be suspicious of anyone who claims to have solved this problem.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgs.xkcd.com/comics/ai_hiring_algorithm.png&quot; alt=&quot;&quot; title=&quot;So glad Kate over in R&amp;amp;D pushed for using the AlgoMaxAnalyzer to look into this. Hiring her was a great decisio- waaaait.&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;how-can-we-fix-this&quot;&gt;How can we fix this?&lt;/h3&gt;
+
+&lt;p&gt;It is important to note that &lt;strong&gt;humans are also biased&lt;/strong&gt;. They can grade using different criteria if they get grumpy or tired. The appeal of using ML models is that they are much cheaper than humans and can scale much better. If left unchecked, this just means that biased decisions are made at a much larger scale than what was done previously. The best approach is to use a mixture of ML models while keeping a human in the loop. This means providing a way for people to appeal decisions made by an ML model (such as university/college admissions) and allowing a human to override the decision. As researchers, something to keep in mind is that the users of these algorithms may not understand probabilities/confidence intervals. Even if they do understand these concepts they may not feel comfortable overruling the ML model.&lt;/p&gt;
+
+&lt;p&gt;Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write a blog about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=S-6YGPrmtYc&quot;&gt;Getting Specific About Algorithmic Bias&lt;/a&gt;) - &lt;a href=&quot;https://twitter.com/math_rachel&quot;&gt;Rachel Thomas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.ca/Weapons-Math-Destruction-Increases-Inequality/dp/0553418815&quot;&gt;Weapons of Math Destruction&lt;/a&gt; - &lt;a href=&quot;https://twitter.com/mathbabedotorg&quot;&gt;Cathy O’Neil&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.ca/Hello-World-Algorithms-Define-Future/dp/039363499X&quot;&gt;Hello World&lt;/a&gt; - &lt;a href=&quot;https://twitter.com/fryrsquared&quot;&gt;Hannah Fry&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.</summary></entry><entry><title type="html">A is for Artificial Intelligence</title><link href="https://abcsofdatascience.ca/blog/a-is-for-ai" rel="alternate" type="text/html" title="A is for Artificial Intelligence" /><published>2020-01-15T00:00:00-06:00</published><updated>2020-01-15T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/a-is-for-ai</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/a-is-for-ai">&lt;p&gt;I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means.&lt;/p&gt;
 
 &lt;h3 id=&quot;so-what-is-ai&quot;&gt;So what is AI?&lt;/h3&gt;
 
@@ -47,5 +98,5 @@
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/playlist?list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&quot;&gt;Crash Course Artificial Intelligence&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.ca/Hello-World-Algorithms-Define-Future/dp/039363499X&quot;&gt;“Hello World” by Hannah Fry &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.amazon.ca/Hello-World-Algorithms-Define-Future/dp/039363499X&quot;&gt;Hello World&lt;/a&gt; - &lt;a href=&quot;https://twitter.com/fryrsquared&quot;&gt;Hannah Fry&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name></name></author><summary type="html">I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means.</summary></entry></feed>

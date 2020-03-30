@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>B is for Bias | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="B is for Bias" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs." />
+<meta property="og:description" content="The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/b-is-for-bias" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/b-is-for-bias" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-01T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.","headline":"B is for Bias","dateModified":"2020-02-01T00:00:00-06:00","datePublished":"2020-02-01T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/b-is-for-bias"},"url":"https://abcsofdatascience.ca/blog/b-is-for-bias","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>B is for Bias | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="B is for Bias" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs." />
+<meta property="og:description" content="The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/b-is-for-bias" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/b-is-for-bias" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-01T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.","headline":"B is for Bias","dateModified":"2020-02-01T00:00:00-06:00","datePublished":"2020-02-01T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/b-is-for-bias"},"url":"https://abcsofdatascience.ca/blog/b-is-for-bias","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">B is for Bias</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-02-01T00:00:00-06:00" itemprop="datePublished">
+        Feb 1, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#bias">bias</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#interpretability">interpretability</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.</p>
+
+<h3 id="bias-variance-tradeoff">Bias-variance tradeoff</h3>
+
+<p>The <a href="https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff">bias-variance tradeoff</a> refers to tuning models such that they don’t under/overfit your data. A model has high bias if it underfits the training set (e.g. if you are trying to fit a line to non-linear data). A model has high variance if it overfits the training set (i.e. doesn’t generalize well). This could occur if you have a huge non-linear function with a large number of parameters. The bias-variance tradeoff is trying to find a model that minimizes both of these phenomena.</p>
+
+<h3 id="unjust-bias-and-the-importance-of-having-a-human-in-the-loop">Unjust bias and the importance of having a human in the loop</h3>
+
+<p>Machine learning models are useful for helping humans sort through large piles of data. However, it is critical to have a human in the loop in order to validate predictions. It’s particularly important when ML models are used to predict things like university admissions or welfare benefits which have a huge impact on people’s lives. As we talked about in the previous blog, there are two key points to always keep in mind about AI/ML</p>
+
+<ol>
+  <li>It’s not magic</li>
+  <li>It’s not perfect</li>
+</ol>
+
+<p>Problems arise when people treat the output of ML models as completely objective (or magic) with no opportunities to overrule these predictions.</p>
+
+<p>Bias refers to a model that is prejudiced in favour of particular categories. Unjust bias occurs when there is a mismatch between the models view of the world and how we think the world should be. There are many reasons that this can happen but two of the big ones are:</p>
+
+<ol>
+  <li>The training data is not truly representative. It may favour certain categories over others leading to better predictions on those categories. As the saying goes: “garbage in, garbage out”.</li>
+  <li>The training data is truly representative of past behaviour. However, this might be different than what we want the future behaviour to be.</li>
+</ol>
+
+<p>There are a couple of famous examples of biased models which demonstrate this behaviour.</p>
+
+<h3 id="facial-recognition">Facial recognition</h3>
+
+<p>Facial recognition tools are increasingly being utilized by organizations such as law enforcement agencies. Model fairness is critical in this case since if a model is biased against particular subgroups it will have a disproportionate impact on the lives of people in that subgroup.
+Researchers studied 3 commercially available facial recognition tools from Microsoft, IBM, and FACE++ (study is <a href="http://gendershades.org/">here</a>). The researchers found that the models performed much better on men and also had higher accuracy on lighter skinned people. In the worst case there was a 34.4% difference in accuracy between lighter skinned men compared to darker skinned women. This shows when the training data does not accurately represent all subgroups the result is a biased model.</p>
+
+<p><img src="/images/b_is_for_bias/gendershades.png" alt="" title="Taken from http://gendershages.org" /></p>
+
+<h3 id="amazons-hiring-model">Amazon’s hiring model</h3>
+
+<p>Like many companies, Amazon receives huge numbers of applicants and sorting through these applications is incredibly time intensive. They had a historical set of applications and know which of those candidates were hired. So, they developed a machine learning model to sort through the applications and rank the candidates in terms of their likelihood to be hired. However, this essentially turned into a gender detection model since the vast majority of their previous hires were men. For example, the model would penalize resumes which included the word “women’s”. This is a case where a model can make accurate predictions based on historical data, however this does not match with how hiring should be done. Despite the fact that Amazon scrapped this model, they are far from the only company who would like to automate portions of their hiring process. Creating a fair and unbiased method of doing so that is interpretable is still an open research question. You should be suspicious of anyone who claims to have solved this problem.</p>
+
+<p><img src="https://imgs.xkcd.com/comics/ai_hiring_algorithm.png" alt="" title="So glad Kate over in R&amp;D pushed for using the AlgoMaxAnalyzer to look into this. Hiring her was a great decisio- waaaait." /></p>
+
+<h3 id="how-can-we-fix-this">How can we fix this?</h3>
+
+<p>It is important to note that <strong>humans are also biased</strong>. They can grade using different criteria if they get grumpy or tired. The appeal of using ML models is that they are much cheaper than humans and can scale much better. If left unchecked, this just means that biased decisions are made at a much larger scale than what was done previously. The best approach is to use a mixture of ML models while keeping a human in the loop. This means providing a way for people to appeal decisions made by an ML model (such as university/college admissions) and allowing a human to override the decision. As researchers, something to keep in mind is that the users of these algorithms may not understand probabilities/confidence intervals. Even if they do understand these concepts they may not feel comfortable overruling the ML model.</p>
+
+<p>Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write a blog about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=S-6YGPrmtYc">Getting Specific About Algorithmic Bias</a>) - <a href="https://twitter.com/math_rachel">Rachel Thomas</a></li>
+  <li><a href="https://www.amazon.ca/Weapons-Math-Destruction-Increases-Inequality/dp/0553418815">Weapons of Math Destruction</a> - <a href="https://twitter.com/mathbabedotorg">Cathy O’Neil</a></li>
+  <li><a href="https://www.amazon.ca/Hello-World-Algorithms-Define-Future/dp/039363499X">Hello World</a> - <a href="https://twitter.com/fryrsquared">Hannah Fry</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/b-is-for-bias" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
