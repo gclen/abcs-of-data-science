@@ -19,7 +19,7 @@ Since you know which group an object belongs to, you can say “show me the item
 
 You can even use clustering to help you label your data! Instead of labelling 100 images as dogs/cats individually, you could have groups of images which are much easier to label (i.e. “here are 24 dogs all grouped together”).
 
-![]({{ site.baseurl }}/images/c_is_for_clustering/dogs_and_cats_labels.png "Is this just an excuse to post cute animal pictures? Maybe.")
+![]({{ site.baseurl }}/images/c_is_for_clustering/dogs_and_cats_labels_smaller.png "Is this just an excuse to post cute animal pictures? Maybe.")
 
 ### How do you actually cluster points together?
 
