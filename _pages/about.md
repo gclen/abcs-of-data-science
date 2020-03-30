@@ -1,13 +1,10 @@
 ---
 layout: page
-title: About Me
+title: About
 permalink: /about/
 ---
 
-This is where you put the contents of your *About* page. Like all your pages, it's in [Markdown](https://guides.github.com/features/mastering-markdown/) format.
+ABCs of data science is intended for anyone who wants to learn more about data science, regardless of skill level. It aims to give readers
+a high level overview of various data science concepts, so that they can explore these topics further. 
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
-
-
-
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+ABCs of data science was created by [Graham Clendenning](https://github.com/gclen) who has worked as a data scientist in the public sector since 2015.
