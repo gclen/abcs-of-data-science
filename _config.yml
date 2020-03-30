@@ -41,6 +41,7 @@ baseurl: "" # the subpath of your site, e.g. "/blog".
 minima:
   social_links:
     github: gclen
+    twitter: abcsofdatasci
 
 # Set this to true to get LaTeX math equation support
 use_math: 
