@@ -40,7 +40,7 @@
   
       ,"page1": {
           "title": "About",
-          "content": "ABCs of data science is intended for anyone who wants to learn more about data science, regardless of skill level. It aims to give readers a high level overview of various data science concepts, so that they can explore these topics further. . ABCs of data science was created by Graham Clendenning who has worked as a data scientist in the public sector since 2015. . .",
+          "content": "ABCs of data science is intended for anyone who wants to learn more about data science, regardless of skill level. It aims to give readers a high level overview of various data science concepts, so that they can explore these topics further. . ABCs of data science was created by Graham Clendenning who has worked as a data scientist in the public sector since 2015. . . ABCs of data science is powered by fastpages .",
           "url": "https://abcsofdatascience.ca/about/",
           "relUrl": "/about/",
           "date": ""
