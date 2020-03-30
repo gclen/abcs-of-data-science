@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>C is for Clustering | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="C is for Clustering" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together." />
+<meta property="og:description" content="Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/c-is-for-clustering" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/c-is-for-clustering" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-01T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.","headline":"C is for Clustering","dateModified":"2020-03-01T00:00:00-06:00","datePublished":"2020-03-01T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/c-is-for-clustering"},"url":"https://abcsofdatascience.ca/blog/c-is-for-clustering","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>C is for Clustering | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="C is for Clustering" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together." />
+<meta property="og:description" content="Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/c-is-for-clustering" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/c-is-for-clustering" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-03-01T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.","headline":"C is for Clustering","dateModified":"2020-03-01T00:00:00-06:00","datePublished":"2020-03-01T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/c-is-for-clustering"},"url":"https://abcsofdatascience.ca/blog/c-is-for-clustering","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">C is for Clustering</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-03-01T00:00:00-06:00" itemprop="datePublished">
+        Mar 1, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#clustering">clustering</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#unsupervised_learning">unsupervised_learning</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.</p>
+
+<h3 id="what-else-can-you-use-clustering-for">What else can you use clustering for?</h3>
+
+<h5 id="anomalyoutlier-detection">Anomaly/outlier detection</h5>
+<p>Since you know which group an object belongs to, you can say “show me the items which don’t belong to a group”. You can also look for points on the outer edges of clusters since they may also be anomalous.</p>
+
+<h5 id="labelling-points">Labelling points</h5>
+
+<p>You can even use clustering to help you label your data! Instead of labelling 100 images as dogs/cats individually, you could have groups of images which are much easier to label (i.e. “here are 24 dogs all grouped together”).</p>
+
+<p><img src="/images/c_is_for_clustering/dogs_and_cats_labels.png" alt="" title="Is this just an excuse to post cute animal pictures? Maybe." /></p>
+
+<h3 id="how-do-you-actually-cluster-points-together">How do you actually cluster points together?</h3>
+
+<p>Take a look at the image below (courtesy of <a href="https://twitter.com/leland_mcinnes">Leland Mcinnes</a>). You can probably see which points should be grouped together but some points clearly look like they don’t belong to any groups.</p>
+
+<p><img src="/images/c_is_for_clustering/comparing_clustering_algorithms_unclustered.png" alt="" title="Taken from https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html" /></p>
+
+<p>The simple definition of clustering “find similar groups of stuff” sounds fairly simple at the surface. If you think about it a bit more you’ll realize that there are a number of questions that need to be answered:</p>
+
+<ol>
+  <li><em>How do you define similarity?</em> In every clustering algorithm you need to specify a way of measuring the distance between two points. This is often referred to as a <strong>distance metric</strong>. As you would expect, points are similar if they are close together (the distance between them is small) and less similar the farther apart they are. There are many kinds of distance metrics, which I will touch on in later blog posts.</li>
+  <li><em>Does every point need to belong to a group? Can a point belong to multiple groups?</em> The answers to these questions depend on the algorithm. In some cases, points can only belong to one group. This is known as <strong>hard clustering</strong>. In other cases they have a probability associated with being part of a cluster. This is known as <strong>soft clustering</strong> (or fuzzy clustering). Some clustering algorithms will force every point into a group (whether it belongs in there or not), while others will just label those points as outliers/noise.</li>
+</ol>
+
+<h3 id="types-of-clustering-methods">Types of clustering methods</h3>
+
+<p>Since the definition of cluster is so broad, there are many types of clustering algorithms. Here are a few broad categories:</p>
+
+<h5 id="centroid-based">Centroid based</h5>
+
+<p>In these algorithms, clusters are determined based on which centroid you are closest to. A centroid is just a point calculated by averaging all of the other points in a group. One popular centroid based method is k-means which works as follows.</p>
+
+<ol>
+  <li>Pick <em>k</em> centroids (where k is the number of clusters in your data). For the sake of argument, let’s say we have 2 centroids.</li>
+  <li>Randomly place the centroids</li>
+  <li>Calculate the distance from each point to the centroid, and pick the closest centroid as its cluster id. For example if a point is closest to centroid 1 then it is part of cluster 1</li>
+  <li>Recalculate the centroids as the average of all of the points in the cluster. Centroid 1 is now the average of all points in cluster 1, centroid 2 the average of all points in cluster 2, etc.</li>
+  <li>Repeat steps 3 and 4 until your clusters stabilize (i.e. the cluster ids for your points stop changing)</li>
+</ol>
+
+<p><img src="/images/c_is_for_clustering/kmeansViz.png" alt="" title="Taken from https://stanford.edu/~cpiech/cs221/img/kmeansViz.png" /></p>
+
+<p>There are a few issues with this method. The first is that it is really hard to know how many clusters you have ahead of time (i.e it’s hard to choose k). The second is that it doesn’t allow for clusters of different shapes since it assumes that all clusters are spherical. Finally, every point is forced into a cluster.</p>
+
+<h5 id="density-based">Density based</h5>
+
+<p>In density based clustering algorithms, clusters are areas with lots of points. If you look at the image above, this probably closely aligns with your intuition about what is/is not in a cluster. The clusters you identified have high density (lots of points in a small area). <a href="(https://en.wikipedia.org/wiki/DBSCAN)">DBSCAN</a> (density-based spatial clustering of applications with noise) is a popular density based clustering algorithm. It has two main parameters, min_points and epsilon. In order for something to be labelled a cluster, there must be at least min_points close together. If min_points is 10, that means there will be no clusters with less than 10 data points. Epsilon is basically “how far from a point do I look to see if it is close”. For each point, you can see how many other points are within epsilon. If there are at least min_points, then you have a cluster. In the image below, all of the red points (A) have at least 4 points (min_points=4) within epsilon distance. The yellow points (B and C) are also in the cluster because they are reachable from one of the red points. N would be labelled an outlier since it is not within epsilon of any points.</p>
+
+<p><img src="/images/c_is_for_clustering/600px-DBSCAN-Illustration.svg.png" alt="" title="Taken from https://en.wikipedia.org/wiki/File:DBSCAN-Illustration.svg" /></p>
+
+<p>Choosing min_points is much easier than choosing the number of clusters ahead of time (which we needed to do in k-means). However, picking the correct value for epsilon can be tricky and is more of an art than a science. Another issue with DBSCAN is that it assumes all of the clusters have the same density, which is not always the case.</p>
+
+<h5 id="distribution-based">Distribution based</h5>
+
+<p>In these algorithms, you train sets of statistical models and points are assigned to a cluster based on which model they are most likely to occur in. One benefit of this type of algorithm is each point has a probability associated with belonging (e.g. 0.75 probability of being in cluster A, and a 0.25 probability of being in cluster B). This means soft clustering is baked into the algorithm, and if you want hard clusters (i.e. a point can only belong to one cluster) you can just choose the largest likelihood. One popular algorithm in this class is Gaussian Mixture Models, where you start with a set of randomly initialized Gaussian models and then update their parameters based on your data. Learning these parameters is done using an interative method called [expectation-maximization algorithm(https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm). One downside of these types of models is that they may overfit your data. That is the model will fit your data very well but not generalize well to new data.</p>
+
+<h5 id="connectivity-based">Connectivity based</h5>
+
+<p>Connectivity based clustering is also known as hierarchical clustering. One of the core ideas is that things can be grouped together at different levels. For example a picture of a golden retriever could be grouped with other retriever breeds, all dogs, common pets, all animals, etc. In this case other pictures of retrievers would be close, other dogs slightly further away, and then other animals further away from that. This creates a dendrogram (tree) and the clusters are determined by where you cut in the tree. For example in the figure if you cut at the first branch, you would have two clusters: one containing lemurs, and the other containing all of the pictures of cats/dogs. Cutting at the next branch down you would have three clusters: lemurs, cats, and all dogs.</p>
+
+<p><img src="/images/c_is_for_clustering/hierarchical_clustering.png" alt="" /></p>
+
+<p>There are basically two ways to create this dendrogram. The first is a bottom up approach where every point starts as its own cluster and then you merge clusters together. In the second method everything starts as its own cluster and then you iteratively break everything apart until each point is it’s own cluster. The difference between algorithms in this class basically differ on how you choose to measure the distance between clusters.</p>
+
+<h3 id="how-do-i-choose-which-clustering-or-class-of-algorithm-to-use">How do I choose which clustering (or class of) algorithm to use?</h3>
+
+<p>Some of this depends on your data. In practice many algorithms combine elements of these classes. One example of this is <a href="https://hdbscan.readthedocs.io/en/latest/">HDBSCAN</a> (hierarchical DBSCAN), which is an extremely useful clustering algorithm. I’ll talk about HDBSCAN in more detail in a future blog post but HDBSCAN is a good first choice. If you’re looking for a comparison of different clustering algorithms on the sample data I showed above, take a look at the link “Comparing clustering algorithms” in the resources below.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html">Comparing clustering algorithms</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ayZQj4llUSU">Clustering: a guide for the perplexed</a> - John Healy and Leland Mcinnes</li>
+  <li><a href="https://www.youtube.com/watch?v=JnnaDNNb380&amp;list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&amp;index=7">Crash course AI: unsupervised learning</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/c-is-for-clustering" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
