@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A is for Artificial Intelligence | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="A is for Artificial Intelligence" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means." />
+<meta property="og:description" content="I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/a-is-for-ai" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/a-is-for-ai" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-15T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means.","headline":"A is for Artificial Intelligence","dateModified":"2020-01-15T00:00:00-06:00","datePublished":"2020-01-15T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/a-is-for-ai"},"url":"https://abcsofdatascience.ca/blog/a-is-for-ai","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A is for Artificial Intelligence | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="A is for Artificial Intelligence" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means." />
+<meta property="og:description" content="I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/a-is-for-ai" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/a-is-for-ai" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-01-15T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means.","headline":"A is for Artificial Intelligence","dateModified":"2020-01-15T00:00:00-06:00","datePublished":"2020-01-15T00:00:00-06:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/a-is-for-ai"},"url":"https://abcsofdatascience.ca/blog/a-is-for-ai","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">A is for Artificial Intelligence</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-01-15T00:00:00-06:00" itemprop="datePublished">
+        Jan 15, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#AI">AI</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I was recently in San Francisco and throughout the city there are many, many billboards containing slogans like “Mission Critical AI” and “Enterprise AI”. There is no doubt that usage of the phrase “artificial intelligence” or AI has increased dramatically in recent years. This increased usage has made it difficult to tell what “using AI” even means.</p>
+
+<h3 id="so-what-is-ai">So what is AI?</h3>
+
+<p>Many people have differing opinions on how to strictly define AI. When people refer to AI this is generally synonymous with machine learning (ML). Since it’s so hard to come up with a definition, let’s define what AI is not:</p>
+
+<ul>
+  <li>AI is not magic</li>
+  <li>AI is not perfect (more on that in B is for Bias)</li>
+</ul>
+
+<p>It’s hard to come up with a strict definition for AI since the generally agreed upon definition has evolved over time. In the 1980s people called large rule based systems (“expert systems”) AI. These systems required subject matter experts and programmers to define a set of rules. As you can imagine (or remember) this is a very time intensive process and there are lots of edge cases to consider. Nowadays people typically think of deep learning (more on that in D is for Deep Learning) as AI. This requires lots of labeled training data (which often needs to be labeled by experts) but models can learn their own rules about the data.</p>
+
+<p>In both cases the “intelligence” part of AI is a bit of a misnomer. Another term that has been suggested  is <a href="https://twitter.com/fchollet/status/1214392496375025664">“cognitive automation”</a>. We are trying to teach a machine to perform a set of tasks based on our knowledge of the world. This is different from something that is truly intelligent that can reason about the world and learn abstract concepts. This distinction is important and referred to as “general” versus “narrow” AI.</p>
+
+<p>General AI (also referred to as strong AI) refers to a machine that is “human-like” (think HAL 9000 or Skynet). As you would expect from the name, it can generalize it’s previous knowledge to new problem domains. This means that It can intelligently perform a wide variety of tasks without needing explicit training data. Voice assistants like Alexa, and Siri seem like they can generalize, but as anyone who has used them knows, they definitely have limits. They tend not to understand context in a way that a human would, and questions may need to be rephrased in order to be interpreted correctly. A true general AI doesn’t currently exist and it will probably be a while before it does.</p>
+
+<p>Narrow AI (or weak AI) refers to a machine that is good at specific tasks (e.g. image recognition) but can’t generalize to different domains. For example, you could train a machine learning model to distinguish between cats and dogs but it would not be able to answer the question “Where is the best pizza in Ottawa?”. Narrow AI works by using predefined rules or learning from lots of (probably labelled) data.</p>
+
+<h3 id="what-is-ai-used-for">What is AI used for?</h3>
+
+<p>AI/ML is widely used in a large variety of industries for a number of tasks. This includes:</p>
+
+<ul>
+  <li>Recommending videos on youtube</li>
+  <li>Detecting if a computer has malware</li>
+  <li>Financial trading</li>
+  <li>Helping doctors make diagnoses</li>
+  <li>Voice assistants like Google Assistant</li>
+</ul>
+
+<p>Many of these tasks are applications of fields such as:</p>
+
+<ul>
+  <li>Computer vision (processing images and audio)</li>
+  <li>Natural Language Processing (NLP)</li>
+  <li>Recommender systems</li>
+</ul>
+
+<p>The fact that AI is a buzzword means that it is applied to many different products (even if they don’t include any ML models). This over usage of the term causes many people to twitch when they hear it (and judge people who do use the term). However, it’s important to keep in mind your audience when you are talking about machine learning. Some audiences may not be familiar with specific technical terms (point them at this blog series ;) ) but have heard the term AI.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>AI/ML is a rapidly growing field which is being applied to a large variety of domains. It’s hard to separate what is real from the snake oil. I’m hoping this blog series will give you enough background knowledge to think critically when you hear the term AI and know the limitations of AI/ML models. In the next blog I’ll talk about many of these limitations and how they affect people’s everyday lives.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/playlist?list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b">Crash Course Artificial Intelligence</a></li>
+  <li><a href="https://www.amazon.ca/Hello-World-Algorithms-Define-Future/dp/039363499X">“Hello World” by Hannah Fry </a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/a-is-for-ai" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
