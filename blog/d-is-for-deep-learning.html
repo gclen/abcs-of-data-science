@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>D is for Deep Learning | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="D is for Deep Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details." />
+<meta property="og:description" content="Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/d-is-for-deep-learning" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/d-is-for-deep-learning" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.","headline":"D is for Deep Learning","dateModified":"2020-04-08T00:00:00-05:00","datePublished":"2020-04-08T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/d-is-for-deep-learning"},"url":"https://abcsofdatascience.ca/blog/d-is-for-deep-learning","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>D is for Deep Learning | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="D is for Deep Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details." />
+<meta property="og:description" content="Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/d-is-for-deep-learning" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/d-is-for-deep-learning" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-08T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.","headline":"D is for Deep Learning","dateModified":"2020-04-08T00:00:00-05:00","datePublished":"2020-04-08T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/d-is-for-deep-learning"},"url":"https://abcsofdatascience.ca/blog/d-is-for-deep-learning","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">D is for Deep Learning</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-04-08T00:00:00-05:00" itemprop="datePublished">
+        Apr 8, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#deep_learning">deep_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#supervised_learning">supervised_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#AI">AI</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.</p>
+
+<p>People train and apply deep learning models across a wide variety of problem domains and tasks. One of the most common use cases for deep learning models is <strong>classification</strong> where you are trying to predict which group of things a piece of data belongs to (e.g. classifying images as a cat or dog). In order to train this model you need to have a label for each image saying that it contains a cat or dog. A machine learning problem where you have labelled data is known as a <strong>supervised learning problem</strong>. If you don’t have labels then you need to use <a href="/blog/c-is-for-clustering">unsupervised techniques</a>.</p>
+
+<h3 id="distinguishing-between-dogs-and-traffic-cones">Distinguishing between dogs and traffic cones</h3>
+
+<p>To make this more concrete let’s use an (admittedly ridiculous) example. Let’s say we have a bunch of pictures, and we want to classify whether the image is of a dog or a traffic cone. This seems pretty simple on the surface because a traffic cone looks nothing like a dog.</p>
+
+<p><img src="/images/d_is_for_deep_learning/dog_and_traffic_cone.png" alt="" title="How could you even confuse the two?
+Adapted from https://commons.wikimedia.org/wiki/File:Golden_Retriever_puppy_standing.jpg and
+https://commons.wikimedia.org/wiki/File:Trafficcone.JPG
+" /></p>
+
+<p>You can probably think of some <strong>features</strong> that would distinguish these two groups such as:</p>
+
+<ol>
+  <li>Is it orange?</li>
+  <li>Is it cone shaped?</li>
+  <li>Does it have fur?</li>
+</ol>
+
+<p>This seems pretty clear cut to me. However, if you search a little bit, you can find some examples where the lines start to blur a little bit.</p>
+
+<p><img src="/images/d_is_for_deep_learning/construction_dog_cone.png" alt="" title="Adapted from https://www.pinterest.com/pin/432416001701357917/ and https://commons.wikimedia.org/wiki/File:Golden_retriever_with_Elizabethan_Cone.jpeg" /></p>
+
+<p>In one picture, there <em>is</em> orange and in the other there <em>is</em> a cone shape. In both cases however, they are both clearly dogs since they have fur. This means that some features are more/less important than others in being able to distinguish between the two groups (that is they have different weights).</p>
+
+<p>So if we want to be able to effectively predict if an image is of a dog or a traffic cone, we need two things:</p>
+
+<ol>
+  <li>Features</li>
+  <li>A way to weight those features</li>
+</ol>
+
+<p>It is challenging to come up with features and encode them into our program. For example, how would you code “this image has fur in it”? Even if we can code our features, it’s hard to be sure that they are useful in distinguishing between our groups of images. The appeal of deep learning is that it learns both the features and the weights. Typically, there are a large number of features and weights (way more than you would want to come up with manually), which is why things like GPUs are used to train deep learning models. We’ll go through this in more detail in the next section.</p>
+
+<h3 id="how-does-deep-learning-actually-work">How does deep learning actually work?</h3>
+
+<p>Deep learning typically refers to large artificial neural network models. A neural network consists of multiple “neurons”. Each circle in the image below is a neuron. The neurons are grouped into  layers, classified as input, hidden, or output layers. The “deep” part of deep learning means that there are many hidden layers in the model.</p>
+
+<p><img src="/images/d_is_for_deep_learning/neural_net_with_dog.png" alt="" title="Adapted from https://commons.wikimedia.org/wiki/File:Artificial_neural_network.svg" /></p>
+
+<p>At a very high level, the input layer derives features from the data that you pass into it. The arrows connecting the layers are referred to as weights. The first hidden layer then receives the features from the input layer, multiplied by the weights between the two layers. If there are multiple hidden layers, then the first layer acts as an input layer for the second layer and so on. Finally, it goes to the output layer where the neural network makes predictions about the input data (e.g. is it a dog or a traffic cone). There is one neuron in the output layer for each class we are trying to predict. We can compare these predictions to their actual labels (e.g. the model predicted the image was a traffic cone but it was actually a dog). Each prediction also has a probability associated with it (e.g. “I am 99% sure this is a dog”). How you actually compare the predicted and actual labels is known as the <strong>objective function</strong> (sometimes referred to as a cost or loss function). We can use this objective function to update the weights in our model (using something called backpropagation). We repeat this process over and over again until we are satisfied with the model performance. This process is known as “training” a model.</p>
+
+<p>The exact specifics of what makes up the layers is referred to as the network <strong>architecture</strong>. People generally choose a class of architecture based on the type of problem they are dealing with. For example, if you have image data you will typically choose a class of NNs called convolutional neural networks (CNNs). Within that general group of CNNs, people typically use a predefined architecture such as ResNet. If you have text data, you would typically use a class of models called recurrent neural networks (RNNs) or a subcategory of RNNs called long-short term memory networks (LSTMs).</p>
+
+<p>Let’s go back to our dogs versus traffic cones example. If we wanted to train a model to distinguish between those two classes of images, we need to choose a couple of things</p>
+
+<ol>
+  <li>A model architecture</li>
+  <li>An objective function</li>
+</ol>
+
+<p>Since we are dealing with images we will choose some flavour of CNN for our architecture. For the objective function we will choose something called “cross entropy loss”. Cross entropy loss not only measures if the prediction was correct or not but includes how confident the model was. In the case of cross entropy loss a lower number is better. It gives a high value if you are confident and wrong but penalizes you less if you are wrong but less sure about your prediction. Conversely, if you are confident and correct then the value of the loss function will be low.
+For example, if the model was very confident (e.g. 99% confident) that the picture was a dog but if it was a traffic cone then the value of the loss would be high.</p>
+
+<p>Once we choose an architecture and an objective function, we can train the model. The weights in the model are typically initialized at random. You can also use weights from a pre-trained model (this is known as transfer learning and will be discussed in a later blog). Training uses the labels and objective function to learn/update the weights in order to improve the predictions. I’ll talk about how the weights are actually updated (using something called backpropagation/gradient descent) in a later blog.</p>
+
+<p>You might be wondering “what if there is a picture which contains a dog and a traffic cone?” This is referred to as multi-label classification where you are trying to predict all labels associated with some given input data (e.g. an image). This works in the same way, just with a different objective function.</p>
+
+<p><img src="/images/d_is_for_deep_learning/dog_with_traffic_cone_same_picture.jpg" alt="" title="Taken from https://www.flickr.com/photos/rsmith11235/8756198755" /></p>
+
+<h3 id="doing-this-in-practice">Doing this in practice</h3>
+
+<p>If you want to learn more about deep learning and have some experience with python, I recommend taking fast.ai’s <a href="https://course.fast.ai/">practical deep learning for coders course</a>. It uses a “top-down” approach in which you learn to build and train models first, learning about each component as you need to.</p>
+
+<p>If you actually want to implement a deep learning model, you should use an existing framework. Some popular python frameworks are:</p>
+
+<ul>
+  <li><a href="https://www.tensorflow.org/#">Tensorflow</a></li>
+  <li><a href="https://pytorch.org/">Pytorch</a></li>
+  <li><a href="https://keras.io/">Keras</a></li>
+  <li><a href="https://github.com/fastai/fastai">Fastai</a></li>
+</ul>
+
+<h3 id="other-resources">Other resources</h3>
+<ul>
+  <li><a href="https://www.coursera.org/specializations/deep-learning">Deep learning specialization on Coursera</a></li>
+  <li><a href="https://course.fast.ai/part2">Deep learning from the foundations</a> (part 2 of the fastai course)</li>
+  <li><a href="https://www.youtube.com/watch?v=oV3ZY6tJiA0">Neural Networks and Deep Learning: Crash Course AI #3</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/d-is-for-deep-learning" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
