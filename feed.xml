@@ -1,4 +1,126 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-04-08T10:37:26-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">D is for Deep Learning</title><link href="https://abcsofdatascience.ca/blog/d-is-for-deep-learning" rel="alternate" type="text/html" title="D is for Deep Learning" /><published>2020-04-08T00:00:00-05:00</published><updated>2020-04-08T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/d-is-for-deep-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/d-is-for-deep-learning">&lt;p&gt;Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-05-03T11:36:31-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">E is for Embeddings</title><link href="https://abcsofdatascience.ca/blog/e-is-for-embeddings" rel="alternate" type="text/html" title="E is for Embeddings" /><published>2020-05-03T00:00:00-05:00</published><updated>2020-05-03T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/e-is-for-embeddings</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/e-is-for-embeddings">&lt;p&gt;In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an &lt;strong&gt;embedding&lt;/strong&gt; which consists of two things:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;A numeric representation of your data (because we need to do math)&lt;/li&gt;
+  &lt;li&gt;A distance measure (so we can determine how close/far two points are from one another)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Each embedding gives you a different way to look at your data, depending on the features/numeric representation and distance measure you choose.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-solve-a-mystery&quot;&gt;Let’s solve a mystery&lt;/h3&gt;
+
+&lt;p&gt;To give you a better idea about what embeddings are, we’re going to look at people hanging out in the Clue mansion. However, instead of solving a murder mystery, we are going to try to determine groups of friends of people in the mansion.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/e_is_for_embedding/clue_board_with_people.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If I asked you to guess which people (shown as X’s) were most likely to be friends in the image above, you’d probably say the people in the ballroom or lounge. This is because they are physically close together. But how can we say they are “close together”? Implicitly in your head you did this using an embedding. You probably looked at the position of people on the board (i.e their x,y coordinates) so we have a numeric representation of the data. We also know that the people in the ballroom are closer to each other than they are to the person standing outside the billiards room. How do we know this? Imagine drawing a line between the person closest to the piano and the person directly to their left. Now imagine drawing another line between the person closest to the piano, and the person just outside the billiards room. The length of the first line is shorter than the second line, so we say that the two people in the ballroom are closer to each other. This method of measuring distance is called &lt;strong&gt;Euclidean distance&lt;/strong&gt;, and it’s probably what you think of first when you need to determine how close/far something is. However, there are other ways to measure distance.&lt;/p&gt;
+
+&lt;h3 id=&quot;distance-measures&quot;&gt;Distance measures&lt;/h3&gt;
+
+&lt;p&gt;There are many kinds of &lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/spatial.distance.html&quot;&gt;distance measures (or metrics)&lt;/a&gt; but here are a few popular/useful ones. I’ll also describe some additional distance metrics in a later blog.&lt;/p&gt;
+
+&lt;h5 id=&quot;euclidean-distance&quot;&gt;Euclidean distance&lt;/h5&gt;
+&lt;p&gt;This is just the length of the line drawn directly between two points as we discussed above.&lt;/p&gt;
+
+&lt;h5 id=&quot;manhattancity-block-distance&quot;&gt;Manhattan/city block distance&lt;/h5&gt;
+&lt;p&gt;Look at the two people outside the billiards room. If you were playing the game and wanted to move one to the other, you could not move them on a straight line between them. You’d have to move 1 over and then 3 up/down for a total of 4 moves. This is similar to Manhattan (also known as city block) distance, which is the sum of the distances in each direction. In the illustration below, the Manhattan distance between the two points is 12. If you were walking you would need to walk 12 city blocks (assuming you can’t walk through buildings), but there are multiple routes you could take. Manhattan distance is useful for higher dimensional data where Euclidean distance breaks down in what is known as &lt;a href=&quot;https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e&quot;&gt;“the curse of dimensionality”&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/e_is_for_embedding/Manhattan_distance_bgiu.png&quot; alt=&quot;&quot; title=&quot;Two points with a Manhattan distance of 12. Taken from https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Manhattan_distance.svg/1200px-Manhattan_distance.svg.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;cosine-distancesimilarity&quot;&gt;Cosine distance/similarity&lt;/h5&gt;
+
+&lt;p&gt;Another way we can measure distance is by looking at the cosine of the angles between vectors. To make this more concrete, let’s imagine we have some data on how often people spend time in particular rooms in the mansion.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Billiards room&lt;/th&gt;
+      &lt;th&gt;Study&lt;/th&gt;
+      &lt;th&gt;Library&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mr. Green&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Ms. Scarlet&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Professor Plum&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In this case, Mr. Green has been in the billiards room 3 times but has never been in the study or library. Looking at these counts we would probably say that Ms. Scarlet and Professor Plum are more similar to each other than they are to Mr. Green. We can think of these counts as vectors in a coordinate system, where instead of an X or a Y axis we have a “Billiards room” or “Study” axis. Below I’ve plotted the vectors below and you can see that the angle between the Ms. Scarlet and Professor Plum vectors is smaller even though the lengths of the vectors are quite different.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/e_is_for_embedding/cosine_example.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Cosine distance lets us say that two things are similar if they have similar sets of “stuff” even if the frequencies (i.e. vector lengths) are different. If two vectors are pointing in the exact same direction, the angle between them is 0 degrees (even if the length of the vectors are different). The cosine of 0 is 1, so we say they have a cosine similarity of 1. To convert this to a distance, we do 1-similarity since we want the distance between perfectly similar things to be 0. If two things are completely dissimilar, the angle between them is 90 degrees and the cosine similarity is 0. One benefit of cosine similarity is that it takes the direction of the vectors into account, where two vectors pointing in the exact opposite direction will have a similarity of -1.&lt;/p&gt;
+
+&lt;h3 id=&quot;changing-feature-sets&quot;&gt;Changing feature sets&lt;/h3&gt;
+
+&lt;p&gt;Looking at the physical distance between people in the house is one way to try and determine friend groups. There are other ways that you could measure this. For example you could give everyone a survey about their hobbies/interests. The participants put an X if they are interested in a particular hobby, and leave it blank if they aren’t. This would give you a matrix where a 1 corresponds to a X and a 0 corresponds to a blank:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Board games&lt;/th&gt;
+      &lt;th&gt;Baseball&lt;/th&gt;
+      &lt;th&gt;Dancing&lt;/th&gt;
+      &lt;th&gt;Cooking&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Colonel Mustard&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mrs White&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mrs Peacock&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;You could then use cosine distance to determine which people have similar interests to one another. This potentially gives you a different view of your data, where the person in the study is (physically) very far from everyone in the first feature set, but could have interests very similar to other people in the second feature set.&lt;/p&gt;
+
+&lt;h3 id=&quot;things-to-keep-in-mind&quot;&gt;Things to keep in mind&lt;/h3&gt;
+
+&lt;p&gt;All unsupervised machine learning techniques require an embedding. It’s important to think about which feature set/numeric representation and distance metrics you’re using in order to make sure they will help you answer the questions you’re trying to solve. I find it’s helpful to think about “How do I know if two things are similar? What makes them similar?”.&lt;/p&gt;
+
+&lt;p&gt;Many techniques implicitly use a certain distance metric (e.g. k-means clustering uses Euclidean distance). You’ll need to make sure that you’re using a technique that allows you to specify a distance metric, or uses one that is correct for your problem. Additionally, you’ll want to make sure that your features are on the same scale (you may need to do some normalization). For example, if you have some data which includes ratings on a 1-5 scale and other ratings on a 1-100 scale, then that will affect your results. Choosing the right embedding requires thinking about your problem, as well as trying out different feature sets and distance metrics.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;amp;index=41&amp;amp;t=0s&quot;&gt;Embed all the things - John Healy (talk from Pydata Los Angeles 2019)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/@kunal_gohrani/different-types-of-distance-metrics-used-in-machine-learning-e9928c5e26c7&quot;&gt;Different Types of Distance Metrics used in Machine Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:</summary></entry><entry><title type="html">D is for Deep Learning</title><link href="https://abcsofdatascience.ca/blog/d-is-for-deep-learning" rel="alternate" type="text/html" title="D is for Deep Learning" /><published>2020-04-08T00:00:00-05:00</published><updated>2020-04-08T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/d-is-for-deep-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/d-is-for-deep-learning">&lt;p&gt;Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.&lt;/p&gt;
 
 &lt;p&gt;People train and apply deep learning models across a wide variety of problem domains and tasks. One of the most common use cases for deep learning models is &lt;strong&gt;classification&lt;/strong&gt; where you are trying to predict which group of things a piece of data belongs to (e.g. classifying images as a cat or dog). In order to train this model you need to have a label for each image saying that it contains a cat or dog. A machine learning problem where you have labelled data is known as a &lt;strong&gt;supervised learning problem&lt;/strong&gt;. If you don’t have labels then you need to use &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;unsupervised techniques&lt;/a&gt;.&lt;/p&gt;
 

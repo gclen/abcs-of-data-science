@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>E is for Embeddings | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="E is for Embeddings" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:" />
+<meta property="og:description" content="In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/e-is-for-embeddings" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/e-is-for-embeddings" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:","headline":"E is for Embeddings","dateModified":"2020-05-03T00:00:00-05:00","datePublished":"2020-05-03T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/e-is-for-embeddings"},"url":"https://abcsofdatascience.ca/blog/e-is-for-embeddings","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>E is for Embeddings | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="E is for Embeddings" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:" />
+<meta property="og:description" content="In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/e-is-for-embeddings" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/e-is-for-embeddings" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-03T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:","headline":"E is for Embeddings","dateModified":"2020-05-03T00:00:00-05:00","datePublished":"2020-05-03T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/e-is-for-embeddings"},"url":"https://abcsofdatascience.ca/blog/e-is-for-embeddings","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">E is for Embeddings</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-05-03T00:00:00-05:00" itemprop="datePublished">
+        May 3, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#embeddings">embeddings</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#unsupervised_learning">unsupervised_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#AI">AI</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an <strong>embedding</strong> which consists of two things:</p>
+
+<ol>
+  <li>A numeric representation of your data (because we need to do math)</li>
+  <li>A distance measure (so we can determine how close/far two points are from one another)</li>
+</ol>
+
+<p>Each embedding gives you a different way to look at your data, depending on the features/numeric representation and distance measure you choose.</p>
+
+<h3 id="lets-solve-a-mystery">Let’s solve a mystery</h3>
+
+<p>To give you a better idea about what embeddings are, we’re going to look at people hanging out in the Clue mansion. However, instead of solving a murder mystery, we are going to try to determine groups of friends of people in the mansion.</p>
+
+<p><img src="/images/e_is_for_embedding/clue_board_with_people.png" alt="" /></p>
+
+<p>If I asked you to guess which people (shown as X’s) were most likely to be friends in the image above, you’d probably say the people in the ballroom or lounge. This is because they are physically close together. But how can we say they are “close together”? Implicitly in your head you did this using an embedding. You probably looked at the position of people on the board (i.e their x,y coordinates) so we have a numeric representation of the data. We also know that the people in the ballroom are closer to each other than they are to the person standing outside the billiards room. How do we know this? Imagine drawing a line between the person closest to the piano and the person directly to their left. Now imagine drawing another line between the person closest to the piano, and the person just outside the billiards room. The length of the first line is shorter than the second line, so we say that the two people in the ballroom are closer to each other. This method of measuring distance is called <strong>Euclidean distance</strong>, and it’s probably what you think of first when you need to determine how close/far something is. However, there are other ways to measure distance.</p>
+
+<h3 id="distance-measures">Distance measures</h3>
+
+<p>There are many kinds of <a href="https://docs.scipy.org/doc/scipy/reference/spatial.distance.html">distance measures (or metrics)</a> but here are a few popular/useful ones. I’ll also describe some additional distance metrics in a later blog.</p>
+
+<h5 id="euclidean-distance">Euclidean distance</h5>
+<p>This is just the length of the line drawn directly between two points as we discussed above.</p>
+
+<h5 id="manhattancity-block-distance">Manhattan/city block distance</h5>
+<p>Look at the two people outside the billiards room. If you were playing the game and wanted to move one to the other, you could not move them on a straight line between them. You’d have to move 1 over and then 3 up/down for a total of 4 moves. This is similar to Manhattan (also known as city block) distance, which is the sum of the distances in each direction. In the illustration below, the Manhattan distance between the two points is 12. If you were walking you would need to walk 12 city blocks (assuming you can’t walk through buildings), but there are multiple routes you could take. Manhattan distance is useful for higher dimensional data where Euclidean distance breaks down in what is known as <a href="https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e">“the curse of dimensionality”</a>.</p>
+
+<p><img src="/images/e_is_for_embedding/Manhattan_distance_bgiu.png" alt="" title="Two points with a Manhattan distance of 12. Taken from https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Manhattan_distance.svg/1200px-Manhattan_distance.svg.png" /></p>
+
+<h5 id="cosine-distancesimilarity">Cosine distance/similarity</h5>
+
+<p>Another way we can measure distance is by looking at the cosine of the angles between vectors. To make this more concrete, let’s imagine we have some data on how often people spend time in particular rooms in the mansion.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Billiards room</th>
+      <th>Study</th>
+      <th>Library</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mr. Green</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Ms. Scarlet</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Professor Plum</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In this case, Mr. Green has been in the billiards room 3 times but has never been in the study or library. Looking at these counts we would probably say that Ms. Scarlet and Professor Plum are more similar to each other than they are to Mr. Green. We can think of these counts as vectors in a coordinate system, where instead of an X or a Y axis we have a “Billiards room” or “Study” axis. Below I’ve plotted the vectors below and you can see that the angle between the Ms. Scarlet and Professor Plum vectors is smaller even though the lengths of the vectors are quite different.</p>
+
+<p><img src="/images/e_is_for_embedding/cosine_example.png" alt="" /></p>
+
+<p>Cosine distance lets us say that two things are similar if they have similar sets of “stuff” even if the frequencies (i.e. vector lengths) are different. If two vectors are pointing in the exact same direction, the angle between them is 0 degrees (even if the length of the vectors are different). The cosine of 0 is 1, so we say they have a cosine similarity of 1. To convert this to a distance, we do 1-similarity since we want the distance between perfectly similar things to be 0. If two things are completely dissimilar, the angle between them is 90 degrees and the cosine similarity is 0. One benefit of cosine similarity is that it takes the direction of the vectors into account, where two vectors pointing in the exact opposite direction will have a similarity of -1.</p>
+
+<h3 id="changing-feature-sets">Changing feature sets</h3>
+
+<p>Looking at the physical distance between people in the house is one way to try and determine friend groups. There are other ways that you could measure this. For example you could give everyone a survey about their hobbies/interests. The participants put an X if they are interested in a particular hobby, and leave it blank if they aren’t. This would give you a matrix where a 1 corresponds to a X and a 0 corresponds to a blank:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Board games</th>
+      <th>Baseball</th>
+      <th>Dancing</th>
+      <th>Cooking</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Colonel Mustard</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Mrs White</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Mrs Peacock</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You could then use cosine distance to determine which people have similar interests to one another. This potentially gives you a different view of your data, where the person in the study is (physically) very far from everyone in the first feature set, but could have interests very similar to other people in the second feature set.</p>
+
+<h3 id="things-to-keep-in-mind">Things to keep in mind</h3>
+
+<p>All unsupervised machine learning techniques require an embedding. It’s important to think about which feature set/numeric representation and distance metrics you’re using in order to make sure they will help you answer the questions you’re trying to solve. I find it’s helpful to think about “How do I know if two things are similar? What makes them similar?”.</p>
+
+<p>Many techniques implicitly use a certain distance metric (e.g. k-means clustering uses Euclidean distance). You’ll need to make sure that you’re using a technique that allows you to specify a distance metric, or uses one that is correct for your problem. Additionally, you’ll want to make sure that your features are on the same scale (you may need to do some normalization). For example, if you have some data which includes ratings on a 1-5 scale and other ratings on a 1-100 scale, then that will affect your results. Choosing the right embedding requires thinking about your problem, as well as trying out different feature sets and distance metrics.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;index=41&amp;t=0s">Embed all the things - John Healy (talk from Pydata Los Angeles 2019)</a></li>
+  <li><a href="https://medium.com/@kunal_gohrani/different-types-of-distance-metrics-used-in-machine-learning-e9928c5e26c7">Different Types of Distance Metrics used in Machine Learning</a></li>
+</ul>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/e-is-for-embeddings" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
