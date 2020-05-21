@@ -74,7 +74,7 @@ Now we’ll briefly talk about measuring the performance of regression models. L
 
 ### Summary
 
-When working on a supervised learning problem, choosing the correct metric is important. First you should think about if you are working on a classification or regression problem. Then you need to consider which metric best measures what you are trying to achieve. This is just a small summary of some of the ways of measuring model performance. For more info check out the links below or look at the description of cross-entropy loss in the [deep learning post]({{ site.baseurl }}/blog/d-is-for-deep-learning).
+When working on a supervised learning problem, choosing the correct metric is important. First you should think about if you are working on a classification or regression problem. Then you need to consider which metric best measures what you are trying to achieve. This is just a small summary of some of the ways of measuring model performance. For more info check out the links below or look at the description of cross-entropy loss in ["D is for deep learning"]({{ site.baseurl }}/blog/d-is-for-deep-learning).
 
 ### Other resources
 
