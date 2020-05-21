@@ -1,4 +1,96 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-05-03T11:36:31-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">E is for Embeddings</title><link href="https://abcsofdatascience.ca/blog/e-is-for-embeddings" rel="alternate" type="text/html" title="E is for Embeddings" /><published>2020-05-03T00:00:00-05:00</published><updated>2020-05-03T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/e-is-for-embeddings</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/e-is-for-embeddings">&lt;p&gt;In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an &lt;strong&gt;embedding&lt;/strong&gt; which consists of two things:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-05-20T19:23:10-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">F is for F1 score</title><link href="https://abcsofdatascience.ca/blog/f-is-for-f1" rel="alternate" type="text/html" title="F is for F1 score" /><published>2020-05-20T00:00:00-05:00</published><updated>2020-05-20T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/f-is-for-f1-score</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/f-is-for-f1">&lt;p&gt;When we are training supervised learning models, we want to measure how well the model is performing. Choosing the correct metric for measuring model performance depends on what kind of task you are doing. There are two main categories of supervised learning tasks&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Classification: Here you are trying to predict which category (or categories) a piece of input data belongs to. For example, given an image you might try to predict if it is a picture of a dog or cat.&lt;/li&gt;
+  &lt;li&gt;Regression: Here you are trying to predict a numerical label. For example, you might try to predict the selling price of a house given some features about it, such as neighbourhood, number of bedrooms etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this blog I’ll cover a couple of different methods for measuring model performance. First we’ll focus on classification tasks. To make this more concrete let’s imagine we are training a model to predict if a cookie contains either chocolate chips or raisins.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/f_is_for_f1/cookie_class_small.png&quot; alt=&quot;&quot; title=&quot;Taken from https://commons.wikimedia.org/wiki/File:Chocolate_chip_cookies.jpg and https://commons.wikimedia.org/wiki/File:Raisin_cookie.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;the-problem-with-accuracy&quot;&gt;The problem with accuracy&lt;/h3&gt;
+
+&lt;p&gt;One way of measuring model performance is called classification accuracy (more commonly referred to as accuracy). This is simply “how many predictions did you get correct out of how many predictions did you make?”. If you correctly predicted the type of cookie 95 times out of 100 predictions, your accuracy would be 95%. However, accuracy only works well if the number of items in each category is roughly equal. If there are many more items in some categories than others, we call this &lt;strong&gt;class imbalance&lt;/strong&gt;. For example, chocolate chip cookies are much more popular than raisin cookies in general. If we assume out of 100 random cookies that 99 of them are chocolate chip, we could get 99% accuracy by guessing chocolate chip every single time. In practice this would be a pretty terrible model, but according to accuracy this is a good model.&lt;/p&gt;
+
+&lt;h3 id=&quot;building-a-confusion-matrix&quot;&gt;Building a confusion matrix&lt;/h3&gt;
+
+&lt;p&gt;If we want to try to address this problem we can try building a &lt;strong&gt;confusion matrix&lt;/strong&gt; (which is less scary/confusing than it sounds). A confusion matrix shows all of the possible combinations of predictions vs the actual labels. We need to pick one category as the “positive class” and the other as the “negative class”. This is arbitrary, so let’s pick chocolate chips as the positive class, and raisin as the negative class. There is a sample confusion matrix shown below.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;Predicted: Chocolate chip&lt;/strong&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;strong&gt;Predicted: Raisin&lt;/strong&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Actual: Chocolate chip&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;120 (&lt;strong&gt;True Positives&lt;/strong&gt;)&lt;/td&gt;
+      &lt;td&gt;2 (&lt;strong&gt;False Negatives&lt;/strong&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Actual: Raisin&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;10 (&lt;strong&gt;False Positives&lt;/strong&gt;)&lt;/td&gt;
+      &lt;td&gt;23 (&lt;strong&gt;True Negatives&lt;/strong&gt;)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;I’m sure we’ve all had the experience of picking up what we thought was a chocolate chip cookie. Upon biting into it we realize “ugh, &lt;em&gt;raisin&lt;/em&gt;”. Don’t get me wrong, I like raisin cookies but it is the mismatch between expectation and reality that is the problem. This mismatch is referred to as a &lt;strong&gt;false positive&lt;/strong&gt; (FP) since we predicted the positive class, but it was actually the negative class. As you would expect, there are also &lt;em&gt;false negatives&lt;/em&gt; (FN) where you predict raisin, but it’s actually chocolate chip. If the prediction matches the actual label, these are referred to as &lt;strong&gt;true positives&lt;/strong&gt; (TP) or &lt;strong&gt;true negatives&lt;/strong&gt; (TN).&lt;/p&gt;
+
+&lt;h3 id=&quot;precision-and-recall&quot;&gt;Precision and recall&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Precision&lt;/strong&gt; and &lt;strong&gt;recall&lt;/strong&gt; are ways of measuring classification quality.&lt;/p&gt;
+
+&lt;h5 id=&quot;precision&quot;&gt;Precision&lt;/h5&gt;
+
+&lt;p&gt;$ \text{Precision} = \frac{TP}{TP + FP}$&lt;/p&gt;
+
+&lt;p&gt;This is the number of true positives, divided by all of the positive results predicted by the model.
+In our cookie example, this means “when you predicted chocolate chip, how likely was it to actually be chocolate chip?” If we look at the confusion matrix above, the precision would be&lt;/p&gt;
+
+&lt;p&gt;$ \text{Precision} = \frac{120}{120 + 10} = 0.923$&lt;/p&gt;
+
+&lt;h5 id=&quot;recall&quot;&gt;Recall&lt;/h5&gt;
+
+&lt;p&gt;$ \text{Recall}= \frac{TP}{TP + FN}$&lt;/p&gt;
+
+&lt;p&gt;This is the number of true positives, divided by all of the points that should have been classified as positive. More concretely, this is “out of all of the chocolate chip cookies, how many did you find?”&lt;/p&gt;
+
+&lt;p&gt;$ \text{Recall} = \frac{120}{120 + 2} = 0.984$&lt;/p&gt;
+
+&lt;h3 id=&quot;f1-score&quot;&gt;F1 score&lt;/h3&gt;
+
+&lt;p&gt;A model with high precision but low recall, returns few results but the predictions generally correspond to the actual labels. On the other side, a model with high recall but low precision returns many results, but most of the predictions are incorrect when compared to the labelled data. Obviously, we would like a model with both high precision and high recall. A metric called &lt;strong&gt;F1 score&lt;/strong&gt; combines both precision and recall, and it is a common way to measure model performance&lt;/p&gt;
+
+&lt;p&gt;$F1 = 2\frac{P \cdot R}{P+R}$&lt;/p&gt;
+
+&lt;p&gt;An F1 score of 1.0 corresponds to perfect precision and recall and is close to zero for an extremely bad model. The F1 score is just one way of combining precision and recall, and there are &lt;a href=&quot;https://en.wikipedia.org/wiki/F1_score&quot;&gt;other F measures&lt;/a&gt; which weight precision/recall differently.&lt;/p&gt;
+
+&lt;h3 id=&quot;things-to-consider&quot;&gt;Things to consider&lt;/h3&gt;
+
+&lt;p&gt;In some problems, false positives are more important than false negatives. In others, the opposite is true. Imagine we are trying to predict if a patient has a certain disease or not. A false positive means we think they have the disease, but in actuality they are healthy. Depending on the side effects of treatment, a wrong prediction could have severe consequences. If there are major side effects to treating the disease, we may want to favour precision over recall. On the other hand, there may be cases where treating the disease has minor side effects, and leaving the disease untreated has major consequences. In this case we would want to favour recall, where we find as many instances of the disease as possible. This is obviously a complicated subject, and I highly recommend listening to &lt;a href=&quot;http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics&quot;&gt;this episode of the podcast linear digressions&lt;/a&gt; if you want to know more.&lt;/p&gt;
+
+&lt;h3 id=&quot;regression&quot;&gt;Regression&lt;/h3&gt;
+
+&lt;p&gt;Now we’ll briefly talk about measuring the performance of regression models. Let’s imagine we have a model which predicts the selling price of a house based on it’s square footage. Here we don’t have a small number of categories (e.g. a house could sell for &lt;span&gt;$&lt;/span&gt;503 200 or &lt;span&gt;$&lt;/span&gt;632 777). Below I’ve plotted some fake data where the black points show the predicted price, and the blue points show the actual selling price. One way of measuring the amount of error is called &lt;strong&gt;Mean Absolute Error&lt;/strong&gt; (MAE). This is simply adding up all the differences between the predicted and actual values (shown by the red lines) and dividing by the number of points. The absolute part of MAE just means that you take the absolute value of the differences. If you have one prediction which overestimates the price by &lt;span&gt;$&lt;/span&gt;5000 and another which underestimates by &lt;span&gt;$&lt;/span&gt;5000, the MAE is 10000 (not 0 where the two differences cancel out). A related metric is called &lt;strong&gt;Mean Squared Error&lt;/strong&gt; (MSE) where you square the differences before adding them up. The reason for this that big differences will become even bigger. As an example, a difference of &lt;span&gt;$&lt;/span&gt;2 will become 4 but a difference of &lt;span&gt;$&lt;/span&gt;1000 will become 1000000.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/f_is_for_f1/mean_absolute_error_house_price.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;When working on a supervised learning problem, choosing the correct metric is important. First you should think about if you are working on a classification or regression problem. Then you need to consider which metric best measures what you are trying to achieve. This is just a small summary of some of the ways of measuring model performance. For more info check out the links below or look at the description of cross-entropy loss in the &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;deep learning post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/metrics-to-evaluate-your-machine-learning-algorithm-f10ba6e38234&quot;&gt;Other metrics you can use&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html&quot;&gt;More on precision and recall&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics&quot;&gt;Beware of simple metrics podcast&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">When we are training supervised learning models, we want to measure how well the model is performing. Choosing the correct metric for measuring model performance depends on what kind of task you are doing. There are two main categories of supervised learning tasks</summary></entry><entry><title type="html">E is for Embeddings</title><link href="https://abcsofdatascience.ca/blog/e-is-for-embeddings" rel="alternate" type="text/html" title="E is for Embeddings" /><published>2020-05-03T00:00:00-05:00</published><updated>2020-05-03T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/e-is-for-embeddings</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/e-is-for-embeddings">&lt;p&gt;In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an &lt;strong&gt;embedding&lt;/strong&gt; which consists of two things:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;A numeric representation of your data (because we need to do math)&lt;/li&gt;
