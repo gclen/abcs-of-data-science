@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>G is for Gradient Descent | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="G is for Gradient Descent" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:" />
+<meta property="og:description" content="As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-30T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:","headline":"G is for Gradient Descent","dateModified":"2020-05-30T00:00:00-05:00","datePublished":"2020-05-30T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/g-is-for-gradient-descent"},"url":"https://abcsofdatascience.ca/blog/g-is-for-gradient-descent","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>G is for Gradient Descent | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="G is for Gradient Descent" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:" />
+<meta property="og:description" content="As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-05-30T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:","headline":"G is for Gradient Descent","dateModified":"2020-05-30T00:00:00-05:00","datePublished":"2020-05-30T00:00:00-05:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/g-is-for-gradient-descent"},"url":"https://abcsofdatascience.ca/blog/g-is-for-gradient-descent","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">G is for Gradient Descent</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-05-30T00:00:00-05:00" itemprop="datePublished">
+        May 30, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#metrics">metrics</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#supervised_learning">supervised_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#AI">AI</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As I’ve said many times before AI/machine learning/deep learning is <a href="https://abcsofdatascience.ca/blog/a-is-for-ai">not magic</a>. In the case of supervised learning models (including <a href="https://abcsofdatascience.ca/blog/d-is-for-deep-learning">deep learning</a>) you have four things:</p>
+
+<ol>
+  <li>Labelled data</li>
+  <li>Features (e.g. image pixels or text)</li>
+  <li>A weight for each feature (since some features are more important than others)</li>
+  <li>An objective (or cost) function which measures how well/poorly your predictions match the labels.</li>
+</ol>
+
+<p>Before we start training a model, we have our data set and choose the features we want to use, as well as an objective function. I’ve mentioned some common objective functions in previous blog posts including cross-entropy loss and root mean squared error (RMSE). An objective function is a function of both the features as well as the weights. Once we’ve chosen the features and objective function, they are fixed while we actually train the model. This means the only thing we can change is the weight of each feature. When we refer to training a model, what we typically mean is finding which values of weights <strong>minimize or maximize</strong> the objective function. How do we actually find this set of weights? You can imagine trying a bunch of different sets of weights and seeing which gives the best model performance. However, as you might expect there are better ways to find the best set of weights. The broad category of algorithms that find the minimum/maximum values of functions are called <strong>optimization methods</strong>.</p>
+
+<h3 id="gradient-descent">Gradient descent</h3>
+
+<p>Gradient descent (and related variants) is a popular optimization technique and it is widely used in a variety of applications, including basically all deep learning models. It is an <strong>iterative</strong> method, which means it keeps repeating the same steps until some criteria is reached. This stopping criteria is also referred to as <strong>convergence criteria</strong>. This stopping condition could be “stop when the value of the loss function doesn’t change from step to step”. Let’s imagine we have a simple loss function like the one shown below and our starting position is shown in red. This starting position is typically random, since our weights are randomly initialized. We want to figure out how to get to the bottom of this bowl shaped curve, since this is the set of parameters where our loss function is at the smallest value. As we iterate through this process, we are “learning” better sets of parameters (or weights).</p>
+
+<p><img src="/images/g_is_for_gradient_descent/loss_function.png" alt="" /></p>
+
+<p>Imagine that you are on a hill at this red dot, and need to get to the bottom of the valley. However, you are also blindfolded (which sounds like the world’s worst escape room) so you can’t see where the valley is. You also want to get to the bottom of the hill as quickly as possible, so you want to take as few steps as possible. How would you do this? You would probably try to find the direction where the hill is the steepest and take a step in that direction. You would keep repeating this process until you got to the bottom of the hill. This is exactly what gradient descent is doing. We can calculate the direction with the steepest slope by calculating the derivative (or gradient) of the loss function. We then take a step in that direction, then keep repeating the process until we reach some stopping criteria.</p>
+
+<p>The key parameter in gradient descent is called the <strong>step size</strong> or <strong>learning rate</strong> which says how far to step in the direction of the gradient. It is really important to choose this value correctly. If we choose an appropriate value (like the one shown below) we can take a reasonable number of steps (in this case 7) to get to the bottom of the hill.</p>
+
+<p><img src="/images/g_is_for_gradient_descent/gradient_descent_optimal.png" alt="" /></p>
+
+<p>However, if we make the learning rate too small, then we need to take a lot of steps and this means that it takes much longer to get to the bottom of the hill.</p>
+
+<p><img src="/images/g_is_for_gradient_descent/gradient_descent_small_step_size.png" alt="" title="Here the learning rate is too small" /></p>
+
+<p>If we make it larger, then we can take fewer steps. But this also runs the risk of overshooting the minimum and even risks not converging at all.</p>
+
+<p><img src="/images/g_is_for_gradient_descent/gradient_descent_too_large.png" alt="" title="Here the learning rate is too large" /></p>
+
+<p>One way around this problem of having to choose the best learning rate is called “learning rate annealing”. Basically, it means that we start with a large learning rate (so we can quickly take large steps in the right direction). As we continue, we start taking smaller and smaller steps, so that we don’t overshoot the minimum. This has a nice balance between the large and small step sizes which makes choosing an initial learning rate less tricky.</p>
+
+<h3 id="local-vs-global-minima">Local vs global minima</h3>
+
+<p>Up until now, we have been talking about a very simple loss function which only has one minimum. In practice, loss functions are very messy and have many hills and valleys. Each valley has a <strong>local minima</strong> and there is one true <strong>global minimum</strong> which is actually the lowest point. In the loss function shown below, there are two minima. If we start at the red dot and use the method described above, we will get stuck in the valley on the right (a local minimum). However, we would like to get to the bottom of the valley on the left.</p>
+
+<p><img src="/images/g_is_for_gradient_descent/loss_function_local_minima.png" alt="" /></p>
+
+<p>One technique for doing this is called <strong>gradient descent with restarts</strong>. In this <a href="https://towardsdatascience.com/https-medium-com-reina-wang-tw-stochastic-gradient-descent-with-restarts-5f511975163">technique</a>, you periodically make your learning rate very large (and then slowly make it smaller using annealing). The benefit of this technique is that the large learning rates will help you escape the local minima, and hopefully find the global minimum (or at least a good minimum).</p>
+
+<h3 id="gradient-descent-in-practice">Gradient descent in practice</h3>
+
+<p>In practice, there are other modifications people apply to gradient descent in order to make it faster/easier to compute.</p>
+
+<ul>
+  <li>The form of gradient descent described above is known as “batch gradient descent”. This means that the entire dataset is used to compute the gradients. For large datasets this is impractical since the entire dataset needs to fit in memory. In many applications, especially deep learning, <strong>stochastic gradient descent</strong> (SGD) is used. Instead of using the entire dataset to calculate the gradient, random subsets are used (called mini-batches). While this is slightly less accurate, it is much faster and more efficient.</li>
+  <li><strong>Momentum</strong> is a popular addition to SGD since it makes it faster to compute, and typically gives more accurate results. Here you update the weights using the gradient, but you also use a weighted average of the previous gradients. In our example about finding your way down the hill, you would not stop and try to figure out the exact best slope down the hill for each step. You would continue in roughly the same direction and make minor direction changes as needed. Momentum does a similar thing by including the history of gradients in order to speed things up.</li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>Gradient descent is a technique used in a wide variety of applications. In particular, it is the workhorse of deep learning, and is what is used when a model “learns” weights. It is a fairly simple idea at its core, and hopefully this gave you an intuition for how it works, as well as some techniques that are used in practice.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="http://wiki.fast.ai/index.php/Gradient_Descent">An overview of gradient descent with links to more resources</a></li>
+  <li><a href="https://youtu.be/5u0jaA3qAGk">Neural Networks Demystified Part 3: Gradient Descent</a>. This is a really great short video.</li>
+  <li><a href="https://towardsdatascience.com/how-do-we-train-neural-networks-edd985562b73">How do we ‘train’ neural networks ?</a></li>
+  <li><a href="https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d">Stochastic Gradient Descent with momentum</a></li>
+</ul>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/g-is-for-gradient-descent" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

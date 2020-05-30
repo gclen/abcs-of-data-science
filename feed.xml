@@ -1,4 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-05-20T19:26:45-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">F is for F1 score</title><link href="https://abcsofdatascience.ca/blog/f-is-for-f1" rel="alternate" type="text/html" title="F is for F1 score" /><published>2020-05-20T00:00:00-05:00</published><updated>2020-05-20T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/f-is-for-f1-score</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/f-is-for-f1">&lt;p&gt;When we are training supervised learning models, we want to measure how well the model is performing. Choosing the correct metric for measuring model performance depends on what kind of task you are doing. There are two main categories of supervised learning tasks&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-05-30T15:47:57-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">G is for Gradient Descent</title><link href="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" rel="alternate" type="text/html" title="G is for Gradient Descent" /><published>2020-05-30T00:00:00-05:00</published><updated>2020-05-30T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/g-is-for-gradient-descent</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent">&lt;p&gt;As I’ve said many times before AI/machine learning/deep learning is &lt;a href=&quot;https://abcsofdatascience.ca/blog/a-is-for-ai&quot;&gt;not magic&lt;/a&gt;. In the case of supervised learning models (including &lt;a href=&quot;https://abcsofdatascience.ca/blog/d-is-for-deep-learning&quot;&gt;deep learning&lt;/a&gt;) you have four things:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Labelled data&lt;/li&gt;
+  &lt;li&gt;Features (e.g. image pixels or text)&lt;/li&gt;
+  &lt;li&gt;A weight for each feature (since some features are more important than others)&lt;/li&gt;
+  &lt;li&gt;An objective (or cost) function which measures how well/poorly your predictions match the labels.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Before we start training a model, we have our data set and choose the features we want to use, as well as an objective function. I’ve mentioned some common objective functions in previous blog posts including cross-entropy loss and root mean squared error (RMSE). An objective function is a function of both the features as well as the weights. Once we’ve chosen the features and objective function, they are fixed while we actually train the model. This means the only thing we can change is the weight of each feature. When we refer to training a model, what we typically mean is finding which values of weights &lt;strong&gt;minimize or maximize&lt;/strong&gt; the objective function. How do we actually find this set of weights? You can imagine trying a bunch of different sets of weights and seeing which gives the best model performance. However, as you might expect there are better ways to find the best set of weights. The broad category of algorithms that find the minimum/maximum values of functions are called &lt;strong&gt;optimization methods&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;gradient-descent&quot;&gt;Gradient descent&lt;/h3&gt;
+
+&lt;p&gt;Gradient descent (and related variants) is a popular optimization technique and it is widely used in a variety of applications, including basically all deep learning models. It is an &lt;strong&gt;iterative&lt;/strong&gt; method, which means it keeps repeating the same steps until some criteria is reached. This stopping criteria is also referred to as &lt;strong&gt;convergence criteria&lt;/strong&gt;. This stopping condition could be “stop when the value of the loss function doesn’t change from step to step”. Let’s imagine we have a simple loss function like the one shown below and our starting position is shown in red. This starting position is typically random, since our weights are randomly initialized. We want to figure out how to get to the bottom of this bowl shaped curve, since this is the set of parameters where our loss function is at the smallest value. As we iterate through this process, we are “learning” better sets of parameters (or weights).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/g_is_for_gradient_descent/loss_function.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Imagine that you are on a hill at this red dot, and need to get to the bottom of the valley. However, you are also blindfolded (which sounds like the world’s worst escape room) so you can’t see where the valley is. You also want to get to the bottom of the hill as quickly as possible, so you want to take as few steps as possible. How would you do this? You would probably try to find the direction where the hill is the steepest and take a step in that direction. You would keep repeating this process until you got to the bottom of the hill. This is exactly what gradient descent is doing. We can calculate the direction with the steepest slope by calculating the derivative (or gradient) of the loss function. We then take a step in that direction, then keep repeating the process until we reach some stopping criteria.&lt;/p&gt;
+
+&lt;p&gt;The key parameter in gradient descent is called the &lt;strong&gt;step size&lt;/strong&gt; or &lt;strong&gt;learning rate&lt;/strong&gt; which says how far to step in the direction of the gradient. It is really important to choose this value correctly. If we choose an appropriate value (like the one shown below) we can take a reasonable number of steps (in this case 7) to get to the bottom of the hill.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/g_is_for_gradient_descent/gradient_descent_optimal.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;However, if we make the learning rate too small, then we need to take a lot of steps and this means that it takes much longer to get to the bottom of the hill.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/g_is_for_gradient_descent/gradient_descent_small_step_size.png&quot; alt=&quot;&quot; title=&quot;Here the learning rate is too small&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we make it larger, then we can take fewer steps. But this also runs the risk of overshooting the minimum and even risks not converging at all.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/g_is_for_gradient_descent/gradient_descent_too_large.png&quot; alt=&quot;&quot; title=&quot;Here the learning rate is too large&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One way around this problem of having to choose the best learning rate is called “learning rate annealing”. Basically, it means that we start with a large learning rate (so we can quickly take large steps in the right direction). As we continue, we start taking smaller and smaller steps, so that we don’t overshoot the minimum. This has a nice balance between the large and small step sizes which makes choosing an initial learning rate less tricky.&lt;/p&gt;
+
+&lt;h3 id=&quot;local-vs-global-minima&quot;&gt;Local vs global minima&lt;/h3&gt;
+
+&lt;p&gt;Up until now, we have been talking about a very simple loss function which only has one minimum. In practice, loss functions are very messy and have many hills and valleys. Each valley has a &lt;strong&gt;local minima&lt;/strong&gt; and there is one true &lt;strong&gt;global minimum&lt;/strong&gt; which is actually the lowest point. In the loss function shown below, there are two minima. If we start at the red dot and use the method described above, we will get stuck in the valley on the right (a local minimum). However, we would like to get to the bottom of the valley on the left.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/g_is_for_gradient_descent/loss_function_local_minima.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;One technique for doing this is called &lt;strong&gt;gradient descent with restarts&lt;/strong&gt;. In this &lt;a href=&quot;https://towardsdatascience.com/https-medium-com-reina-wang-tw-stochastic-gradient-descent-with-restarts-5f511975163&quot;&gt;technique&lt;/a&gt;, you periodically make your learning rate very large (and then slowly make it smaller using annealing). The benefit of this technique is that the large learning rates will help you escape the local minima, and hopefully find the global minimum (or at least a good minimum).&lt;/p&gt;
+
+&lt;h3 id=&quot;gradient-descent-in-practice&quot;&gt;Gradient descent in practice&lt;/h3&gt;
+
+&lt;p&gt;In practice, there are other modifications people apply to gradient descent in order to make it faster/easier to compute.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The form of gradient descent described above is known as “batch gradient descent”. This means that the entire dataset is used to compute the gradients. For large datasets this is impractical since the entire dataset needs to fit in memory. In many applications, especially deep learning, &lt;strong&gt;stochastic gradient descent&lt;/strong&gt; (SGD) is used. Instead of using the entire dataset to calculate the gradient, random subsets are used (called mini-batches). While this is slightly less accurate, it is much faster and more efficient.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Momentum&lt;/strong&gt; is a popular addition to SGD since it makes it faster to compute, and typically gives more accurate results. Here you update the weights using the gradient, but you also use a weighted average of the previous gradients. In our example about finding your way down the hill, you would not stop and try to figure out the exact best slope down the hill for each step. You would continue in roughly the same direction and make minor direction changes as needed. Momentum does a similar thing by including the history of gradients in order to speed things up.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Gradient descent is a technique used in a wide variety of applications. In particular, it is the workhorse of deep learning, and is what is used when a model “learns” weights. It is a fairly simple idea at its core, and hopefully this gave you an intuition for how it works, as well as some techniques that are used in practice.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://wiki.fast.ai/index.php/Gradient_Descent&quot;&gt;An overview of gradient descent with links to more resources&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://youtu.be/5u0jaA3qAGk&quot;&gt;Neural Networks Demystified Part 3: Gradient Descent&lt;/a&gt;. This is a really great short video.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/how-do-we-train-neural-networks-edd985562b73&quot;&gt;How do we ‘train’ neural networks ?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/stochastic-gradient-descent-with-momentum-a84097641a5d&quot;&gt;Stochastic Gradient Descent with momentum&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">As I’ve said many times before AI/machine learning/deep learning is not magic. In the case of supervised learning models (including deep learning) you have four things:</summary></entry><entry><title type="html">F is for F1 score</title><link href="https://abcsofdatascience.ca/blog/f-is-for-f1" rel="alternate" type="text/html" title="F is for F1 score" /><published>2020-05-20T00:00:00-05:00</published><updated>2020-05-20T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/f-is-for-f1-score</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/f-is-for-f1">&lt;p&gt;When we are training supervised learning models, we want to measure how well the model is performing. Choosing the correct metric for measuring model performance depends on what kind of task you are doing. There are two main categories of supervised learning tasks&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Classification: Here you are trying to predict which category (or categories) a piece of input data belongs to. For example, given an image you might try to predict if it is a picture of a dog or cat.&lt;/li&gt;
