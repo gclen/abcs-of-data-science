@@ -2,7 +2,7 @@
 toc: false
 layout: post
 description: 
-categories: [data_science, metrics, supervised_learning, AI]
+categories: [data_science, optimization, supervised_learning, AI]
 title: G is for Gradient Descent
 permalink: /blog/g-is-for-gradient-descent
 comments: true
