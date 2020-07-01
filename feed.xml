@@ -1,4 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-05-30T15:49:15-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">G is for Gradient Descent</title><link href="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" rel="alternate" type="text/html" title="G is for Gradient Descent" /><published>2020-05-30T00:00:00-05:00</published><updated>2020-05-30T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/g-is-for-gradient-descent</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent">&lt;p&gt;As I’ve said many times before AI/machine learning/deep learning is &lt;a href=&quot;https://abcsofdatascience.ca/blog/a-is-for-ai&quot;&gt;not magic&lt;/a&gt;. In the case of supervised learning models (including &lt;a href=&quot;https://abcsofdatascience.ca/blog/d-is-for-deep-learning&quot;&gt;deep learning&lt;/a&gt;) you have four things:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-07-01T10:18:10-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">H is for HDBSCAN</title><link href="https://abcsofdatascience.ca/blog/h-is-for-hdbscan" rel="alternate" type="text/html" title="H is for HDBSCAN" /><published>2020-07-01T00:00:00-05:00</published><updated>2020-07-01T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/h-is-for-hdbscan</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/h-is-for-hdbscan">&lt;p&gt;There are many data science problems where you don’t have labelled data and need to use &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; to find related points. For these clustering problems, HDBSCAN is a great algorithm. It was originally created by &lt;a href=&quot;https://link.springer.com/chapter/10.1007/978-3-642-37456-2_14&quot;&gt;Campello et al.&lt;/a&gt; and there is a &lt;a href=&quot;https://github.com/scikit-learn-contrib/hdbscan&quot;&gt;fast Python implementation&lt;/a&gt; written by &lt;a href=&quot;https://twitter.com/leland_mcinnes?lang=en&quot;&gt;Leland Mcinnes&lt;/a&gt; and &lt;a href=&quot;https://github.com/jc-healy&quot;&gt;John Healy&lt;/a&gt;. When I refer to HDBSCAN I’ll be talking about the python implementation/package. It is generally the first clustering method I try for a variety of reasons:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;You don’t need to specify the number of clusters. Other clustering methods such as k-means require that you specify the number of clusters to find in your data, and this is hard to know ahead of time. HDBSCAN will find the natural number of clusters in your data. All you need to specify is the minimum number of points that a cluster should have (which is much easier to have an intuition for).&lt;/li&gt;
+  &lt;li&gt;Many other clustering algorithms make assumptions about the shape of the clusters (e.g. they must fit in a circle) or they are all the same density. In real data this is generally not true and HDBSCAN finds clusters with varying shapes/densities.&lt;/li&gt;
+  &lt;li&gt;HDBSCAN will label points as noise/outliers. Many clustering algorithms force every point into a cluster. However, real world data is messy and having outliers improves the quality of the clusters (since they aren’t polluted by noise).&lt;/li&gt;
+  &lt;li&gt;It generally &lt;em&gt;just works&lt;/em&gt;. I find I spend much less time fiddling with parameters and spend more time looking at my actual data.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Much of this blog is based on examples in the wonderful &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/&quot;&gt;documentation for HDBSCAN&lt;/a&gt;. In particular, if you want to see how HDBSCAN compares to other clustering algorithms read &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html&quot;&gt;this page&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;lets-look-at-an-example&quot;&gt;Let’s look at an example&lt;/h3&gt;
+
+&lt;p&gt;The first thing we need is an &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;embedding&lt;/a&gt;, which as you might recall is just a numeric representation of your data with a way to measure distance between points.
+Shown below is a plot of a &lt;a href=&quot;https://github.com/scikit-learn-contrib/hdbscan/blob/master/notebooks/clusterable_data.npy&quot;&gt;sample dataset&lt;/a&gt;. While it is an artificial dataset, it has many properties of real data:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;There are a lot of noisy/outlying points which don’t belong in any cluster&lt;/li&gt;
+  &lt;li&gt;The groups of points are different shapes and you can see in some clusters that the points are much closer together, while in others they are less dense.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/h_is_for_hdbscan/sample_data.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s try clustering this data. First we import HDBSCAN and load our data&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;hdbscan&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'clusterable_data.npy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Clustering the data is as simple as&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hdbscan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HDBSCAN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min_cluster_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metric&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'euclidean'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here we are saying that there must be &lt;em&gt;at least&lt;/em&gt; 15 points close together before we say that something is a cluster. How do we measure “close together”? We also specified a Euclidean distance metric. This is the default metric but HDBSCAN can use many &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/basic_hdbscan.html#what-about-different-metrics&quot;&gt;other metrics&lt;/a&gt;. Euclidean is the default metric, but it is always better to explicitly state your distance measure for other people reading the code. If we wanted to use cosine distance instead of Euclidean (despite Euclidean being the better choice in this case) we could do&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hdbscan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HDBSCAN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min_cluster_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metric&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cosine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We can see which cluster each point belongs to using&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels_&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# [ 5  5  5 ... -1 -1  5]
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The first points shown are part of cluster 5. Points that are outliers are given a label of “-1” so they are easy to filter out. Let’s remake the plot above but colour the points based on their cluster label. The outlying points (part of the -1 cluster) will be grey.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/h_is_for_hdbscan/sample_data_clustered.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can see that the resulting clusters are pretty good. More importantly, they match what we would intuitively pick as the clusters if we had to draw lines around the groups of points.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;HDBSCAN and its python implementation is a fast clustering algorithm that is easy to use. It naturally handles a lot of the messiness of real world data and lets you spend more time focussing on the problem you are trying to solve. If you want to learn more about how HDBSCAN works and see other examples check out the resources below.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/understanding-hdbscan-and-density-based-clustering-121dbee1320e&quot;&gt;Blog on understanding HDBSCAN&lt;/a&gt; which is similar to this blog but goes into much more detail&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html&quot;&gt;How HDBSCAN works&lt;/a&gt; from the official documentation&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://dev.tube/video/dGsxd67IFiU&quot;&gt;HDBSCAN, Fast Density Based Clustering, the How and the Why&lt;/a&gt; - John Healy&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">There are many data science problems where you don’t have labelled data and need to use clustering to find related points. For these clustering problems, HDBSCAN is a great algorithm. It was originally created by Campello et al. and there is a fast Python implementation written by Leland Mcinnes and John Healy. When I refer to HDBSCAN I’ll be talking about the python implementation/package. It is generally the first clustering method I try for a variety of reasons:</summary></entry><entry><title type="html">G is for Gradient Descent</title><link href="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent" rel="alternate" type="text/html" title="G is for Gradient Descent" /><published>2020-05-30T00:00:00-05:00</published><updated>2020-05-30T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/g-is-for-gradient-descent</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/g-is-for-gradient-descent">&lt;p&gt;As I’ve said many times before AI/machine learning/deep learning is &lt;a href=&quot;https://abcsofdatascience.ca/blog/a-is-for-ai&quot;&gt;not magic&lt;/a&gt;. In the case of supervised learning models (including &lt;a href=&quot;https://abcsofdatascience.ca/blog/d-is-for-deep-learning&quot;&gt;deep learning&lt;/a&gt;) you have four things:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Labelled data&lt;/li&gt;
