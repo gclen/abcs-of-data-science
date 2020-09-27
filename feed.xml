@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-09-27T15:02:21-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">I is for Interpretability</title><link href="https://abcsofdatascience.ca/blog/i-is-for-interpretability" rel="alternate" type="text/html" title="I is for Interpretability" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/i-is-for-interpretability</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/i-is-for-interpretability">&lt;p&gt;Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-09-27T15:36:11-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">J is for Jaccard metric</title><link href="https://abcsofdatascience.ca/blog/j-is-for-jaccard" rel="alternate" type="text/html" title="J is for Jaccard metric" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/j-is-for-jaccard</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/j-is-for-jaccard">&lt;p&gt;In &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;previous blogs&lt;/a&gt; we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/j_is_for_jaccard/jaccard_small.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;jaccard-similaritydistance&quot;&gt;Jaccard similarity/distance&lt;/h3&gt;
+
+&lt;p&gt;As a more concrete example let’s imagine that we have collected a list of people’s favourite pizza toppings and we want to find which people are most similar.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Kara likes pepperoni, mushrooms, and green pepper&lt;/li&gt;
+  &lt;li&gt;Zach likes ham, pineapple, and jalapeno peppers&lt;/li&gt;
+  &lt;li&gt;Rodney also likes pepperoni, mushrooms, and green peppers&lt;/li&gt;
+  &lt;li&gt;Sophie likes olives, ham, pepperoni, and mushrooms&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So what are the Jaccard similarities between these people?&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Kara and Rodney like exactly the same toppings so their similarity is 1&lt;/li&gt;
+  &lt;li&gt;Rodney and Zach have nothing in common so their similarity is 0&lt;/li&gt;
+  &lt;li&gt;Kara and Sophie have some things in common but Sophie enjoys more toppings. Their similarity is 0.4 ([pepperoni, mushrooms]/[pepperoni, mushrooms, olives, ham])&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You’ll notice that two sets that are exactly the same have a similarity of 1. To change this into a distance we just to&lt;/p&gt;
+
+&lt;p&gt;$D_{Jaccard} = 1 - similarity$&lt;/p&gt;
+
+&lt;p&gt;Now Kara and Rodney have a distance of 0, while Rodney and Zach are a distance of 1 (which in this case is as far apart as you can be).&lt;/p&gt;
+
+&lt;h3 id=&quot;hellinger-distance&quot;&gt;Hellinger distance&lt;/h3&gt;
+
+&lt;p&gt;You might have noticed that Jaccard distance doesn’t take into account how frequently the items in the set occur. If counts do matter for your problem, then you will want to use &lt;a href=&quot;https://en.wikipedia.org/wiki/Hellinger_distance&quot;&gt;Hellinger distance&lt;/a&gt;. Let’s imagine you have some data on the number of times people have read a given book:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Harry Potter&lt;/td&gt;
+      &lt;td&gt;Hello World&lt;/td&gt;
+      &lt;td&gt;The Hobbit&lt;/td&gt;
+      &lt;td&gt;The Great Gatsby&lt;/td&gt;
+      &lt;td&gt;Trick Mirror&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Marie&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Jordan&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sarah&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Patrick&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Marie, Jordan, and Patrick have all read Harry Potter which would make them similar under Jaccard similarity. However, Marie and Patrick are probably more similar since they both read it multiple times. Hellinger distance takes this into account. I’ll try to give you some intuition for how it does this.&lt;/p&gt;
+
+&lt;p&gt;Imagine that each set of counts is generated by some weighted multi-sided die (that is different for each person). When we roll Maries die, it is more likely to come up with Harry Potter and less likely to come up with Hello World. The opposite is true for Sarah’s die, which is more likely to come up with Hello World and less likely to come up with Harry Potter. We calculate what the weights of these dice look like (these are called multinomial distributions).&lt;/p&gt;
+
+&lt;p&gt;We can then measure the mutual likelihood of these distributions. This just means “what is the probability of Jordans counts occuring using Maries die (and vice versa)”. If there is a high probability that Jordans counts occurred using Maries die, then Marie and Jordan should be considered close. If it is unlikely that Sarah’s counts occurred using Maries die, then Marie and Sarah should be pushed apart.&lt;/p&gt;
+
+&lt;p&gt;Hellinger distance is particularly useful if you have a bunch of text. You can consider two documents similar if you have the same words occurring at similar frequencies.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Jaccard and Hellinger are both very useful distance measures that can be used in dimension reduction and embeddings. If counts matter, use Hellinger, otherwise use Jaccard distance.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;amp;index=41&amp;amp;t=0s&quot;&gt;Embed all the things - John Healy (talk from Pydata Los Angeles 2019)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In previous blogs we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:</summary></entry><entry><title type="html">I is for Interpretability</title><link href="https://abcsofdatascience.ca/blog/i-is-for-interpretability" rel="alternate" type="text/html" title="I is for Interpretability" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/i-is-for-interpretability</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/i-is-for-interpretability">&lt;p&gt;Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be 
 &lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;far from perfect&lt;/a&gt;. In addition to being able to appeal the decisions made by a model, 
 it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including&lt;/p&gt;
 
@@ -609,7 +703,7 @@ Researchers studied 3 commercially available facial recognition tools from Micro
 
 &lt;p&gt;It is important to note that &lt;strong&gt;humans are also biased&lt;/strong&gt;. They can grade using different criteria if they get grumpy or tired. The appeal of using ML models is that they are much cheaper than humans and can scale much better. If left unchecked, this just means that biased decisions are made at a much larger scale than what was done previously. The best approach is to use a mixture of ML models while keeping a human in the loop. This means providing a way for people to appeal decisions made by an ML model (such as university/college admissions) and allowing a human to override the decision. As researchers, something to keep in mind is that the users of these algorithms may not understand probabilities/confidence intervals. Even if they do understand these concepts they may not feel comfortable overruling the ML model.&lt;/p&gt;
 
-&lt;p&gt;Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write a blog about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.&lt;/p&gt;
+&lt;p&gt;Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;a blog&lt;/a&gt; about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.&lt;/p&gt;
 
 &lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
 
