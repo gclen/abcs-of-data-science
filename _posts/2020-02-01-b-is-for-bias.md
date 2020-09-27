@@ -47,7 +47,7 @@ Like many companies, Amazon receives huge numbers of applicants and sorting thro
 
 It is important to note that __humans are also biased__. They can grade using different criteria if they get grumpy or tired. The appeal of using ML models is that they are much cheaper than humans and can scale much better. If left unchecked, this just means that biased decisions are made at a much larger scale than what was done previously. The best approach is to use a mixture of ML models while keeping a human in the loop. This means providing a way for people to appeal decisions made by an ML model (such as university/college admissions) and allowing a human to override the decision. As researchers, something to keep in mind is that the users of these algorithms may not understand probabilities/confidence intervals. Even if they do understand these concepts they may not feel comfortable overruling the ML model.
 
-Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write a blog about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.
+Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write [a blog]({{ site.baseurl }}/blog/i-is-for-interpretability) about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.
 
 ### Other resources
 
