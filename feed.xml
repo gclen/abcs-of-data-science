@@ -1,4 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-10-09T10:28:46-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">K is for K-fold cross-validation</title><link href="https://abcsofdatascience.ca/blog/k-is-for-kfold-cross-validation" rel="alternate" type="text/html" title="K is for K-fold cross-validation" /><published>2020-10-05T00:00:00-05:00</published><updated>2020-10-05T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/k-is-for-kfold-cross-validation</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/k-is-for-kfold-cross-validation">&lt;p&gt;In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as &lt;strong&gt;training data&lt;/strong&gt;. You might remember from &lt;a href=&quot;(/blog/f-is-for-f1)&quot;&gt;F is for F1 score&lt;/a&gt; that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-10-09T13:55:25-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">L is for Labelling Data</title><link href="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" rel="alternate" type="text/html" title="L is for Labelling Data" /><published>2020-10-09T00:00:00-05:00</published><updated>2020-10-09T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/l-is-for-labelling-data</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/l-is-for-labelling-data">&lt;p&gt;Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Labelling data is time intensive and also really boring/tedious. You often need hundreds or thousands of examples (or more!) so it takes a while to create a labelled training set. People are also incentivized/rewarded for training a useful ML model, as compared to labelling 1000s of points.&lt;/li&gt;
+  &lt;li&gt;Having high quality labels often requires input from subject matter experts (whose time is valuable). For example, looking at x-ray images to label the images to have a given disease. This would require a medical professional who may not have the time required to label 1000s of images. Even if the data scientists themselves are doing the labelling, they are also typically highly paid professionals who may not have the time or commitment from management to spend hours labelling data.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;labelling-data-in-practice&quot;&gt;Labelling data in practice&lt;/h3&gt;
+
+&lt;p&gt;Fortunately in the real world there are a few ways to make getting a labelled data set easier (not easy, but easier).&lt;/p&gt;
+
+&lt;h5 id=&quot;pay-someone-else-to-do-it&quot;&gt;Pay someone else to do it&lt;/h5&gt;
+
+&lt;p&gt;There are an increasing number of services where you can outsource your data labelling tasks. This includes Amazon’s &lt;a href=&quot;https://aws.amazon.com/sagemaker/groundtruth/&quot;&gt;SageMaker Ground Truth&lt;/a&gt; or Google’s &lt;a href=&quot;https://cloud.google.com/ai-platform/data-labeling/docs&quot;&gt;AI Platform Data Labelling Service&lt;/a&gt;. These services can work if you have a large budget. However, if the dataset you are trying to label is sensitive (e.g. medical records) or requires a large amount of subject matter expertise then you may not be able to use these services. Alternatively, just pay grad students to &lt;del&gt;label data&lt;/del&gt; do research.&lt;/p&gt;
+
+&lt;h5 id=&quot;make-people-do-it-for-free&quot;&gt;Make people do it for free&lt;/h5&gt;
+
+&lt;p&gt;You’ve probably needed to go through an image based captcha (e.g. “select all the pictures with traffic lights”) in order to log into a popular web service. If you’re a large organization or have a product that many people use, this can be an effective way to get people to label data for free.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/l_is_for_labelling_data/image_captcha.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;use-pretrained-models-or-datasets&quot;&gt;Use pretrained models or datasets&lt;/h5&gt;
+
+&lt;p&gt;In some cases there may be publicly available models (e.g. &lt;a href=&quot;https://modelzoo.co/&quot;&gt;modelzoo&lt;/a&gt;) that have been trained on a similar task to the one you’re interested in. Similarly, there are publicly available labelled datasets (e.g. &lt;a href=&quot;https://www.kaggle.com/datasets&quot;&gt;kaggle datasets&lt;/a&gt;) that you could train your own model on. These datasets/models could come from academic researchers, companies such as Google, or open source projects. If the pretrained model gives acceptable results for your problem then great! It is worth thinking about how your dataset/task is different than the one the model was trained on. If your data diverges from the original dataset over time, then your model will be less accurate. This is known as &lt;strong&gt;model drift&lt;/strong&gt;. It’s possible to &lt;strong&gt;fine-tune&lt;/strong&gt; these pretrained models onto your dataset/labels to improve their performance for your task. I’ll talk about that in more detail in T is for Transfer Learning.&lt;/p&gt;
+
+&lt;h5 id=&quot;using-unsupervised-learning&quot;&gt;Using unsupervised learning&lt;/h5&gt;
+
+&lt;p&gt;Instead of labelling each point individually, you can often try &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; your data beforehand. This allows you to label groups of data instead of each individual point.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/l_is_for_labelling_data/dogs_and_cats_labels_smaller.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can build this clustering and labelling system yourself or use a labelling tool which does the same thing. Some of these include (most you need to pay for):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.platform.ai/&quot;&gt;platform.ai for images&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://prodi.gy/&quot;&gt;prodigy for text&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Snorkel has a &lt;a href=&quot;https://www.snorkel.ai/&quot;&gt;paid&lt;/a&gt; and a &lt;a href=&quot;https://www.snorkel.org/&quot;&gt;free&lt;/a&gt; product&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;data-augmentation&quot;&gt;Data augmentation&lt;/h5&gt;
+
+&lt;p&gt;One of the reasons for having large training sets is to have many examples for the model to learn patterns. If you are trying to classify images of dogs you need to have many different pictures of different breeds. The pictures need to be from different angles (head on, side view, etc.) to be able to recognize the dogs in different scenarios. One way to increase the size of your dataset is to use &lt;strong&gt;data augmentation&lt;/strong&gt;. If you have a picture you can generate new labelled data by transforming the original image. This might include blurring, cropping, or rotating the image. Using this technique you can get multiple labelled data points for each image that was labelled by a human. Having multiple versions of an image with varying amounts of noise will make your model more robust as well. Data augmentation can be applied to other data types as well (e.g. text) but it’s slightly trickier than doing it with images.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/l_is_for_labelling_data/data_augmentation.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;active-learning&quot;&gt;Active learning&lt;/h5&gt;
+
+&lt;p&gt;This is a technique where you can use a ML model to help you label your data. It works as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Label a small amount of your training set (e.g. 10%)&lt;/li&gt;
+  &lt;li&gt;Train a ML model on the labelled data you have&lt;/li&gt;
+  &lt;li&gt;Use that ML model to predict labels for the other 90%. You can verify the labels for the predictions where the model was not very confident. You should also randomly check predictions where the model was confident just to check that it is working as intended.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Using this method can help speed up the data labelling process and give you a better model overall.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Getting labelled data can be one of the most challenging parts of training a supervised learning model. If you aren’t able to throw money at the problem (most of us aren’t!) then there are many techniques you can try to increase your productivity when labelling data such as using labelling tools or data augmentation. When using existing datasets and models make sure to think about the similarities and differences between that dataset and the problem you want to tackle.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.kdnuggets.com/2017/06/acquiring-quality-labeled-training-data.html&quot;&gt;7 Ways to Get High-Quality Labeled Training Data at Low Cost&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ANIw1Mz1SRI&quot;&gt;Active Learning - Computerphile&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:</summary></entry><entry><title type="html">K is for K-fold cross-validation</title><link href="https://abcsofdatascience.ca/blog/k-is-for-kfold-cross-validation" rel="alternate" type="text/html" title="K is for K-fold cross-validation" /><published>2020-10-05T00:00:00-05:00</published><updated>2020-10-05T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/k-is-for-kfold-cross-validation</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/k-is-for-kfold-cross-validation">&lt;p&gt;In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as &lt;strong&gt;training data&lt;/strong&gt;. You might remember from &lt;a href=&quot;(/blog/f-is-for-f1)&quot;&gt;F is for F1 score&lt;/a&gt; that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).&lt;/p&gt;
 
 &lt;p&gt;In all supervised learning problems we want to know well our model is doing and how well it can predict things for unseen data.&lt;/p&gt;
 
@@ -59,78 +125,7 @@
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/cross_validation.html&quot;&gt;Cross-validation explanation in scikit-learn&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/k-fold-cross-validation/&quot;&gt;K-fold cross-validation explanation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as training data. You might remember from F is for F1 score that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).</summary></entry><entry><title type="html">I is for Interpretability</title><link href="https://abcsofdatascience.ca/blog/i-is-for-interpretability" rel="alternate" type="text/html" title="I is for Interpretability" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/i-is-for-interpretability</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/i-is-for-interpretability">&lt;p&gt;Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be 
-&lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;far from perfect&lt;/a&gt;. In addition to being able to appeal the decisions made by a model, 
-it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;What does interpretability mean?&lt;/li&gt;
-  &lt;li&gt;Why does it matter?&lt;/li&gt;
-  &lt;li&gt;How do we actually interpret models in practice?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;pinning-down-interpretability&quot;&gt;Pinning down interpretability&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.03490.pdf&quot;&gt;This paper&lt;/a&gt; titled &lt;em&gt;The Mythos of Model Interpretability&lt;/em&gt; by &lt;a href=&quot;https://twitter.com/zacharylipton&quot;&gt;Zachary Lipton&lt;/a&gt;, gives a really good overview of what people mean when they say “interpretability”. He argues that interpretability is not just one monolithic concept, but a number of distinct ideas. It’s worth looking at the different reasons we try to interpret ML models.&lt;/p&gt;
-
-&lt;h5 id=&quot;do-we-trust-the-model&quot;&gt;Do we trust the model?&lt;/h5&gt;
-
-&lt;p&gt;Using a ML model to automate some task often requires a human giving up control.  We often care about the kinds of predictions the model gets wrong and if there is a pattern to these incorrect predictions. For example, many facial recognition models have significantly worse performance on people of color than white people. In this case using the model with this bias would be unacceptable. However, there may be other cases where the model gets things wrong in the same way humans do. In that case it may be acceptable to use the model to make predictions.&lt;/p&gt;
-
-&lt;h5 id=&quot;can-we-use-the-model-to-learn-something-about-the-world&quot;&gt;Can we use the model to learn something about the world?&lt;/h5&gt;
-
-&lt;p&gt;Researchers will often look at which features of a trained model are most important in making predictions. Imagine you have a model which is trying to predict if a patient has lung cancer. As input features you have the number of years the patient has smoked cigarettes, and the number of years they have chewed bubble gum. Of course, smoking correlates much more with lung cancer than chewing bubble gum and that feature would have a much greater importance. It’s important to keep in mind that correlation does not equal causation. For example, [the per capita consumption of margarine in the US strongly correlates with the divorce rate in Maine(http://www.tylervigen.com/spurious-correlations)]. Researchers can then use these important features to create experiments to test if those correlations are causal.&lt;/p&gt;
-
-&lt;h5 id=&quot;will-the-ml-model-help-a-human-make-better-predictions&quot;&gt;Will the ML model help a human make better predictions?&lt;/h5&gt;
-
-&lt;p&gt;A common use of ML models is to help a human make a more informed decision. Imagine you work in cybersecurity and are tasked with finding malware. Fortunately, you have a ML model which determines if files are malware or benign. The important features used by the model (e.g. is the code heavily obfuscated?) can help you make a better decision in your investigation. ML models can also help you find similar examples to give you more context when triaging the file.&lt;/p&gt;
-
-&lt;h3 id=&quot;what-do-interpretable-models-look-like&quot;&gt;What do interpretable models look like?&lt;/h3&gt;
-
-&lt;p&gt;There are two broad categories of ways to interpret models: transparency and post-hoc explanations.&lt;/p&gt;
-
-&lt;h5 id=&quot;transparency&quot;&gt;Transparency&lt;/h5&gt;
-
-&lt;p&gt;This is basically “how does the model work?”. For example, simpler models such as linear regression are considered more interpretable than a deep neural network (which is sometimes referred to as a blackbox). Let’s imagine we want to train a model to predict house prices. We could have some features about the house such as the number of bedrooms, square footage, distance to a city with more than 500 000 people etc. A linear model is just taking these features and weights and adding them up.&lt;/p&gt;
-
-&lt;p&gt;$ \text{house price} = w_1 \cdot (\text{number of bedrooms}) + w_2\cdot(\text{square footage}) + w_3\cdot(\text{distance to city}) + … $&lt;/p&gt;
-
-&lt;p&gt;In these models a higher weight means the feature is more important so interpreting which features are more important is really easy. To say the models are interpretable overall assumes that the features themselves are also easily interpretable (e.g. number of bedrooms).&lt;/p&gt;
-
-&lt;p&gt;Other models may not be as easy to interpret directly. For example a random forest uses a bunch of decision trees (think flow charts). While the model may be harder to interpret overall, interpreting an individual decision tree is relatively straightforward.&lt;/p&gt;
-
-&lt;p&gt;Another reason that linear models are typically more interpretable than neural networks/deep learning is that we understand how they work in much more detail. For example, we can prove that a linear model will give a unique solution which is not the case with deep learning models.
-However, neural networks typically perform much better than other models. In order to get comparable performance out of these other models there may be tricks needed (e.g. feature engineering) which could make the model less interpretable overall.&lt;/p&gt;
-
-&lt;h5 id=&quot;post-hoc-interpretability&quot;&gt;Post-hoc interpretability&lt;/h5&gt;
-
-&lt;p&gt;Even if we don’t directly know how the model works, we can still get useful information by interpreting the predictions. It’s worth noting that this is how humans explain decisions. We don’t always know the exact cause of a decision but can try to provide a rational explanation after the fact. Interpreting the model after the fact means that we can potentially use models with higher performance (e.g. deep learning models).&lt;/p&gt;
-
-&lt;p&gt;One method of post-hoc interpretability is to have an “explanation by example”. This means getting the model to predict which other examples the model thinks are most similar. In the case of predicting malware or not, the examples most similar to a malicious PDF may be other malicious PDF documents. In the case of deep learning models, we can also gain insight by visualizing the &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;hidden layers&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Another technique that people use is to train two separate models. The first model makes the predictions, and the second model generates text that explains the prediction. For example, the first model may predict something about an image, while the second model generates a caption for that image.&lt;/p&gt;
-
-&lt;p&gt;Researchers may also train two separate models where one model is more interpretable than the other. For example they may train a deep neural network (with high performance but low interpretability) as well as a random forest model. While the random forest model may not perform as well, it can also give some insight into the problem space. However, this could be potentially misleading as the explanations given by the simpler model may not correspond to why the more complex model works.&lt;/p&gt;
-
-&lt;h3 id=&quot;things-to-keep-in-mind&quot;&gt;Things to keep in mind&lt;/h3&gt;
-
-&lt;p&gt;Interpretability and having explainable models is still a highly active area of research. There are a few things to keep in mind when doing this in practice&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Rules of thumb such as “linear models are more interpretable than neural nets” are generally true (but not always!)&lt;/li&gt;
-  &lt;li&gt;When talking about interpretability it is important to clarify what you mean exactly. I highly recommend reading Zachary Lipton’s paper for more specific definitions of the concepts above.&lt;/li&gt;
-  &lt;li&gt;There may be cases where an ML model can perform significantly better than humans. Making sure the model is transparent (and potentially reducing performance) is not always the correct decision depending on the overall goal. It might be sufficient to have a better performing model with a human appeals process in place.&lt;/li&gt;
-  &lt;li&gt;I recommend using existing libraries such as &lt;a href=&quot;https://github.com/interpretml/interpret&quot;&gt;interpret-ml&lt;/a&gt; which have a wide variety of methods and examples when trying to do this in practice.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.03490.pdf&quot;&gt;Zachary Lipton’s paper&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/interpretml/interpret&quot;&gt;interpret-ml package&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethics.fast.ai/&quot;&gt;Practical data ethics course from fast.ai&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2018/5/13/shap-shapley-values-in-machine-learning&quot;&gt;Podcast on using Shapley values to interpret models&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be far from perfect. In addition to being able to appeal the decisions made by a model, it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including</summary></entry><entry><title type="html">J is for Jaccard metric</title><link href="https://abcsofdatascience.ca/blog/j-is-for-jaccard" rel="alternate" type="text/html" title="J is for Jaccard metric" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/j-is-for-jaccard</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/j-is-for-jaccard">&lt;p&gt;In &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;previous blogs&lt;/a&gt; we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as training data. You might remember from F is for F1 score that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).</summary></entry><entry><title type="html">J is for Jaccard metric</title><link href="https://abcsofdatascience.ca/blog/j-is-for-jaccard" rel="alternate" type="text/html" title="J is for Jaccard metric" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/j-is-for-jaccard</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/j-is-for-jaccard">&lt;p&gt;In &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;previous blogs&lt;/a&gt; we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/j_is_for_jaccard/jaccard_small.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
@@ -224,7 +219,78 @@ However, neural networks typically perform much better than other models. In ord
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;amp;index=41&amp;amp;t=0s&quot;&gt;Embed all the things - John Healy (talk from Pydata Los Angeles 2019)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In previous blogs we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:</summary></entry><entry><title type="html">H is for HDBSCAN</title><link href="https://abcsofdatascience.ca/blog/h-is-for-hdbscan" rel="alternate" type="text/html" title="H is for HDBSCAN" /><published>2020-07-01T00:00:00-05:00</published><updated>2020-07-01T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/h-is-for-hdbscan</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/h-is-for-hdbscan">&lt;p&gt;There are many data science problems where you don’t have labelled data and need to use &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; to find related points. For these clustering problems, HDBSCAN is a great algorithm. It was originally created by &lt;a href=&quot;https://link.springer.com/chapter/10.1007/978-3-642-37456-2_14&quot;&gt;Campello et al.&lt;/a&gt; and there is a &lt;a href=&quot;https://github.com/scikit-learn-contrib/hdbscan&quot;&gt;fast Python implementation&lt;/a&gt; written by &lt;a href=&quot;https://twitter.com/leland_mcinnes?lang=en&quot;&gt;Leland Mcinnes&lt;/a&gt; and &lt;a href=&quot;https://github.com/jc-healy&quot;&gt;John Healy&lt;/a&gt;. When I refer to HDBSCAN I’ll be talking about the python implementation/package. It is generally the first clustering method I try for a variety of reasons:&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In previous blogs we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:</summary></entry><entry><title type="html">I is for Interpretability</title><link href="https://abcsofdatascience.ca/blog/i-is-for-interpretability" rel="alternate" type="text/html" title="I is for Interpretability" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/i-is-for-interpretability</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/i-is-for-interpretability">&lt;p&gt;Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be 
+&lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;far from perfect&lt;/a&gt;. In addition to being able to appeal the decisions made by a model, 
+it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What does interpretability mean?&lt;/li&gt;
+  &lt;li&gt;Why does it matter?&lt;/li&gt;
+  &lt;li&gt;How do we actually interpret models in practice?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pinning-down-interpretability&quot;&gt;Pinning down interpretability&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.03490.pdf&quot;&gt;This paper&lt;/a&gt; titled &lt;em&gt;The Mythos of Model Interpretability&lt;/em&gt; by &lt;a href=&quot;https://twitter.com/zacharylipton&quot;&gt;Zachary Lipton&lt;/a&gt;, gives a really good overview of what people mean when they say “interpretability”. He argues that interpretability is not just one monolithic concept, but a number of distinct ideas. It’s worth looking at the different reasons we try to interpret ML models.&lt;/p&gt;
+
+&lt;h5 id=&quot;do-we-trust-the-model&quot;&gt;Do we trust the model?&lt;/h5&gt;
+
+&lt;p&gt;Using a ML model to automate some task often requires a human giving up control.  We often care about the kinds of predictions the model gets wrong and if there is a pattern to these incorrect predictions. For example, many facial recognition models have significantly worse performance on people of color than white people. In this case using the model with this bias would be unacceptable. However, there may be other cases where the model gets things wrong in the same way humans do. In that case it may be acceptable to use the model to make predictions.&lt;/p&gt;
+
+&lt;h5 id=&quot;can-we-use-the-model-to-learn-something-about-the-world&quot;&gt;Can we use the model to learn something about the world?&lt;/h5&gt;
+
+&lt;p&gt;Researchers will often look at which features of a trained model are most important in making predictions. Imagine you have a model which is trying to predict if a patient has lung cancer. As input features you have the number of years the patient has smoked cigarettes, and the number of years they have chewed bubble gum. Of course, smoking correlates much more with lung cancer than chewing bubble gum and that feature would have a much greater importance. It’s important to keep in mind that correlation does not equal causation. For example, [the per capita consumption of margarine in the US strongly correlates with the divorce rate in Maine(http://www.tylervigen.com/spurious-correlations)]. Researchers can then use these important features to create experiments to test if those correlations are causal.&lt;/p&gt;
+
+&lt;h5 id=&quot;will-the-ml-model-help-a-human-make-better-predictions&quot;&gt;Will the ML model help a human make better predictions?&lt;/h5&gt;
+
+&lt;p&gt;A common use of ML models is to help a human make a more informed decision. Imagine you work in cybersecurity and are tasked with finding malware. Fortunately, you have a ML model which determines if files are malware or benign. The important features used by the model (e.g. is the code heavily obfuscated?) can help you make a better decision in your investigation. ML models can also help you find similar examples to give you more context when triaging the file.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-do-interpretable-models-look-like&quot;&gt;What do interpretable models look like?&lt;/h3&gt;
+
+&lt;p&gt;There are two broad categories of ways to interpret models: transparency and post-hoc explanations.&lt;/p&gt;
+
+&lt;h5 id=&quot;transparency&quot;&gt;Transparency&lt;/h5&gt;
+
+&lt;p&gt;This is basically “how does the model work?”. For example, simpler models such as linear regression are considered more interpretable than a deep neural network (which is sometimes referred to as a blackbox). Let’s imagine we want to train a model to predict house prices. We could have some features about the house such as the number of bedrooms, square footage, distance to a city with more than 500 000 people etc. A linear model is just taking these features and weights and adding them up.&lt;/p&gt;
+
+&lt;p&gt;$ \text{house price} = w_1 \cdot (\text{number of bedrooms}) + w_2\cdot(\text{square footage}) + w_3\cdot(\text{distance to city}) + … $&lt;/p&gt;
+
+&lt;p&gt;In these models a higher weight means the feature is more important so interpreting which features are more important is really easy. To say the models are interpretable overall assumes that the features themselves are also easily interpretable (e.g. number of bedrooms).&lt;/p&gt;
+
+&lt;p&gt;Other models may not be as easy to interpret directly. For example a random forest uses a bunch of decision trees (think flow charts). While the model may be harder to interpret overall, interpreting an individual decision tree is relatively straightforward.&lt;/p&gt;
+
+&lt;p&gt;Another reason that linear models are typically more interpretable than neural networks/deep learning is that we understand how they work in much more detail. For example, we can prove that a linear model will give a unique solution which is not the case with deep learning models.
+However, neural networks typically perform much better than other models. In order to get comparable performance out of these other models there may be tricks needed (e.g. feature engineering) which could make the model less interpretable overall.&lt;/p&gt;
+
+&lt;h5 id=&quot;post-hoc-interpretability&quot;&gt;Post-hoc interpretability&lt;/h5&gt;
+
+&lt;p&gt;Even if we don’t directly know how the model works, we can still get useful information by interpreting the predictions. It’s worth noting that this is how humans explain decisions. We don’t always know the exact cause of a decision but can try to provide a rational explanation after the fact. Interpreting the model after the fact means that we can potentially use models with higher performance (e.g. deep learning models).&lt;/p&gt;
+
+&lt;p&gt;One method of post-hoc interpretability is to have an “explanation by example”. This means getting the model to predict which other examples the model thinks are most similar. In the case of predicting malware or not, the examples most similar to a malicious PDF may be other malicious PDF documents. In the case of deep learning models, we can also gain insight by visualizing the &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;hidden layers&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Another technique that people use is to train two separate models. The first model makes the predictions, and the second model generates text that explains the prediction. For example, the first model may predict something about an image, while the second model generates a caption for that image.&lt;/p&gt;
+
+&lt;p&gt;Researchers may also train two separate models where one model is more interpretable than the other. For example they may train a deep neural network (with high performance but low interpretability) as well as a random forest model. While the random forest model may not perform as well, it can also give some insight into the problem space. However, this could be potentially misleading as the explanations given by the simpler model may not correspond to why the more complex model works.&lt;/p&gt;
+
+&lt;h3 id=&quot;things-to-keep-in-mind&quot;&gt;Things to keep in mind&lt;/h3&gt;
+
+&lt;p&gt;Interpretability and having explainable models is still a highly active area of research. There are a few things to keep in mind when doing this in practice&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Rules of thumb such as “linear models are more interpretable than neural nets” are generally true (but not always!)&lt;/li&gt;
+  &lt;li&gt;When talking about interpretability it is important to clarify what you mean exactly. I highly recommend reading Zachary Lipton’s paper for more specific definitions of the concepts above.&lt;/li&gt;
+  &lt;li&gt;There may be cases where an ML model can perform significantly better than humans. Making sure the model is transparent (and potentially reducing performance) is not always the correct decision depending on the overall goal. It might be sufficient to have a better performing model with a human appeals process in place.&lt;/li&gt;
+  &lt;li&gt;I recommend using existing libraries such as &lt;a href=&quot;https://github.com/interpretml/interpret&quot;&gt;interpret-ml&lt;/a&gt; which have a wide variety of methods and examples when trying to do this in practice.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.03490.pdf&quot;&gt;Zachary Lipton’s paper&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/interpretml/interpret&quot;&gt;interpret-ml package&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethics.fast.ai/&quot;&gt;Practical data ethics course from fast.ai&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2018/5/13/shap-shapley-values-in-machine-learning&quot;&gt;Podcast on using Shapley values to interpret models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be far from perfect. In addition to being able to appeal the decisions made by a model, it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including</summary></entry><entry><title type="html">H is for HDBSCAN</title><link href="https://abcsofdatascience.ca/blog/h-is-for-hdbscan" rel="alternate" type="text/html" title="H is for HDBSCAN" /><published>2020-07-01T00:00:00-05:00</published><updated>2020-07-01T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/h-is-for-hdbscan</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/h-is-for-hdbscan">&lt;p&gt;There are many data science problems where you don’t have labelled data and need to use &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; to find related points. For these clustering problems, HDBSCAN is a great algorithm. It was originally created by &lt;a href=&quot;https://link.springer.com/chapter/10.1007/978-3-642-37456-2_14&quot;&gt;Campello et al.&lt;/a&gt; and there is a &lt;a href=&quot;https://github.com/scikit-learn-contrib/hdbscan&quot;&gt;fast Python implementation&lt;/a&gt; written by &lt;a href=&quot;https://twitter.com/leland_mcinnes?lang=en&quot;&gt;Leland Mcinnes&lt;/a&gt; and &lt;a href=&quot;https://github.com/jc-healy&quot;&gt;John Healy&lt;/a&gt;. When I refer to HDBSCAN I’ll be talking about the python implementation/package. It is generally the first clustering method I try for a variety of reasons:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;You don’t need to specify the number of clusters. Other clustering methods such as k-means require that you specify the number of clusters to find in your data, and this is hard to know ahead of time. HDBSCAN will find the natural number of clusters in your data. All you need to specify is the minimum number of points that a cluster should have (which is much easier to have an intuition for).&lt;/li&gt;
@@ -721,55 +787,4 @@ For example, if the model was very confident (e.g. 99% confident) that the pictu
   &lt;li&gt;&lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html&quot;&gt;Comparing clustering algorithms&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ayZQj4llUSU&quot;&gt;Clustering: a guide for the perplexed&lt;/a&gt; - John Healy and Leland Mcinnes&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=JnnaDNNb380&amp;amp;list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&amp;amp;index=7&quot;&gt;Crash course AI: unsupervised learning&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.</summary></entry><entry><title type="html">B is for Bias</title><link href="https://abcsofdatascience.ca/blog/b-is-for-bias" rel="alternate" type="text/html" title="B is for Bias" /><published>2020-02-01T00:00:00-06:00</published><updated>2020-02-01T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/b-is-for-bias</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/b-is-for-bias">&lt;p&gt;The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.&lt;/p&gt;
-
-&lt;h3 id=&quot;bias-variance-tradeoff&quot;&gt;Bias-variance tradeoff&lt;/h3&gt;
-
-&lt;p&gt;The &lt;a href=&quot;https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff&quot;&gt;bias-variance tradeoff&lt;/a&gt; refers to tuning models such that they don’t under/overfit your data. A model has high bias if it underfits the training set (e.g. if you are trying to fit a line to non-linear data). A model has high variance if it overfits the training set (i.e. doesn’t generalize well). This could occur if you have a huge non-linear function with a large number of parameters. The bias-variance tradeoff is trying to find a model that minimizes both of these phenomena.&lt;/p&gt;
-
-&lt;h3 id=&quot;unjust-bias-and-the-importance-of-having-a-human-in-the-loop&quot;&gt;Unjust bias and the importance of having a human in the loop&lt;/h3&gt;
-
-&lt;p&gt;Machine learning models are useful for helping humans sort through large piles of data. However, it is critical to have a human in the loop in order to validate predictions. It’s particularly important when ML models are used to predict things like university admissions or welfare benefits which have a huge impact on people’s lives. As we talked about in the previous blog, there are two key points to always keep in mind about AI/ML&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;It’s not magic&lt;/li&gt;
-  &lt;li&gt;It’s not perfect&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Problems arise when people treat the output of ML models as completely objective (or magic) with no opportunities to overrule these predictions.&lt;/p&gt;
-
-&lt;p&gt;Bias refers to a model that is prejudiced in favour of particular categories. Unjust bias occurs when there is a mismatch between the models view of the world and how we think the world should be. There are many reasons that this can happen but two of the big ones are:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;The training data is not truly representative. It may favour certain categories over others leading to better predictions on those categories. As the saying goes: “garbage in, garbage out”.&lt;/li&gt;
-  &lt;li&gt;The training data is truly representative of past behaviour. However, this might be different than what we want the future behaviour to be.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;There are a couple of famous examples of biased models which demonstrate this behaviour.&lt;/p&gt;
-
-&lt;h3 id=&quot;facial-recognition&quot;&gt;Facial recognition&lt;/h3&gt;
-
-&lt;p&gt;Facial recognition tools are increasingly being utilized by organizations such as law enforcement agencies. Model fairness is critical in this case since if a model is biased against particular subgroups it will have a disproportionate impact on the lives of people in that subgroup.
-Researchers studied 3 commercially available facial recognition tools from Microsoft, IBM, and FACE++ (study is &lt;a href=&quot;http://gendershades.org/&quot;&gt;here&lt;/a&gt;). The researchers found that the models performed much better on men and also had higher accuracy on lighter skinned people. In the worst case there was a 34.4% difference in accuracy between lighter skinned men compared to darker skinned women. This shows when the training data does not accurately represent all subgroups the result is a biased model.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/b_is_for_bias/gendershades.png&quot; alt=&quot;&quot; title=&quot;Taken from http://gendershages.org&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;amazons-hiring-model&quot;&gt;Amazon’s hiring model&lt;/h3&gt;
-
-&lt;p&gt;Like many companies, Amazon receives huge numbers of applicants and sorting through these applications is incredibly time intensive. They had a historical set of applications and know which of those candidates were hired. So, they developed a machine learning model to sort through the applications and rank the candidates in terms of their likelihood to be hired. However, this essentially turned into a gender detection model since the vast majority of their previous hires were men. For example, the model would penalize resumes which included the word “women’s”. This is a case where a model can make accurate predictions based on historical data, however this does not match with how hiring should be done. Despite the fact that Amazon scrapped this model, they are far from the only company who would like to automate portions of their hiring process. Creating a fair and unbiased method of doing so that is interpretable is still an open research question. You should be suspicious of anyone who claims to have solved this problem.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://imgs.xkcd.com/comics/ai_hiring_algorithm.png&quot; alt=&quot;&quot; title=&quot;So glad Kate over in R&amp;amp;D pushed for using the AlgoMaxAnalyzer to look into this. Hiring her was a great decisio- waaaait.&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;how-can-we-fix-this&quot;&gt;How can we fix this?&lt;/h3&gt;
-
-&lt;p&gt;It is important to note that &lt;strong&gt;humans are also biased&lt;/strong&gt;. They can grade using different criteria if they get grumpy or tired. The appeal of using ML models is that they are much cheaper than humans and can scale much better. If left unchecked, this just means that biased decisions are made at a much larger scale than what was done previously. The best approach is to use a mixture of ML models while keeping a human in the loop. This means providing a way for people to appeal decisions made by an ML model (such as university/college admissions) and allowing a human to override the decision. As researchers, something to keep in mind is that the users of these algorithms may not understand probabilities/confidence intervals. Even if they do understand these concepts they may not feel comfortable overruling the ML model.&lt;/p&gt;
-
-&lt;p&gt;Creating models that are fair and interpretable is still an active area of research. This is an incredibly complex and nuanced topic but it is important to be aware of it. Later on, I will write &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;a blog&lt;/a&gt; about the different techniques you can use to interpret ML models to try and gain insight into how they are making decisions.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=S-6YGPrmtYc&quot;&gt;Getting Specific About Algorithmic Bias&lt;/a&gt;) - &lt;a href=&quot;https://twitter.com/math_rachel&quot;&gt;Rachel Thomas&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.ca/Weapons-Math-Destruction-Increases-Inequality/dp/0553418815&quot;&gt;Weapons of Math Destruction&lt;/a&gt; - &lt;a href=&quot;https://twitter.com/mathbabedotorg&quot;&gt;Cathy O’Neil&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.amazon.ca/Hello-World-Algorithms-Define-Future/dp/039363499X&quot;&gt;Hello World&lt;/a&gt; - &lt;a href=&quot;https://twitter.com/fryrsquared&quot;&gt;Hannah Fry&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.</summary></entry></feed>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>L is for Labelling Data | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="L is for Labelling Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:" />
+<meta property="og:description" content="Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-09T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"L is for Labelling Data","dateModified":"2020-10-09T00:00:00-05:00","datePublished":"2020-10-09T00:00:00-05:00","description":"Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/l-is-for-labelling-data"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/l-is-for-labelling-data","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>L is for Labelling Data | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="L is for Labelling Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:" />
+<meta property="og:description" content="Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-09T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"L is for Labelling Data","dateModified":"2020-10-09T00:00:00-05:00","datePublished":"2020-10-09T00:00:00-05:00","description":"Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/l-is-for-labelling-data"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/l-is-for-labelling-data","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">L is for Labelling Data</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-09T00:00:00-05:00" itemprop="datePublished">
+        Oct 9, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#supervised_learning">supervised_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#AI">AI</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:</p>
+
+<ol>
+  <li>Labelling data is time intensive and also really boring/tedious. You often need hundreds or thousands of examples (or more!) so it takes a while to create a labelled training set. People are also incentivized/rewarded for training a useful ML model, as compared to labelling 1000s of points.</li>
+  <li>Having high quality labels often requires input from subject matter experts (whose time is valuable). For example, looking at x-ray images to label the images to have a given disease. This would require a medical professional who may not have the time required to label 1000s of images. Even if the data scientists themselves are doing the labelling, they are also typically highly paid professionals who may not have the time or commitment from management to spend hours labelling data.</li>
+</ol>
+
+<h3 id="labelling-data-in-practice">Labelling data in practice</h3>
+
+<p>Fortunately in the real world there are a few ways to make getting a labelled data set easier (not easy, but easier).</p>
+
+<h5 id="pay-someone-else-to-do-it">Pay someone else to do it</h5>
+
+<p>There are an increasing number of services where you can outsource your data labelling tasks. This includes Amazon’s <a href="https://aws.amazon.com/sagemaker/groundtruth/">SageMaker Ground Truth</a> or Google’s <a href="https://cloud.google.com/ai-platform/data-labeling/docs">AI Platform Data Labelling Service</a>. These services can work if you have a large budget. However, if the dataset you are trying to label is sensitive (e.g. medical records) or requires a large amount of subject matter expertise then you may not be able to use these services. Alternatively, just pay grad students to <del>label data</del> do research.</p>
+
+<h5 id="make-people-do-it-for-free">Make people do it for free</h5>
+
+<p>You’ve probably needed to go through an image based captcha (e.g. “select all the pictures with traffic lights”) in order to log into a popular web service. If you’re a large organization or have a product that many people use, this can be an effective way to get people to label data for free.</p>
+
+<p><img src="/images/l_is_for_labelling_data/image_captcha.png" alt="" /></p>
+
+<h5 id="use-pretrained-models-or-datasets">Use pretrained models or datasets</h5>
+
+<p>In some cases there may be publicly available models (e.g. <a href="https://modelzoo.co/">modelzoo</a>) that have been trained on a similar task to the one you’re interested in. Similarly, there are publicly available labelled datasets (e.g. <a href="https://www.kaggle.com/datasets">kaggle datasets</a>) that you could train your own model on. These datasets/models could come from academic researchers, companies such as Google, or open source projects. If the pretrained model gives acceptable results for your problem then great! It is worth thinking about how your dataset/task is different than the one the model was trained on. If your data diverges from the original dataset over time, then your model will be less accurate. This is known as <strong>model drift</strong>. It’s possible to <strong>fine-tune</strong> these pretrained models onto your dataset/labels to improve their performance for your task. I’ll talk about that in more detail in T is for Transfer Learning.</p>
+
+<h5 id="using-unsupervised-learning">Using unsupervised learning</h5>
+
+<p>Instead of labelling each point individually, you can often try <a href="/blog/c-is-for-clustering">clustering</a> your data beforehand. This allows you to label groups of data instead of each individual point.</p>
+
+<p><img src="/images/l_is_for_labelling_data/dogs_and_cats_labels_smaller.png" alt="" /></p>
+
+<p>You can build this clustering and labelling system yourself or use a labelling tool which does the same thing. Some of these include (most you need to pay for):</p>
+
+<ul>
+  <li><a href="https://www.platform.ai/">platform.ai for images</a></li>
+  <li><a href="https://prodi.gy/">prodigy for text</a></li>
+  <li>Snorkel has a <a href="https://www.snorkel.ai/">paid</a> and a <a href="https://www.snorkel.org/">free</a> product</li>
+</ul>
+
+<h5 id="data-augmentation">Data augmentation</h5>
+
+<p>One of the reasons for having large training sets is to have many examples for the model to learn patterns. If you are trying to classify images of dogs you need to have many different pictures of different breeds. The pictures need to be from different angles (head on, side view, etc.) to be able to recognize the dogs in different scenarios. One way to increase the size of your dataset is to use <strong>data augmentation</strong>. If you have a picture you can generate new labelled data by transforming the original image. This might include blurring, cropping, or rotating the image. Using this technique you can get multiple labelled data points for each image that was labelled by a human. Having multiple versions of an image with varying amounts of noise will make your model more robust as well. Data augmentation can be applied to other data types as well (e.g. text) but it’s slightly trickier than doing it with images.</p>
+
+<p><img src="/images/l_is_for_labelling_data/data_augmentation.png" alt="" /></p>
+
+<h5 id="active-learning">Active learning</h5>
+
+<p>This is a technique where you can use a ML model to help you label your data. It works as follows:</p>
+
+<ol>
+  <li>Label a small amount of your training set (e.g. 10%)</li>
+  <li>Train a ML model on the labelled data you have</li>
+  <li>Use that ML model to predict labels for the other 90%. You can verify the labels for the predictions where the model was not very confident. You should also randomly check predictions where the model was confident just to check that it is working as intended.</li>
+</ol>
+
+<p>Using this method can help speed up the data labelling process and give you a better model overall.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Getting labelled data can be one of the most challenging parts of training a supervised learning model. If you aren’t able to throw money at the problem (most of us aren’t!) then there are many techniques you can try to increase your productivity when labelling data such as using labelling tools or data augmentation. When using existing datasets and models make sure to think about the similarities and differences between that dataset and the problem you want to tackle.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.kdnuggets.com/2017/06/acquiring-quality-labeled-training-data.html">7 Ways to Get High-Quality Labeled Training Data at Low Cost</a></li>
+  <li><a href="https://www.youtube.com/watch?v=ANIw1Mz1SRI">Active Learning - Computerphile</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/l-is-for-labelling-data" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
