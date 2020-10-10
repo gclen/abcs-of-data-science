@@ -1,4 +1,135 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-10-09T13:55:25-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">L is for Labelling Data</title><link href="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" rel="alternate" type="text/html" title="L is for Labelling Data" /><published>2020-10-09T00:00:00-05:00</published><updated>2020-10-09T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/l-is-for-labelling-data</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/l-is-for-labelling-data">&lt;p&gt;Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-10-10T15:15:18-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">M is for Munging Data</title><link href="https://abcsofdatascience.ca/blog/m-is-for-munging-data" rel="alternate" type="text/html" title="M is for Munging Data" /><published>2020-10-10T00:00:00-05:00</published><updated>2020-10-10T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/m-is-for-munging-data</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/m-is-for-munging-data">&lt;p&gt;You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes &lt;a href=&quot;/blog/l-is-for-labelling-data&quot;&gt;getting labels&lt;/a&gt;. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Getting and cleaning the data&lt;/li&gt;
+  &lt;li&gt;Selecting features&lt;/li&gt;
+  &lt;li&gt;Engineering features&lt;/li&gt;
+  &lt;li&gt;Transforming the data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;To paraphrase the bodybuilder &lt;a href=&quot;https://www.youtube.com/watch?v=4UlgXIL0-3g&quot;&gt;Ronnie Coleman&lt;/a&gt; “everybody wants to be a data scientist but don’t nobody want to munge no ugly-ass data!”. While it isn’t the most glamorous part of data science, good data preparation is critical for having models that perform well. Properly cleaned data and good features can give better performance than trying to tweak the model itself.&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-data&quot;&gt;Getting data&lt;/h3&gt;
+
+&lt;p&gt;Datasets can come in a wide variety of formats but there are a few common ways of accessing them:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Spreadsheets: These are typically excel spreadsheets or CSV (comma separated value) files. These can be easily read in using something like the pandas library in python.&lt;/li&gt;
+  &lt;li&gt;Web APIs: Many data sources provide an API for fetching data, and you can interact with these APIs using python’s requests module. If you need to scrape the website itself, the beautifulsoup module is extremely helpful.&lt;/li&gt;
+  &lt;li&gt;Databases: Data scientists will often interact with their data in databases using SQL.&lt;/li&gt;
+  &lt;li&gt;Unstructured data: All of the formats above provide data in some structured manner. Unfortunately, this is not always possible and you may need to use &lt;a href=&quot;https://xkcd.com/208/&quot;&gt;regular expressions&lt;/a&gt; and other techniques to parse the data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;cleaning-and-transforming-data&quot;&gt;Cleaning and transforming data&lt;/h3&gt;
+
+&lt;p&gt;When you are first looking at a new dataset it is extremely important that you &lt;strong&gt;look at your data&lt;/strong&gt;! A fancier term for looking at your data is Exploratory Data Analysis (EDA). Once you have an environment set up, what does EDA look like in practice?&lt;/p&gt;
+
+&lt;h5 id=&quot;looking-for-missing-data&quot;&gt;Looking for missing data&lt;/h5&gt;
+
+&lt;p&gt;Real world data is messy and there can be mistakes or missing data. You might need to infer missing values or drop rows with too much missing data. How you infer missing data depends on the data type and what works best for your problem. For example, if you have a field with missing numbers, you could fill in the missing value with the average or just put 0. You also need to check if there is a pattern to which rows/fields have missing values. If there is a pattern (i.e. it isn’t random) you will need to compensate for that as well.&lt;/p&gt;
+
+&lt;h5 id=&quot;visualizing-data&quot;&gt;Visualizing data&lt;/h5&gt;
+
+&lt;p&gt;Data visualization is an invaluable tool when exploring data. Below are some questions that we are typically trying to answer by visualizing data&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;What do the feature distributions look like? This could be as simple as answering the question “Do some values occur very frequently?”. This might be answered by making a histogram of your data.&lt;/li&gt;
+  &lt;li&gt;Do some features correlate with one another? For example in a census dataset, the neighbourhood someone lives in will typically correlate with household income.&lt;/li&gt;
+  &lt;li&gt;Are there big patterns that jump out in the data? It might be hard to see these patterns (e.g. lots of duplicate points) when looking at a spreadsheet, but when plotted are very obvious.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;transforming-data&quot;&gt;Transforming data&lt;/h5&gt;
+
+&lt;p&gt;It is pretty common to have to tweak your data into a format that a machine learning algorithm expects. Let’s imagine we have a dataset about video games&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Title&lt;/th&gt;
+      &lt;th&gt;Metacritic score (/100)&lt;/th&gt;
+      &lt;th&gt;IGN score (/10)&lt;/th&gt;
+      &lt;th&gt;Genre&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;The Legend of Zelda: Breath of the Wild&lt;/td&gt;
+      &lt;td&gt;97&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;Action-adventure&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Untitled Goose Game&lt;/td&gt;
+      &lt;td&gt;81&lt;/td&gt;
+      &lt;td&gt;8&lt;/td&gt;
+      &lt;td&gt;Puzzle&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;James Bond 007: Nightfire&lt;/td&gt;
+      &lt;td&gt;80&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;First person shooter&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Here we have two numeric columns (metacritic score and IGN score) but they are on different scales. One goes from 0-100 while the other is from 0-10. Some ML algorithms assume that all of the features are on the same scale, so we would need to &lt;strong&gt;normalize&lt;/strong&gt; these features. This could mean converting all the numbers so that they are between 0 and 1 (e.g. 8/10 becomes 0.8).&lt;/p&gt;
+
+&lt;p&gt;Many ML algorithms assume that all of your input is numeric. How do we convert the genre field (which is a &lt;strong&gt;categorical value&lt;/strong&gt;) to a numeric one? One simple way to do this is known as &lt;strong&gt;one-hot encoding&lt;/strong&gt;. This just means representing all categories as a vector where there is a 1 if the category matches and a 0 if it doesn’t. Using our example above we have:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Action-adventure&lt;/th&gt;
+      &lt;th&gt;Puzzle&lt;/th&gt;
+      &lt;th&gt;First person shooter&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;The Legend of Zelda: Breath of the Wild&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Untitled Goose Game&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;James Bond 007: Nightfire&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;0&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;So instead of having the genre value of “Puzzle” for Untitled Goose Game, we would have [0, 1, 0]. A one-hot encoding is a very simple version of an &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;embedding&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If we have text data there are many techniques that we can use which I’ll talk about in the next blog N is for Natural Language Processing.&lt;/p&gt;
+
+&lt;h5 id=&quot;common-tools-for-eda&quot;&gt;Common tools for EDA&lt;/h5&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter notebooks&lt;/a&gt; are a popular environment for doing EDA, since it provides an interactive development environment where you can see output (e.g. plots) inline with your code. The &lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;pandas&lt;/a&gt; module in python is very commonly used for data munging tasks and has a lot of useful utilities. I’ll talk more about the pandas library in a later blog post.&lt;/p&gt;
+
+&lt;h3 id=&quot;feature-selection-and-engineering&quot;&gt;Feature selection and engineering&lt;/h3&gt;
+
+&lt;p&gt;When preparing data for training a model you need to figure out which features in your data will be most relevant for the problem you are trying to solve (e.g. classification). There may be features that would be helpful that don’t exist in the data as it comes in. Creating new features is referred to as feature engineering. Both feature selection and engineering require some expertise in the problem domain. One way to determine useful features if you have labels is to look at the features which are strongly correlated with those labels. Imagine you are trying to predict if a file is malware or benign. If there are attributes of that file that occur frequently when the file is malware and don’t occur when it is benign, that would be a useful feature. In the case of classification, you are looking for features that make it easy to discriminate between the classes. In the case of &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; you need to choose features that say “these points are similar if they have X in common”. Feature selection/engineering is more of an art than a science and can involve some trial and error.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Data munging is a crucial part of data science (and you could argue it’s the majority of data science). Properly cleaning and normalizing your data can have huge benefits for the downstream task you are trying to solve. It is challenging and sometimes frustrating (looking at you regular expressions!) task but is necessary to understand your data and train an effective model.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/what-is-data-preparation-in-machine-learning/&quot;&gt;More on data preparation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/10/1/whats-really-so-hard-about-feature-engineering&quot;&gt;What’s &lt;em&gt;really&lt;/em&gt; so hard about feature engineering&lt;/a&gt; (episode of the Linear Digressions podcast)&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:</summary></entry><entry><title type="html">L is for Labelling Data</title><link href="https://abcsofdatascience.ca/blog/l-is-for-labelling-data" rel="alternate" type="text/html" title="L is for Labelling Data" /><published>2020-10-09T00:00:00-05:00</published><updated>2020-10-09T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/l-is-for-labelling-data</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/l-is-for-labelling-data">&lt;p&gt;Having high quality labelled data is critical to training useful supervised learning models. This labelled training data needs to be directly relevant to the real world task you are trying to accomplish. Unfortunately, getting this labelled data can be very challenging in a lot of cases. This is for a couple reasons:&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;Labelling data is time intensive and also really boring/tedious. You often need hundreds or thousands of examples (or more!) so it takes a while to create a labelled training set. People are also incentivized/rewarded for training a useful ML model, as compared to labelling 1000s of points.&lt;/li&gt;
@@ -711,80 +842,4 @@ For example, if the model was very confident (e.g. 99% confident) that the pictu
   &lt;li&gt;&lt;a href=&quot;https://www.coursera.org/specializations/deep-learning&quot;&gt;Deep learning specialization on Coursera&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://course.fast.ai/part2&quot;&gt;Deep learning from the foundations&lt;/a&gt; (part 2 of the fastai course)&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oV3ZY6tJiA0&quot;&gt;Neural Networks and Deep Learning: Crash Course AI #3&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.</summary></entry><entry><title type="html">C is for Clustering</title><link href="https://abcsofdatascience.ca/blog/c-is-for-clustering" rel="alternate" type="text/html" title="C is for Clustering" /><published>2020-03-01T00:00:00-06:00</published><updated>2020-03-01T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/c-is-for-clustering</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/c-is-for-clustering">&lt;p&gt;Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.&lt;/p&gt;
-
-&lt;h3 id=&quot;what-else-can-you-use-clustering-for&quot;&gt;What else can you use clustering for?&lt;/h3&gt;
-
-&lt;h5 id=&quot;anomalyoutlier-detection&quot;&gt;Anomaly/outlier detection&lt;/h5&gt;
-&lt;p&gt;Since you know which group an object belongs to, you can say “show me the items which don’t belong to a group”. You can also look for points on the outer edges of clusters since they may also be anomalous.&lt;/p&gt;
-
-&lt;h5 id=&quot;labelling-points&quot;&gt;Labelling points&lt;/h5&gt;
-
-&lt;p&gt;You can even use clustering to help you label your data! Instead of labelling 100 images as dogs/cats individually, you could have groups of images which are much easier to label (i.e. “here are 24 dogs all grouped together”).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/c_is_for_clustering/dogs_and_cats_labels_smaller.png&quot; alt=&quot;&quot; title=&quot;Is this just an excuse to post cute animal pictures? Maybe.&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;how-do-you-actually-cluster-points-together&quot;&gt;How do you actually cluster points together?&lt;/h3&gt;
-
-&lt;p&gt;Take a look at the image below (courtesy of &lt;a href=&quot;https://twitter.com/leland_mcinnes&quot;&gt;Leland Mcinnes&lt;/a&gt;). You can probably see which points should be grouped together but some points clearly look like they don’t belong to any groups.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/c_is_for_clustering/comparing_clustering_algorithms_unclustered.png&quot; alt=&quot;&quot; title=&quot;Taken from https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The simple definition of clustering “find similar groups of stuff” sounds fairly simple at the surface. If you think about it a bit more you’ll realize that there are a number of questions that need to be answered:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;em&gt;How do you define similarity?&lt;/em&gt; In every clustering algorithm you need to specify a way of measuring the distance between two points. This is often referred to as a &lt;strong&gt;distance metric&lt;/strong&gt;. As you would expect, points are similar if they are close together (the distance between them is small) and less similar the farther apart they are. There are many kinds of distance metrics, which I will touch on in later blog posts.&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;Does every point need to belong to a group? Can a point belong to multiple groups?&lt;/em&gt; The answers to these questions depend on the algorithm. In some cases, points can only belong to one group. This is known as &lt;strong&gt;hard clustering&lt;/strong&gt;. In other cases they have a probability associated with being part of a cluster. This is known as &lt;strong&gt;soft clustering&lt;/strong&gt; (or fuzzy clustering). Some clustering algorithms will force every point into a group (whether it belongs in there or not), while others will just label those points as outliers/noise.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;types-of-clustering-methods&quot;&gt;Types of clustering methods&lt;/h3&gt;
-
-&lt;p&gt;Since the definition of cluster is so broad, there are many types of clustering algorithms. Here are a few broad categories:&lt;/p&gt;
-
-&lt;h5 id=&quot;centroid-based&quot;&gt;Centroid based&lt;/h5&gt;
-
-&lt;p&gt;In these algorithms, clusters are determined based on which centroid you are closest to. A centroid is just a point calculated by averaging all of the other points in a group. One popular centroid based method is k-means which works as follows.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Pick &lt;em&gt;k&lt;/em&gt; centroids (where k is the number of clusters in your data). For the sake of argument, let’s say we have 2 centroids.&lt;/li&gt;
-  &lt;li&gt;Randomly place the centroids&lt;/li&gt;
-  &lt;li&gt;Calculate the distance from each point to the centroid, and pick the closest centroid as its cluster id. For example if a point is closest to centroid 1 then it is part of cluster 1&lt;/li&gt;
-  &lt;li&gt;Recalculate the centroids as the average of all of the points in the cluster. Centroid 1 is now the average of all points in cluster 1, centroid 2 the average of all points in cluster 2, etc.&lt;/li&gt;
-  &lt;li&gt;Repeat steps 3 and 4 until your clusters stabilize (i.e. the cluster ids for your points stop changing)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/c_is_for_clustering/kmeansViz.png&quot; alt=&quot;&quot; title=&quot;Taken from https://stanford.edu/~cpiech/cs221/img/kmeansViz.png&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There are a few issues with this method. The first is that it is really hard to know how many clusters you have ahead of time (i.e it’s hard to choose k). The second is that it doesn’t allow for clusters of different shapes since it assumes that all clusters are spherical. Finally, every point is forced into a cluster.&lt;/p&gt;
-
-&lt;h5 id=&quot;density-based&quot;&gt;Density based&lt;/h5&gt;
-
-&lt;p&gt;In density based clustering algorithms, clusters are areas with lots of points. If you look at the image above, this probably closely aligns with your intuition about what is/is not in a cluster. The clusters you identified have high density (lots of points in a small area). &lt;a href=&quot;(https://en.wikipedia.org/wiki/DBSCAN)&quot;&gt;DBSCAN&lt;/a&gt; (density-based spatial clustering of applications with noise) is a popular density based clustering algorithm. It has two main parameters, min_points and epsilon. In order for something to be labelled a cluster, there must be at least min_points close together. If min_points is 10, that means there will be no clusters with less than 10 data points. Epsilon is basically “how far from a point do I look to see if it is close”. For each point, you can see how many other points are within epsilon. If there are at least min_points, then you have a cluster. In the image below, all of the red points (A) have at least 4 points (min_points=4) within epsilon distance. The yellow points (B and C) are also in the cluster because they are reachable from one of the red points. N would be labelled an outlier since it is not within epsilon of any points.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/c_is_for_clustering/600px-DBSCAN-Illustration.svg.png&quot; alt=&quot;&quot; title=&quot;Taken from https://en.wikipedia.org/wiki/File:DBSCAN-Illustration.svg&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Choosing min_points is much easier than choosing the number of clusters ahead of time (which we needed to do in k-means). However, picking the correct value for epsilon can be tricky and is more of an art than a science. Another issue with DBSCAN is that it assumes all of the clusters have the same density, which is not always the case.&lt;/p&gt;
-
-&lt;h5 id=&quot;distribution-based&quot;&gt;Distribution based&lt;/h5&gt;
-
-&lt;p&gt;In these algorithms, you train sets of statistical models and points are assigned to a cluster based on which model they are most likely to occur in. One benefit of this type of algorithm is each point has a probability associated with belonging (e.g. 0.75 probability of being in cluster A, and a 0.25 probability of being in cluster B). This means soft clustering is baked into the algorithm, and if you want hard clusters (i.e. a point can only belong to one cluster) you can just choose the largest likelihood. One popular algorithm in this class is Gaussian Mixture Models, where you start with a set of randomly initialized Gaussian models and then update their parameters based on your data. Learning these parameters is done using an interative method called [expectation-maximization algorithm(https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm). One downside of these types of models is that they may overfit your data. That is the model will fit your data very well but not generalize well to new data.&lt;/p&gt;
-
-&lt;h5 id=&quot;connectivity-based&quot;&gt;Connectivity based&lt;/h5&gt;
-
-&lt;p&gt;Connectivity based clustering is also known as hierarchical clustering. One of the core ideas is that things can be grouped together at different levels. For example a picture of a golden retriever could be grouped with other retriever breeds, all dogs, common pets, all animals, etc. In this case other pictures of retrievers would be close, other dogs slightly further away, and then other animals further away from that. This creates a dendrogram (tree) and the clusters are determined by where you cut in the tree. For example in the figure if you cut at the first branch, you would have two clusters: one containing lemurs, and the other containing all of the pictures of cats/dogs. Cutting at the next branch down you would have three clusters: lemurs, cats, and all dogs.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/c_is_for_clustering/hierarchical_clustering.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;There are basically two ways to create this dendrogram. The first is a bottom up approach where every point starts as its own cluster and then you merge clusters together. In the second method everything starts as its own cluster and then you iteratively break everything apart until each point is it’s own cluster. The difference between algorithms in this class basically differ on how you choose to measure the distance between clusters.&lt;/p&gt;
-
-&lt;h3 id=&quot;how-do-i-choose-which-clustering-or-class-of-algorithm-to-use&quot;&gt;How do I choose which clustering (or class of) algorithm to use?&lt;/h3&gt;
-
-&lt;p&gt;Some of this depends on your data. In practice many algorithms combine elements of these classes. One example of this is &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/&quot;&gt;HDBSCAN&lt;/a&gt; (hierarchical DBSCAN), which is an extremely useful clustering algorithm. I’ll talk about HDBSCAN in more detail in a future blog post but HDBSCAN is a good first choice. If you’re looking for a comparison of different clustering algorithms on the sample data I showed above, take a look at the link “Comparing clustering algorithms” in the resources below.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html&quot;&gt;Comparing clustering algorithms&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ayZQj4llUSU&quot;&gt;Clustering: a guide for the perplexed&lt;/a&gt; - John Healy and Leland Mcinnes&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=JnnaDNNb380&amp;amp;list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&amp;amp;index=7&quot;&gt;Crash course AI: unsupervised learning&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Clustering is useful when you want to find groups of related items. For example, these items could be documents, malware samples, or customers. Clustering is also referred to as unsupervised learning since it does not involve labelled data. High quality labelled data is often hard to get, so clustering is often a good method to analyze your data. We often use clustering methods (along with visualization) when doing exploratory data analysis (EDA) since it allows us to understand how the data clumps together.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Deep learning is a class of machine learning algorithms that has exploded in popularity in the past decade. It powers many applications including computer vision, voice assistants, and translating text. While many of these applications might seem like magic, deep learning itself is not magic, and the underlying concepts are fairly easy to understand. The goal of this is to give you a high level overview so I’ll be glossing over some of the nitty-gritty details.</summary></entry></feed>

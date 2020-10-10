@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>M is for Munging Data | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="M is for Munging Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:" />
+<meta property="og:description" content="You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/m-is-for-munging-data" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/m-is-for-munging-data" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-10T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"M is for Munging Data","dateModified":"2020-10-10T00:00:00-05:00","datePublished":"2020-10-10T00:00:00-05:00","description":"You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/m-is-for-munging-data"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/m-is-for-munging-data","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>M is for Munging Data | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="M is for Munging Data" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:" />
+<meta property="og:description" content="You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/m-is-for-munging-data" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/m-is-for-munging-data" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-10T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"M is for Munging Data","dateModified":"2020-10-10T00:00:00-05:00","datePublished":"2020-10-10T00:00:00-05:00","description":"You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/m-is-for-munging-data"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/m-is-for-munging-data","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">M is for Munging Data</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-10T00:00:00-05:00" itemprop="datePublished">
+        Oct 10, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#data_cleaning">data_cleaning</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes <a href="/blog/l-is-for-labelling-data">getting labels</a>. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:</p>
+
+<ul>
+  <li>Getting and cleaning the data</li>
+  <li>Selecting features</li>
+  <li>Engineering features</li>
+  <li>Transforming the data</li>
+</ul>
+
+<p>To paraphrase the bodybuilder <a href="https://www.youtube.com/watch?v=4UlgXIL0-3g">Ronnie Coleman</a> “everybody wants to be a data scientist but don’t nobody want to munge no ugly-ass data!”. While it isn’t the most glamorous part of data science, good data preparation is critical for having models that perform well. Properly cleaned data and good features can give better performance than trying to tweak the model itself.</p>
+
+<h3 id="getting-data">Getting data</h3>
+
+<p>Datasets can come in a wide variety of formats but there are a few common ways of accessing them:</p>
+
+<ul>
+  <li>Spreadsheets: These are typically excel spreadsheets or CSV (comma separated value) files. These can be easily read in using something like the pandas library in python.</li>
+  <li>Web APIs: Many data sources provide an API for fetching data, and you can interact with these APIs using python’s requests module. If you need to scrape the website itself, the beautifulsoup module is extremely helpful.</li>
+  <li>Databases: Data scientists will often interact with their data in databases using SQL.</li>
+  <li>Unstructured data: All of the formats above provide data in some structured manner. Unfortunately, this is not always possible and you may need to use <a href="https://xkcd.com/208/">regular expressions</a> and other techniques to parse the data.</li>
+</ul>
+
+<h3 id="cleaning-and-transforming-data">Cleaning and transforming data</h3>
+
+<p>When you are first looking at a new dataset it is extremely important that you <strong>look at your data</strong>! A fancier term for looking at your data is Exploratory Data Analysis (EDA). Once you have an environment set up, what does EDA look like in practice?</p>
+
+<h5 id="looking-for-missing-data">Looking for missing data</h5>
+
+<p>Real world data is messy and there can be mistakes or missing data. You might need to infer missing values or drop rows with too much missing data. How you infer missing data depends on the data type and what works best for your problem. For example, if you have a field with missing numbers, you could fill in the missing value with the average or just put 0. You also need to check if there is a pattern to which rows/fields have missing values. If there is a pattern (i.e. it isn’t random) you will need to compensate for that as well.</p>
+
+<h5 id="visualizing-data">Visualizing data</h5>
+
+<p>Data visualization is an invaluable tool when exploring data. Below are some questions that we are typically trying to answer by visualizing data</p>
+
+<ul>
+  <li>What do the feature distributions look like? This could be as simple as answering the question “Do some values occur very frequently?”. This might be answered by making a histogram of your data.</li>
+  <li>Do some features correlate with one another? For example in a census dataset, the neighbourhood someone lives in will typically correlate with household income.</li>
+  <li>Are there big patterns that jump out in the data? It might be hard to see these patterns (e.g. lots of duplicate points) when looking at a spreadsheet, but when plotted are very obvious.</li>
+</ul>
+
+<h5 id="transforming-data">Transforming data</h5>
+
+<p>It is pretty common to have to tweak your data into a format that a machine learning algorithm expects. Let’s imagine we have a dataset about video games</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Metacritic score (/100)</th>
+      <th>IGN score (/10)</th>
+      <th>Genre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The Legend of Zelda: Breath of the Wild</td>
+      <td>97</td>
+      <td>10</td>
+      <td>Action-adventure</td>
+    </tr>
+    <tr>
+      <td>Untitled Goose Game</td>
+      <td>81</td>
+      <td>8</td>
+      <td>Puzzle</td>
+    </tr>
+    <tr>
+      <td>James Bond 007: Nightfire</td>
+      <td>80</td>
+      <td>7</td>
+      <td>First person shooter</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here we have two numeric columns (metacritic score and IGN score) but they are on different scales. One goes from 0-100 while the other is from 0-10. Some ML algorithms assume that all of the features are on the same scale, so we would need to <strong>normalize</strong> these features. This could mean converting all the numbers so that they are between 0 and 1 (e.g. 8/10 becomes 0.8).</p>
+
+<p>Many ML algorithms assume that all of your input is numeric. How do we convert the genre field (which is a <strong>categorical value</strong>) to a numeric one? One simple way to do this is known as <strong>one-hot encoding</strong>. This just means representing all categories as a vector where there is a 1 if the category matches and a 0 if it doesn’t. Using our example above we have:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Action-adventure</th>
+      <th>Puzzle</th>
+      <th>First person shooter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>The Legend of Zelda: Breath of the Wild</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Untitled Goose Game</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>James Bond 007: Nightfire</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So instead of having the genre value of “Puzzle” for Untitled Goose Game, we would have [0, 1, 0]. A one-hot encoding is a very simple version of an <a href="/blog/e-is-for-embeddings">embedding</a>.</p>
+
+<p>If we have text data there are many techniques that we can use which I’ll talk about in the next blog N is for Natural Language Processing.</p>
+
+<h5 id="common-tools-for-eda">Common tools for EDA</h5>
+
+<p><a href="https://jupyter.org/">Jupyter notebooks</a> are a popular environment for doing EDA, since it provides an interactive development environment where you can see output (e.g. plots) inline with your code. The <a href="https://pandas.pydata.org/">pandas</a> module in python is very commonly used for data munging tasks and has a lot of useful utilities. I’ll talk more about the pandas library in a later blog post.</p>
+
+<h3 id="feature-selection-and-engineering">Feature selection and engineering</h3>
+
+<p>When preparing data for training a model you need to figure out which features in your data will be most relevant for the problem you are trying to solve (e.g. classification). There may be features that would be helpful that don’t exist in the data as it comes in. Creating new features is referred to as feature engineering. Both feature selection and engineering require some expertise in the problem domain. One way to determine useful features if you have labels is to look at the features which are strongly correlated with those labels. Imagine you are trying to predict if a file is malware or benign. If there are attributes of that file that occur frequently when the file is malware and don’t occur when it is benign, that would be a useful feature. In the case of classification, you are looking for features that make it easy to discriminate between the classes. In the case of <a href="/blog/c-is-for-clustering">clustering</a> you need to choose features that say “these points are similar if they have X in common”. Feature selection/engineering is more of an art than a science and can involve some trial and error.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Data munging is a crucial part of data science (and you could argue it’s the majority of data science). Properly cleaning and normalizing your data can have huge benefits for the downstream task you are trying to solve. It is challenging and sometimes frustrating (looking at you regular expressions!) task but is necessary to understand your data and train an effective model.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://machinelearningmastery.com/what-is-data-preparation-in-machine-learning/">More on data preparation</a></li>
+  <li><a href="http://lineardigressions.com/episodes/2019/10/1/whats-really-so-hard-about-feature-engineering">What’s <em>really</em> so hard about feature engineering</a> (episode of the Linear Digressions podcast)</li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/m-is-for-munging-data" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
