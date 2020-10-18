@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>N is for Natural Language Processing (NLP) | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="N is for Natural Language Processing (NLP)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including" />
+<meta property="og:description" content="Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-18T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"N is for Natural Language Processing (NLP)","dateModified":"2020-10-18T00:00:00-05:00","datePublished":"2020-10-18T00:00:00-05:00","description":"Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>N is for Natural Language Processing (NLP) | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="N is for Natural Language Processing (NLP)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including" />
+<meta property="og:description" content="Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-18T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"N is for Natural Language Processing (NLP)","dateModified":"2020-10-18T00:00:00-05:00","datePublished":"2020-10-18T00:00:00-05:00","description":"Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">N is for Natural Language Processing (NLP)</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-18T00:00:00-05:00" itemprop="datePublished">
+        Oct 18, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      11 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#nlp">nlp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#text_processing">text_processing</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including</p>
+
+<ul>
+  <li>Autocorrect</li>
+  <li>Chatbots and virtual assistants (e.g. Siri or Alexa)</li>
+  <li>Language translation (e.g. Google translate)</li>
+  <li>Document summarization</li>
+  <li>Text classification (e.g. is this email spam or not?)</li>
+  <li>Sentiment analysis (e.g. is this movie review positive or negative?)</li>
+  <li>Grouping documents</li>
+</ul>
+
+<p>In recent years, machine learning (<a href="(/blog/d-is-for-deep-learning)">deep learning</a> in particular) has become increasingly popular within NLP but there are still a number of non-ML based techniques.</p>
+
+<h3 id="language-models">Language models</h3>
+
+<p>If you’ve ever tried to learn a new language, you probably know that languages are <strong>hard</strong>. There are lots of weird rules (i.e. grammar) and there are even more exceptions to those rules. Language also changes depending on the context. For example, the language used in academic papers is very different from tweets. So given a <strong>corpus</strong> (the technical term for a bunch of documents) we want to learn how language is used within that set of documents. A document could be a tweet, an academic paper, an email etc. It’s near impossible to code all of the grammatical rules ahead of time, so we try to use NLP techniques to learn this grammar.</p>
+
+<p>A common practice in many NLP tasks is to use a <strong>language model</strong> which lets us learn how specific words are used in a corpus. For example, words such as “the” or “and” occur much more frequently than say “lagniappe”. To train a language model, we take a bunch of text and then try to predict the next word. If we have the sentence “I have a golden retriever and she is the best” we want to use the previous words to predict the next word.</p>
+
+<ol>
+  <li>Given “I”, predict “have”</li>
+  <li>Given [“I”, “have”], predict “a”</li>
+  <li>Given [“I”, “have”, “a”], predict “golden”</li>
+  <li>Continue until done</li>
+</ol>
+
+<p>At the end of this we will have a predictive model which will model how different words are used in practice (e.g. “the” is much more likely than “pizza”). This is obviously a challenging task (and the model will often be wrong). Fortunately we can train models on huge amounts of text (e.g. wikipedia). We don’t even need extra labels since we already know what the next word is in a given sentence! In practice we can use pretrained models so we don’t need to train a new language model on wikipedia for every task.  Language models are often used as the starting point for other <strong>downstream tasks</strong> such as text classification. In some cases they are used directly in applications like predictive text/autocorrect on your phone. The benefit and downside of language models is that they model how a language is used. This means that if enough people type something incorrectly it’s possible that the model will start suggesting the incorrect version. How a language model performs (which will then affect downstream task performance) is typically dependent on the amount of preprocessing done (more on that later).</p>
+
+<h3 id="finding-spam-emails">Finding spam emails</h3>
+
+<p>Let’s imagine we want to train a model to predict if an email is spam or not spam (ham). This is an example of a <strong>text classification</strong> problem.</p>
+
+<p>Regular email:</p>
+<blockquote>
+  <p>Hey,<br /></p>
+
+  <p>Want to grab lunch today? There’s a new taco truck downtown that looks great :)<br /></p>
+
+  <p>-Alice</p>
+</blockquote>
+
+<p>Spam email:</p>
+
+<blockquote>
+  <p>Dear valued customer,<br /></p>
+
+  <p>Your invoice is attached. In order to see your purchase history click <a href="/images/n_is_for_nlp/click_me.jpg">here</a><br /></p>
+
+  <p>Sincerely,<br />
+A totally legitimate business<br /></p>
+</blockquote>
+
+<p>First we need to turn the corpus of emails into a format that our machine learning model can understand (i.e. numbers). This is called <strong>vectorization</strong>. The simplest thing we could do is to count how often each word appears in each document. Unsurprisingly, this is called count vectorization. This gives us a <strong>word-document matrix</strong> where each row corresponds to a document and each column corresponds to a word. The values in the matrix are how often each word occurred in a given document. As an example, let’s say we have the following three short emails (documents):</p>
+
+<ol>
+  <li>The boss wants the report by Friday.</li>
+  <li>Pizza half price! This Friday only!</li>
+  <li>I ordered the pizza for the party.</li>
+</ol>
+
+<p>Our word-document matrix would look something like this (for brevity not all words are included)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>the</th>
+      <th>pizza</th>
+      <th>report</th>
+      <th>…</th>
+      <th>friday</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Doc 1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>…</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Doc 2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>…</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Doc 3</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>…</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The columns are known as the <strong>vocabulary</strong> since it is the unique set of words occurring in all documents. As you might imagine this matrix could get very big if there is a big vocabulary (and lots of documents). However, the matrix will be <strong>sparse</strong> (mostly filled with zeroes) since most words will not appear in most documents. Fortunately, computer scientists have lots of ways to deal with sparse matrices so this is not a problem in practice.</p>
+
+<p>You might notice that the word columns aren’t in the same order as the words in the original documents. We call this a <strong>bag-of-words model</strong> since we throw out all word ordering. Using a bag-of-words model means that we lose some information but it’s much faster computationally and it works surprisingly well in practice. Of course there are some applications (e.g. the language models described above) where order does matter.</p>
+
+<p>Count vectorization is very simple where we just count how often a word appears in a document. But how do we figure out what the words are? What if words are slightly different (e.g. “Pizza” and “pizza”)?</p>
+
+<h3 id="preprocessing">Preprocessing</h3>
+
+<p>Preprocessing is a catch-all term for anything we do to text before passing it into a model (including vectorization). You can potentially drastically improve the performance of your model by using more sophisticated preprocessing techniques. That being said, it’s often worth trying the simple things first!</p>
+
+<h5 id="tokenization">Tokenization</h5>
+
+<p>Tokenization is where we split some text into tokens (e.g. words). Taking a sentence and splitting it into words seems simple enough right? It’s easy enough to split a sentence on spaces and then use the resulting words. There are also more sophisticated tokenization techniques which will split within words (e.g. turning #datascience into “#” and “datascience”). This is also related to <strong>sentence breaking</strong> where you try to find the sentence boundaries in large pieces of text. How you tokenize a sentence also depends on the language. For example, a language like German which has a tendency to make new words by combining a bunch of existing words. You might want to split the new word into its original components.</p>
+
+<p>Related to tokenization is the notion of <strong>n-grams</strong>. These are sequences of tokens which have n elements. For example, if we split the sentence “the dog loves treats” into bigrams (n=2) we would have</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[(“the”, “dog”), (“dog”, “loves”), (“loves”, “treats”)]
+</code></pre></div></div>
+
+<p>This lets you capture a little more context around each word. Once we have n-grams we can just do count vectorization like we did above. Instead of columns corresponding to words (unigrams) they will correspond to n-grams. This means that our matrix is not “how often did this word appear in this document” it is “how often did this <em>sequence</em> of words appear in this document”.</p>
+
+<p>It’s worth noting that you don’t need to have traditional language to tokenize. For example you could take file paths “/this/is/a/file/path” and split it into individual files/directories ([“this”, “is”, “a”, “file”, “path”]). Once you have tokens you can apply a wide range of NLP techniques.</p>
+
+<h5 id="lowercasing-all-tokens">Lowercasing all tokens</h5>
+
+<p>A really common (and easy) preprocessing step is to make everything lowercase. This means that “Friday” and “friday” are not treated as two separate tokens.</p>
+
+<h5 id="stop-word-removal">Stop word removal</h5>
+
+<p>Stop words are words that occur very frequently in a given language/corpus. In English these are words such as “the”, “and”, “they” (though there is no definitive list of stopwords). In many cases we want to filter out stop words since they don’t carry much information. This is more useful in tasks like text classification. In other cases such as automated translation you will need to keep stop words.</p>
+
+<h5 id="stemminglemmatization">Stemming/lemmatization</h5>
+
+<p>Stemming and lemmatization are used to help normalize text. There are many forms of words that all have the same base. For example, “the dog barks/barked/is barking” are all semantically similar. If we are training a model (say a language model) “barks”, “barked”, “barking” will all be treated as separate tokens. To make it easier we would like to normalize all of those tokens to “bark”, giving us the sentence “the dog bark”. Stemming turns a word into its root (e.g. barked to bark), however there are many edge cases so it’s not 100% effective. Lemmatization is a more sophisticated form of stemming and normalizes words into their true root (e.g. normalizing “was” to “be”).</p>
+
+<h5 id="minimum-termdocument-frequency">Minimum term/document frequency</h5>
+
+<p>If we keep every word that shows up in any of our documents our vocabulary size will be enormous. In order to reduce the vocabulary size, one common trick is to only keep words/tokens that only occur more than N times. For example, if there is a document that contains the token “maewpfaefamefaef” it’s pretty unlikely that it’s going to show up frequently. So we can just get rid of this by saying “don’t include words that occur less than 5 times”. Similarly, we can also drop words if they show up in less than N (e.g. 5) documents. For example, if we had a document that was “<a href="https://en.wikipedia.org/wiki/Buffalo_buffalo_Buffalo_buffalo_buffalo_buffalo_Buffalo_buffalo">Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo</a>” the word buffalo occurs more than 5 times. But if that was the only document that buffalo appeared in, we probably want to drop buffalo from our vocabulary.</p>
+
+<h3 id="beyond-simple-counting">Beyond simple counting</h3>
+
+<p>If we just count how often words appear in documents, there are going to be words (e.g. “the”) which occur frequently but don’t contain much information. How do we deal with the fact that some words convey more information than others? One way to do this is to weight our counts using “Term Frequency - Inverse Document Frequency” (TF-IDF). The intuition behind TF-IDF is as follows:</p>
+
+<ul>
+  <li>If a word appears frequently in most documents in the corpus it probably doesn’t give much information. So we should give those words less weight since they don’t mean as much.</li>
+  <li>If a word appears frequently in a small number of documents then it probably has more information. For example, the word “inheritance” might appear more often than you would expect in spam emails, but not in most normal emails. We should give these words more weight.</li>
+  <li>If a word doesn’t occur that frequently, then it doesn’t really give useful information. For example, if the word “oxymoron” occurred 10 times in our email corpus it doesn’t really help us distinguish between spam/not spam.</li>
+</ul>
+
+<p>In <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">TF-IDF vectorization</a>, we do count vectorization as we did before then apply one additional step. This extra step is just multiplying the counts by the weight of each word. Using this weighting will help our model distinguish more easily between spam and not/spam.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>This was just a brief introduction to some of the concepts used in NLP. There are many things that can make NLP more complicated in practice such as dealing with multiple languages in the same corpus. NLP techniques can be a really powerful toolset to have at your disposal and they don’t just apply to traditional text data. If you have data that you can tokenize, then you can apply all of the techniques described above. If you want to dive into some NLP projects I recommend starting with <a href="https://www.fast.ai/2019/07/08/fastai-nlp/">this course</a> from fast.ai.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.fast.ai/2019/07/08/fastai-nlp/">A Code-First Introduction to Natural Language Processing</a></li>
+  <li><a href="https://gretchenmcculloch.com/book/">Because Internet: Understanding the New Rules of Language</a></li>
+  <li><a href="https://www.youtube.com/watch?v=oi0JXuL19TA&amp;list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&amp;t=0s">Natural Language Processing: Crash Course AI #7</a></li>
+  <li><a href="https://towardsdatascience.com/tokenization-for-natural-language-processing-a179a891bad4">Tokenization strategies</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/n-is-for-natural-language-processing" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
