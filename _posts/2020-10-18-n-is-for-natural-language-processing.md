@@ -8,7 +8,7 @@ permalink: /blog/n-is-for-natural-language-processing
 comments: true
 ---
 
-Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from text data. Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including
+Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including
 
 * Autocorrect
 * Chatbots and virtual assistants (e.g. Siri or Alexa)
@@ -22,16 +22,16 @@ In recent years, machine learning ([deep learning](({{ site.baseurl }}/blog/d-is
 
 ### Language models
 
-If you’ve ever tried to learn a new language, you probably know that languages are **hard**. There are lots of weird rules (i.e. grammar) and there are even more exceptions to those rules. Language also changes depending on the context. For example, the language used in academic papers is very different from tweets. So given a **corpus** (the technical term for a bunch of documents) we want to learn how language is used within that set of documents. A document could be a tweet, an academic paper, an email etc. It’s near impossible to code all of the grammatical rules ahead of time, so we try to use NLP techniques to learn this grammar. 
+If you’ve ever tried to learn a new language, you probably know that languages are **hard**. There are lots of weird rules (i.e. grammar) and there are even more exceptions to those rules. Language also changes depending on the context. For example, the language used in academic papers is very different from tweets. So given a **corpus** (the technical term for a bunch of data such as documents) we want to learn how language is used within that set of documents. A document could be a tweet, an academic paper, an email etc. It’s nearly impossible to code all of the grammatical rules ahead of time, so we try to use NLP techniques to model language as it’s used in that corpus. The goal of this is not to relearn grammar, but give a better footing for the task that we really care about (e.g. sentiment analysis).
 
 A common practice in many NLP tasks is to use a **language model** which lets us learn how specific words are used in a corpus. For example, words such as “the” or “and” occur much more frequently than say “lagniappe”. To train a language model, we take a bunch of text and then try to predict the next word. If we have the sentence “I have a golden retriever and she is the best” we want to use the previous words to predict the next word. 
 
 1. Given “I”, predict “have”
 2. Given [“I”, “have”], predict “a”
 3. Given [“I”, “have”, “a”], predict “golden”
-4. Continue until done
+4. Continue until you’ve predicted the number of words in the sentence
 
-At the end of this we will have a predictive model which will model how different words are used in practice (e.g. “the” is much more likely than “pizza”). This is obviously a challenging task (and the model will often be wrong). Fortunately we can train models on huge amounts of text (e.g. wikipedia). We don’t even need extra labels since we already know what the next word is in a given sentence! In practice we can use pretrained models so we don’t need to train a new language model on wikipedia for every task.  Language models are often used as the starting point for other **downstream tasks** such as text classification. In some cases they are used directly in applications like predictive text/autocorrect on your phone. The benefit and downside of language models is that they model how a language is used. This means that if enough people type something incorrectly it’s possible that the model will start suggesting the incorrect version. How a language model performs (which will then affect downstream task performance) is typically dependent on the amount of preprocessing done (more on that later).
+We repeat this process and compare how our predictions match the actual text to improve the model. At the end of this we will have a predictive model for how different words are used in practice (e.g. “the” is much more likely than “pizza”). This is obviously a challenging task (and the model will often be wrong). Fortunately we can train models on huge amounts of text (e.g. wikipedia). We don’t even need extra labels since we already know what the next word is in a given sentence! In practice we can use language models that have already been trained so we don’t need to train a new language model on wikipedia for every task.  Language models are typically used as the starting point for other **downstream tasks** such as text classification. In some cases they are used directly in applications like predictive text/autocorrect on your phone. The benefit and downside of language models is that they model how a language is used. This means that if enough people type something incorrectly it’s possible that the model will start suggesting the incorrect version. How a language model performs (which will then affect downstream task performance) is typically dependent on the amount of preprocessing done (more on that later).
 
 ### Finding spam emails
 
@@ -79,7 +79,7 @@ Preprocessing is a catch-all term for anything we do to text before passing it i
 
 ##### Tokenization
 
-Tokenization is where we split some text into tokens (e.g. words). Taking a sentence and splitting it into words seems simple enough right? It’s easy enough to split a sentence on spaces and then use the resulting words. There are also more sophisticated tokenization techniques which will split within words (e.g. turning #datascience into “#” and “datascience”). This is also related to **sentence breaking** where you try to find the sentence boundaries in large pieces of text. How you tokenize a sentence also depends on the language. For example, a language like German which has a tendency to make new words by combining a bunch of existing words. You might want to split the new word into its original components.
+Tokenization is where we split some text into tokens (e.g. words). Taking a sentence and splitting it into words seems simple enough right? It’s easy enough to split a sentence on spaces and then use the resulting words. There are also more sophisticated tokenization techniques which will split within words (e.g. turning #datascience into “#” and “datascience”). This is also related to **chunking** where you try to find the sentence boundaries in large pieces of text. How you tokenize a sentence also depends on the language. For example, a language like German which has a tendency to make new words by combining a bunch of existing words. You might want to split the new word into its original components.
 
 Related to tokenization is the notion of **n-grams**. These are sequences of tokens which have n elements. For example, if we split the sentence “the dog loves treats” into bigrams (n=2) we would have
 
@@ -101,7 +101,7 @@ Stop words are words that occur very frequently in a given language/corpus. In E
 
 ##### Stemming/lemmatization
 
-Stemming and lemmatization are used to help normalize text. There are many forms of words that all have the same base. For example, “the dog barks/barked/is barking” are all semantically similar. If we are training a model (say a language model) “barks”, “barked”, “barking” will all be treated as separate tokens. To make it easier we would like to normalize all of those tokens to “bark”, giving us the sentence “the dog bark”. Stemming turns a word into its root (e.g. barked to bark), however there are many edge cases so it’s not 100% effective. Lemmatization is a more sophisticated form of stemming and normalizes words into their true root (e.g. normalizing “was” to “be”).
+Stemming and lemmatization are used to help normalize text. There are many forms of words that all have the same base. For example, “the dog barks/barked/is barking” are all semantically similar. If we are training a model (say a language model) “barks”, “barked”, “barking” will all be treated as separate tokens. To make it easier we would like to normalize all of those tokens to “bark”, giving us the sentence “the dog bark”. Stemming turns a word into its base (e.g. barked to bark),  using language specific rules for removing prefixes or suffixes.  However, there are many edge cases so it’s not 100% effective. This is done Lemmatization is a more sophisticated form of stemming and normalizes words into their true base (e.g. normalizing “was” to “be”). Again, this is based on language specific rules (and a bunch of lookup tables).
 
 ##### Minimum term/document frequency
 
