@@ -1,4 +1,122 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-10-23T16:57:34-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">N is for Natural Language Processing (NLP)</title><link href="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" rel="alternate" type="text/html" title="N is for Natural Language Processing (NLP)" /><published>2020-10-18T00:00:00-05:00</published><updated>2020-10-18T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing">&lt;p&gt;Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-10-23T19:15:07-05:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">O is for Outlier Detection</title><link href="https://abcsofdatascience.ca/blog/o-is-for-outlier-detection" rel="alternate" type="text/html" title="O is for Outlier Detection" /><published>2020-10-23T00:00:00-05:00</published><updated>2020-10-23T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/o-is-for-outlier-detection</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/o-is-for-outlier-detection">&lt;p&gt;Outlier (or anomaly) detection is the technical term for “finding weird stuff”. It’s used in a wide variety of applications including malware detection and looking for credit card fraud. For example, if you live in Ottawa but your credit card was used to buy a gaming console in Boise, Idaho (without any other purchases) that would be anomalous. Outlier detection is related to &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt;. In clustering we are trying to find the groups of related data. In outlier detection we are trying to find the points that don’t belong to any groups. There are three different categories of outliers&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Local (or contextual) outliers&lt;/strong&gt;: These are points that are close to groups of data but don’t belong to any cluster. This could be an email which seems mostly legitimate except something seems a little off (e.g. “Follow us on Twittterr”) .&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Global (or point) outliers&lt;/strong&gt;: These are the data points that are completely off on their own and are far away from other data points. Going back to the email example, this would be like having an email in German if the rest of your inbox had English/French emails.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Collective outliers&lt;/strong&gt; : These are groups of outlying points which may have some underlying pattern. This would be like having a spam campaign of emails where they look strange compared to normal email, but are all related to one another.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/outlier_data.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In many (all?) large datasets there are bound to be lots of outliers. It’s like being a woman trying to find a partner on a dating app: “the odds are good but the goods are odd”. It’s relatively easy to find anomalies but it’s more challenging to find &lt;strong&gt;interesting&lt;/strong&gt; outliers.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;It’s worth noting that in a lot of cases if something is anomalous it doesn’t necessarily mean that it is bad. It just means that the data point is different from the others. However, it probably means that it is more interesting and may need to be investigated.&lt;/li&gt;
+  &lt;li&gt;To find out if an outlier is truly interesting or not you need to combine it with extra context. For example, if you find an anomalous credit card purchase (such as a gaming console in Idaho) it’s worth looking at the other purchases around that time (did they also buy plane tickets to Idaho?).&lt;/li&gt;
+  &lt;li&gt;You can also find interesting patterns by grouping anomalies together. In malware detection this could mean “did a bunch of suspicious activity happen on one computer in a short time frame?”. Here you need something else to group on (in this case it’s by looking at anomalies for one computer at a time).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;how-do-we-actually-find-anomalies&quot;&gt;How do we actually find anomalies?&lt;/h3&gt;
+
+&lt;h5 id=&quot;low-frequency-events&quot;&gt;Low frequency events&lt;/h5&gt;
+
+&lt;p&gt;One of the easiest ways to find outliers is to say “show me events that occur less than X% of the time”. This is really easy because we can just count all the events we are interested in and then divide by the total number of events. Let’s imagine we have a survey of what people put in their coffee&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;Raw count&lt;/th&gt;
+      &lt;th&gt;Frequency (count/total)&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Nothing (black)&lt;/td&gt;
+      &lt;td&gt;95&lt;/td&gt;
+      &lt;td&gt;0.35&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Milk&lt;/td&gt;
+      &lt;td&gt;120&lt;/td&gt;
+      &lt;td&gt;0.44&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Sugar&lt;/td&gt;
+      &lt;td&gt;53&lt;/td&gt;
+      &lt;td&gt;0.20&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Butter&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;0.01&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In this case it’s pretty clear that people &lt;a href=&quot;https://www.nytimes.com/2014/12/14/style/the-cult-of-the-bulletproof-coffee-diet.html&quot;&gt;putting butter in their coffee&lt;/a&gt; is weird. This method breaks down if there are lots of different options or one or two very popular options.&lt;/p&gt;
+
+&lt;h5 id=&quot;modelling-the-distribution-of-your-data&quot;&gt;Modelling the distribution of your data&lt;/h5&gt;
+
+&lt;p&gt;One way to find outliers is to look at how far a point deviates from the average (mean). If your data is &lt;strong&gt;normally distributed&lt;/strong&gt; (i.e. looks like a bell curve) you can look at how many standard deviations a point is from the mean. In a normal distribution 68% of the data falls within one standard deviation, 95% within two standard deviations etc. For example, if the average height of a man is 5’10” and the standard deviation is 4” then 68% of men are between 5’6” and 6’2”. If you have a man who is 7 feet tall, then they would be more than 3 standard deviations away from the mean. It’s fair to say that this person is abnormally tall (unless you compare them only to &lt;a href=&quot;https://www.youtube.com/watch?v=88w_cA1QyeQ&quot;&gt;NBA players&lt;/a&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/normal_distribution.png&quot; alt=&quot;&quot; title=&quot;Taken from https://upload.wikimedia.org/wikipedia/commons/a/a9/Empirical_Rule.PNG&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;using-clustering-to-find-outliers&quot;&gt;Using clustering to find outliers&lt;/h5&gt;
+
+&lt;p&gt;Some clustering algorithms (such as &lt;a href=&quot;/blog/h-is-for-hdbscan&quot;&gt;HDBSCAN&lt;/a&gt;) label points which don’t fall into any cluster as outliers. These points could be global or local outliers. They may also include the probability that a point belongs in a cluster. This can be used to find local outliers by looking for points with relatively low probabilities. If we look back to the sample dataset in my post on HDBSCAN, all of the grey points are listed as noise/outliers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/sample_data_clustered.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;time-series-modelling&quot;&gt;Time series modelling&lt;/h5&gt;
+
+&lt;p&gt;In many cases what counts as an anomaly depends on when it occurs. For example, a store doing $100 000 in sales in one day could be abnormally high in February but unusually low in the holiday season. The average amount of sales changes throughout the year so we need to take time into account when doing outlier detection. &lt;a href=&quot;https://facebook.github.io/prophet/&quot;&gt;Prophet&lt;/a&gt; is a popular python library for dealing with time series data.&lt;/p&gt;
+
+&lt;h5 id=&quot;isolation-forests&quot;&gt;Isolation forests&lt;/h5&gt;
+
+&lt;p&gt;One way we can find anomalies is using a method called &lt;strong&gt;isolation forests&lt;/strong&gt;.  Isolation forests take advantage of two key properties of anomalies:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;There are fewer of them&lt;/li&gt;
+  &lt;li&gt;They have attributes that are different than most of the points&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;These properties mean that the anomalies are more prone to isolation. What do I mean by isolation? Imagine I have the data points shown in blue below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/isolated_forest_points_no_cuts.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The idea behind isolated forests is to keep making cuts in the data so that each point is in its own partition. From these cuts we can build up trees to use in our forest. For example:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/isolated_forest_points.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In this case, the first cut is shown in red. Everything above it is in one partition (which in this case is an isolated point), while everything below it is in another. We can make a cut to the bottom partition (shown in black) and isolate another point. We can keep cutting and build up the tree. At the end, every leaf node will correspond to an isolated point. The hypothesis is that anomalies will be closer to the root node than “normal” points. The algorithm works as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Take a random subset of the data and build up the tree for that subset.&lt;/li&gt;
+  &lt;li&gt;Repeat step 1 a bunch of times. Since all of the cuts are fairly arbitrary, we will use an ensemble of trees to average out our choice of cuts.&lt;/li&gt;
+  &lt;li&gt;From the forest of trees calculate the average path length to each leaf node. This just means “on average how many cuts did we need to make to isolate that point”.&lt;/li&gt;
+  &lt;li&gt;Use the average path length to calculate a score which we can use to determine if something is an outlier. The smaller the average path length (i.e. we needed less cuts), the more likely a point is to be an outlier.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This algorithm is useful for a few reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Typically outlier detection algorithms work by profiling what is “normal” and then finding deviations from that. This isn’t required when using isolation forests&lt;/li&gt;
+  &lt;li&gt;It’s fast (and scales fairly well)&lt;/li&gt;
+  &lt;li&gt;It doesn’t require a distance metric&lt;/li&gt;
+  &lt;li&gt;There is an &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html&quot;&gt;implementation&lt;/a&gt; of it in the popular python ML library scikit-learn&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Anomaly detection is a task that shows up in many different applications. It’s typically used when “we want to find something interesting but we don’t know what that is”. In order to find the truly interesting data points, you need to add context by combining them with other information. This is especially important if you want to take an action (e.g. cancelling someone’s credit card) based on anomalous activity.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/a-brief-overview-of-outlier-detection-techniques-1e0b2c19e561&quot;&gt;A brief overview of outlier detection techniques&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.floydhub.com/introduction-to-anomaly-detection-in-python/&quot;&gt;Introduction to anomaly detection in python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Outlier (or anomaly) detection is the technical term for “finding weird stuff”. It’s used in a wide variety of applications including malware detection and looking for credit card fraud. For example, if you live in Ottawa but your credit card was used to buy a gaming console in Boise, Idaho (without any other purchases) that would be anomalous. Outlier detection is related to clustering. In clustering we are trying to find the groups of related data. In outlier detection we are trying to find the points that don’t belong to any groups. There are three different categories of outliers</summary></entry><entry><title type="html">N is for Natural Language Processing (NLP)</title><link href="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" rel="alternate" type="text/html" title="N is for Natural Language Processing (NLP)" /><published>2020-10-18T00:00:00-05:00</published><updated>2020-10-18T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing">&lt;p&gt;Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Autocorrect&lt;/li&gt;
@@ -804,126 +922,4 @@ In our cookie example, this means “when you predicted chocolate chip, how like
   &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/metrics-to-evaluate-your-machine-learning-algorithm-f10ba6e38234&quot;&gt;Other metrics you can use&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://scikit-learn.org/stable/auto_examples/model_selection/plot_precision_recall.html&quot;&gt;More on precision and recall&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics&quot;&gt;Beware of simple metrics podcast&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">When we are training supervised learning models, we want to measure how well the model is performing. Choosing the correct metric for measuring model performance depends on what kind of task you are doing. There are two main categories of supervised learning tasks</summary></entry><entry><title type="html">E is for Embeddings</title><link href="https://abcsofdatascience.ca/blog/e-is-for-embeddings" rel="alternate" type="text/html" title="E is for Embeddings" /><published>2020-05-03T00:00:00-05:00</published><updated>2020-05-03T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/e-is-for-embeddings</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/e-is-for-embeddings">&lt;p&gt;In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an &lt;strong&gt;embedding&lt;/strong&gt; which consists of two things:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;A numeric representation of your data (because we need to do math)&lt;/li&gt;
-  &lt;li&gt;A distance measure (so we can determine how close/far two points are from one another)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Each embedding gives you a different way to look at your data, depending on the features/numeric representation and distance measure you choose.&lt;/p&gt;
-
-&lt;h3 id=&quot;lets-solve-a-mystery&quot;&gt;Let’s solve a mystery&lt;/h3&gt;
-
-&lt;p&gt;To give you a better idea about what embeddings are, we’re going to look at people hanging out in the Clue mansion. However, instead of solving a murder mystery, we are going to try to determine groups of friends of people in the mansion.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/e_is_for_embedding/clue_board_with_people.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If I asked you to guess which people (shown as X’s) were most likely to be friends in the image above, you’d probably say the people in the ballroom or lounge. This is because they are physically close together. But how can we say they are “close together”? Implicitly in your head you did this using an embedding. You probably looked at the position of people on the board (i.e their x,y coordinates) so we have a numeric representation of the data. We also know that the people in the ballroom are closer to each other than they are to the person standing outside the billiards room. How do we know this? Imagine drawing a line between the person closest to the piano and the person directly to their left. Now imagine drawing another line between the person closest to the piano, and the person just outside the billiards room. The length of the first line is shorter than the second line, so we say that the two people in the ballroom are closer to each other. This method of measuring distance is called &lt;strong&gt;Euclidean distance&lt;/strong&gt;, and it’s probably what you think of first when you need to determine how close/far something is. However, there are other ways to measure distance.&lt;/p&gt;
-
-&lt;h3 id=&quot;distance-measures&quot;&gt;Distance measures&lt;/h3&gt;
-
-&lt;p&gt;There are many kinds of &lt;a href=&quot;https://docs.scipy.org/doc/scipy/reference/spatial.distance.html&quot;&gt;distance measures (or metrics)&lt;/a&gt; but here are a few popular/useful ones. I’ll also describe some additional distance metrics in a later blog.&lt;/p&gt;
-
-&lt;h5 id=&quot;euclidean-distance&quot;&gt;Euclidean distance&lt;/h5&gt;
-&lt;p&gt;This is just the length of the line drawn directly between two points as we discussed above.&lt;/p&gt;
-
-&lt;h5 id=&quot;manhattancity-block-distance&quot;&gt;Manhattan/city block distance&lt;/h5&gt;
-&lt;p&gt;Look at the two people outside the billiards room. If you were playing the game and wanted to move one to the other, you could not move them on a straight line between them. You’d have to move 1 over and then 3 up/down for a total of 4 moves. This is similar to Manhattan (also known as city block) distance, which is the sum of the distances in each direction. In the illustration below, the Manhattan distance between the two points is 12. If you were walking you would need to walk 12 city blocks (assuming you can’t walk through buildings), but there are multiple routes you could take. Manhattan distance is useful for higher dimensional data where Euclidean distance breaks down in what is known as &lt;a href=&quot;https://towardsdatascience.com/the-curse-of-dimensionality-50dc6e49aa1e&quot;&gt;“the curse of dimensionality”&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/e_is_for_embedding/Manhattan_distance_bgiu.png&quot; alt=&quot;&quot; title=&quot;Two points with a Manhattan distance of 12. Taken from https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Manhattan_distance.svg/1200px-Manhattan_distance.svg.png&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;cosine-distancesimilarity&quot;&gt;Cosine distance/similarity&lt;/h5&gt;
-
-&lt;p&gt;Another way we can measure distance is by looking at the cosine of the angles between vectors. To make this more concrete, let’s imagine we have some data on how often people spend time in particular rooms in the mansion.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Billiards room&lt;/th&gt;
-      &lt;th&gt;Study&lt;/th&gt;
-      &lt;th&gt;Library&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Mr. Green&lt;/td&gt;
-      &lt;td&gt;3&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Ms. Scarlet&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Professor Plum&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;In this case, Mr. Green has been in the billiards room 3 times but has never been in the study or library. Looking at these counts we would probably say that Ms. Scarlet and Professor Plum are more similar to each other than they are to Mr. Green. We can think of these counts as vectors in a coordinate system, where instead of an X or a Y axis we have a “Billiards room” or “Study” axis. Below I’ve plotted the vectors below and you can see that the angle between the Ms. Scarlet and Professor Plum vectors is smaller even though the lengths of the vectors are quite different.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/e_is_for_embedding/cosine_example.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Cosine distance lets us say that two things are similar if they have similar sets of “stuff” even if the frequencies (i.e. vector lengths) are different. If two vectors are pointing in the exact same direction, the angle between them is 0 degrees (even if the length of the vectors are different). The cosine of 0 is 1, so we say they have a cosine similarity of 1. To convert this to a distance, we do 1-similarity since we want the distance between perfectly similar things to be 0. If two things are completely dissimilar, the angle between them is 90 degrees and the cosine similarity is 0. One benefit of cosine similarity is that it takes the direction of the vectors into account, where two vectors pointing in the exact opposite direction will have a similarity of -1.&lt;/p&gt;
-
-&lt;h3 id=&quot;changing-feature-sets&quot;&gt;Changing feature sets&lt;/h3&gt;
-
-&lt;p&gt;Looking at the physical distance between people in the house is one way to try and determine friend groups. There are other ways that you could measure this. For example you could give everyone a survey about their hobbies/interests. The participants put an X if they are interested in a particular hobby, and leave it blank if they aren’t. This would give you a matrix where a 1 corresponds to a X and a 0 corresponds to a blank:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Board games&lt;/th&gt;
-      &lt;th&gt;Baseball&lt;/th&gt;
-      &lt;th&gt;Dancing&lt;/th&gt;
-      &lt;th&gt;Cooking&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Colonel Mustard&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Mrs White&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Mrs Peacock&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;You could then use cosine distance to determine which people have similar interests to one another. This potentially gives you a different view of your data, where the person in the study is (physically) very far from everyone in the first feature set, but could have interests very similar to other people in the second feature set.&lt;/p&gt;
-
-&lt;h3 id=&quot;things-to-keep-in-mind&quot;&gt;Things to keep in mind&lt;/h3&gt;
-
-&lt;p&gt;All unsupervised machine learning techniques require an embedding. It’s important to think about which feature set/numeric representation and distance metrics you’re using in order to make sure they will help you answer the questions you’re trying to solve. I find it’s helpful to think about “How do I know if two things are similar? What makes them similar?”.&lt;/p&gt;
-
-&lt;p&gt;Many techniques implicitly use a certain distance metric (e.g. k-means clustering uses Euclidean distance). You’ll need to make sure that you’re using a technique that allows you to specify a distance metric, or uses one that is correct for your problem. Additionally, you’ll want to make sure that your features are on the same scale (you may need to do some normalization). For example, if you have some data which includes ratings on a 1-5 scale and other ratings on a 1-100 scale, then that will affect your results. Choosing the right embedding requires thinking about your problem, as well as trying out different feature sets and distance metrics.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;amp;index=41&amp;amp;t=0s&quot;&gt;Embed all the things - John Healy (talk from Pydata Los Angeles 2019)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://medium.com/@kunal_gohrani/different-types-of-distance-metrics-used-in-machine-learning-e9928c5e26c7&quot;&gt;Different Types of Distance Metrics used in Machine Learning&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning, we have labels which tells us the group(s) a data point belongs to. However, in unsupervised learning (where we don’t have labels) we need to calculate how similar points are from one another. To do this we need to have an embedding which consists of two things:</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">When we are training supervised learning models, we want to measure how well the model is performing. Choosing the correct metric for measuring model performance depends on what kind of task you are doing. There are two main categories of supervised learning tasks</summary></entry></feed>
