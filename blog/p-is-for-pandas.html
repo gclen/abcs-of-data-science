@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>P is for Pandas | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="P is for Pandas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:" />
+<meta property="og:description" content="Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/p-is-for-pandas" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/p-is-for-pandas" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"P is for Pandas","dateModified":"2020-10-25T00:00:00-05:00","datePublished":"2020-10-25T00:00:00-05:00","description":"Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/p-is-for-pandas"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/p-is-for-pandas","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>P is for Pandas | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="P is for Pandas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:" />
+<meta property="og:description" content="Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/p-is-for-pandas" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/p-is-for-pandas" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-25T00:00:00-05:00" />
+<script type="application/ld+json">
+{"headline":"P is for Pandas","dateModified":"2020-10-25T00:00:00-05:00","datePublished":"2020-10-25T00:00:00-05:00","description":"Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/p-is-for-pandas"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/p-is-for-pandas","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">P is for Pandas</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-10-25T00:00:00-05:00" itemprop="datePublished">
+        Oct 25, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#data_cleaning">data_cleaning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#data_exploration">data_exploration</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><a href="https://pandas.pydata.org/docs/index.html">Pandas</a> is a very popular data analysis library for python. It’s an invaluable tool for transforming and <a href="(/blog/m-is-for-munging-data)">munging data</a>. Some of my favourite features include:</p>
+
+<ul>
+  <li>It can read data from a ton of formats including csv, json, and database tables</li>
+  <li>There are lots of convenience features built in such as easy plotting, filling in missing data, dropping duplicates, filtering data etc</li>
+  <li>It’s compatible with a lot of other python data science libraries (e.g. numpy, scikit-learn, etc)</li>
+</ul>
+
+<p>It makes it really easy to read and explore your data since you can read, filter, and plot your data in just a few lines of code. This blog is not going to be a comprehensive tutorial (there are actual tutorials linked in the Other Resources section below). It’s intended to give you a brief idea of the kinds of things that pandas can do (to save you from rewriting code to do that yourself). The <a href="https://pandas.pydata.org/docs/getting_started/overview.html">documentation</a> is quite good and will give you an idea of the types of analysis you should use pandas for (hint: most of them).</p>
+
+<p>The main data types in pandas are series and dataframes. You can think of a dataframe as a spreadsheet or a table in a database. Dataframes are made up of series (just think of a series as a column in a spreadsheet/table).</p>
+
+<h3 id="using-pandas">Using pandas</h3>
+
+<h5 id="installing-and-importing-pandas">Installing and importing pandas</h5>
+
+<p>If you’re already familiar with installing python packages use <code class="highlighter-rouge">conda install pandas</code> or <code class="highlighter-rouge">pip install pandas</code>. For more in depth instructions there is a guide <a href="https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html">here</a>. Once you have it installed you can import it using</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import pandas as pd
+</code></pre></div></div>
+
+<p>People conventionally rename pandas to pd (e.g. pd.DataFrame instead of pandas.DataFrame) since you will end up typing pandas/pd a lot.</p>
+
+<p>Here I’m going to use the movie data used in <a href="https://github.com/brandon-rhodes/pycon-pandas-tutorial">Brandon Rhode’s “Pandas From the Ground Up” tutorial</a>. This includes CSV (comma separated value) files with movie titles and release dates as well as casting. After we’ve downloaded the data we want to load it into a dataframe. We can do that using</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>titles = pd.read_csv('titles.csv')
+</code></pre></div></div>
+
+<p>If we want to look at the first 10 rows of the dataframe we can use the <code class="highlighter-rouge">head</code> method</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print(titles.head(10))
+</code></pre></div></div>
+
+<p>which will output the first N rows (in this case 10). This is an easy way to see what the data looks like and if the data is well formatted.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: left">title</th>
+      <th style="text-align: right">year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">0</td>
+      <td style="text-align: left">Lusty Neighbors</td>
+      <td style="text-align: right">1970</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">The Adventures of Priscilla, Queen of the Desert</td>
+      <td style="text-align: right">1994</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Captain Sindbad</td>
+      <td style="text-align: right">1963</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: left">Cold Dark Mirror</td>
+      <td style="text-align: right">2015</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: left">Ostatnia Rawa Ryska Riedla</td>
+      <td style="text-align: right">1997</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">5</td>
+      <td style="text-align: left">Forever and Ever</td>
+      <td style="text-align: right">2018</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">6</td>
+      <td style="text-align: left">Western Conviction</td>
+      <td style="text-align: right">2018</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">7</td>
+      <td style="text-align: left">5 Estrellas</td>
+      <td style="text-align: right">2018</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">8</td>
+      <td style="text-align: left">Ropewalk</td>
+      <td style="text-align: right">2000</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">9</td>
+      <td style="text-align: left">Sally in Our Alley</td>
+      <td style="text-align: right">1931</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="selecting-and-filtering-data">Selecting and filtering data</h5>
+<p>We can easily select rows in our dataframe. For example if we wanted to find movies released in 1991</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>titles[titles['year'] == 1991]
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: left">title</th>
+      <th style="text-align: right">year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">71</td>
+      <td style="text-align: left">Le voleur d’enfants</td>
+      <td style="text-align: right">1991</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">132</td>
+      <td style="text-align: left">Madreseye piremardha</td>
+      <td style="text-align: right">1991</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">196</td>
+      <td style="text-align: left">Pyat pokhishchennykh monakhov</td>
+      <td style="text-align: right">1991</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">217</td>
+      <td style="text-align: left">Canh bac</td>
+      <td style="text-align: right">1991</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">509</td>
+      <td style="text-align: left">Itakwil man ako ng langit</td>
+      <td style="text-align: right">1991</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Let’s break down the above statement a bit. We use <code class="highlighter-rouge">titles[‘year’]</code> to select the year column in the data frame. <code class="highlighter-rouge">titles[‘year’] == 1991</code> returns a series of booleans (True if the year is 1991 and False otherwise). Finally, <code class="highlighter-rouge">titles[titles['year'] == 1991]</code> says “give me the rows from titles where the condition is True”. We don’t just have to look for rows with exact matches. Let’s search for movies containing “The Hobbit” in the title</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>titles[titles['title'].str.contains('The Hobbit')]
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: left">title</th>
+      <th style="text-align: right">year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">121727</td>
+      <td style="text-align: left">The Hobbit: The Battle of the Five Armies</td>
+      <td style="text-align: right">2014</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">146926</td>
+      <td style="text-align: left">The Hobbit: An Unexpected Journey</td>
+      <td style="text-align: right">2012</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">166752</td>
+      <td style="text-align: left">The Hobbit: The Desolation of Smaug</td>
+      <td style="text-align: right">2013</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">179646</td>
+      <td style="text-align: left">The Hobbit: The Swedolation of Smaug</td>
+      <td style="text-align: right">2014</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5 id="counting-values">Counting values</h5>
+
+<p>Let’s say we want to count how many movies were released per year. We can do this using</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>titles['year'].value_counts()
+</code></pre></div></div>
+
+<p>which gives a sorted list from highest count to lowest. In our data set we see that 2017 released the most movies followed by 2016. I suspect that this dataset was compiled in 2017 and that 2018 had more movies released in it than the previous year.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: right">year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">2017</td>
+      <td style="text-align: right">9888</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2016</td>
+      <td style="text-align: right">8198</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2015</td>
+      <td style="text-align: right">7564</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2014</td>
+      <td style="text-align: right">7159</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2013</td>
+      <td style="text-align: right">6896</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <code class="highlighter-rouge">value_counts</code> function also has a normalize parameter which divides the counts by the total number of rows.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>titles['year'].value_counts(normalize=True)
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: right">year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">2017</td>
+      <td style="text-align: right">0.0437497</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2016</td>
+      <td style="text-align: right">0.0362722</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2015</td>
+      <td style="text-align: right">0.0334671</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2014</td>
+      <td style="text-align: right">0.0316752</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2013</td>
+      <td style="text-align: right">0.0305115</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here we can see that about 4% of all movies ever released were released in 2017.</p>
+
+<h5 id="plotting-data">Plotting data</h5>
+
+<p>If we want to plot the number of movies released per year over time how would we do that? In pandas we can just do</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>counts_per_year = titles['year'].value_counts()
+# This just sorts it so that the years will be in order
+counts_per_year = counts_per_year.sort_index()
+counts_per_year.plot()
+</code></pre></div></div>
+
+<p><img src="/images/p_is_for_pandas/movie_releases.png" alt="" /></p>
+
+<p>It looks like the number of movies being released has been increasing over time. There are also movies in the dataset that are scheduled for release (including one in 2115!) which explains the sharp dropoff. The <code class="highlighter-rouge">.plot()</code> methods that wrap <a href="https://matplotlib.org/">matplotlib</a> so you can customize your plots as much as you want.</p>
+
+<h5 id="grouping-and-merging-data-together">Grouping and merging data together</h5>
+
+<p>A common (but slightly more advanced) use case for pandas is grouping data together. Imagine we want to see which actors/actresses mostly played leading roles in their career (who appeared in at least 50 movies). To do so we will first load in the cast dataset</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cast = pd.read_csv('cast.csv')
+print(cast.head())
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: left">title</th>
+      <th style="text-align: right">year</th>
+      <th style="text-align: left">name</th>
+      <th style="text-align: left">type</th>
+      <th style="text-align: left">character</th>
+      <th style="text-align: right">n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">0</td>
+      <td style="text-align: left">Closet Monster</td>
+      <td style="text-align: right">2015</td>
+      <td style="text-align: left">Buffy #1</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Buffy 4</td>
+      <td style="text-align: right">31</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">Suuri illusioni</td>
+      <td style="text-align: right">1985</td>
+      <td style="text-align: left">Homo $</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Guests</td>
+      <td style="text-align: right">22</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Battle of the Sexes</td>
+      <td style="text-align: right">2017</td>
+      <td style="text-align: left">$hutter</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Bobby Riggs Fan</td>
+      <td style="text-align: right">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: left">Secret in Their Eyes</td>
+      <td style="text-align: right">2015</td>
+      <td style="text-align: left">$hutter</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">2002 Dodger Fan</td>
+      <td style="text-align: right">nan</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: left">Steve Jobs</td>
+      <td style="text-align: right">2015</td>
+      <td style="text-align: left">$hutter</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">1988 Opera House Patron</td>
+      <td style="text-align: right">nan</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Here we have the title of the movie, the year it was released, the name of the actor/actress, if they were an actor/actress, the character name, and the listing in the credits (n). A listing number of 1 means they played a leading role and higher numbers usually correspond to extras. Some of the values of n are “nan”, which stands for “not a number”. We want to drop those rows to only get listed roles.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>listed_roles = cast.dropna(subset=['n'])
+</code></pre></div></div>
+
+<p>Now we want to find how many movies easy actor appeared in</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>num_roles = cast.groupby('name').size()
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">name</th>
+      <th style="text-align: right">0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">James Millican</td>
+      <td style="text-align: right">67</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Ei Kimura</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Brian Torpe</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Steve Edis</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Carlos Esteban Fonseca</td>
+      <td style="text-align: right">3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that this is roughly equivalent to the <code class="highlighter-rouge">value_counts</code> method. Now we want to select the actors who appeared in at least 50 movies</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>in_lots_of_roles = num_roles[num_roles&gt;50].reset_index(name='total_roles')
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: left">name</th>
+      <th style="text-align: right">total_roles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">0</td>
+      <td style="text-align: left">A. Bromley Davenport</td>
+      <td style="text-align: right">52</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">A.K. Hangal</td>
+      <td style="text-align: right">87</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">Abdur Razzak</td>
+      <td style="text-align: right">63</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: left">Abhi Bhattacharya</td>
+      <td style="text-align: right">63</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: left">Abhishek Bachchan</td>
+      <td style="text-align: right">52</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now we need to get all the roles each of those actors played. We can do this by merging this dataset with the <code class="highlighter-rouge">listed_roles</code> dataframe.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>merged = pd.merge(in_lots_of_roles, listed_roles)
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right"> </th>
+      <th style="text-align: left">name</th>
+      <th style="text-align: right">total_roles</th>
+      <th style="text-align: left">title</th>
+      <th style="text-align: right">year</th>
+      <th style="text-align: left">type</th>
+      <th style="text-align: left">character</th>
+      <th style="text-align: right">n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">0</td>
+      <td style="text-align: left">A. Bromley Davenport</td>
+      <td style="text-align: right">52</td>
+      <td style="text-align: left">A Maid of the Silver Sea</td>
+      <td style="text-align: right">1922</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Old Tom Hamon</td>
+      <td style="text-align: right">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">1</td>
+      <td style="text-align: left">A. Bromley Davenport</td>
+      <td style="text-align: right">52</td>
+      <td style="text-align: left">A Sister to Assist ‘Er</td>
+      <td style="text-align: right">1927</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Jim Harris</td>
+      <td style="text-align: right">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">2</td>
+      <td style="text-align: left">A. Bromley Davenport</td>
+      <td style="text-align: right">52</td>
+      <td style="text-align: left">Bonnie Prince Charlie</td>
+      <td style="text-align: right">1923</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Sir John Cope</td>
+      <td style="text-align: right">11</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">3</td>
+      <td style="text-align: left">A. Bromley Davenport</td>
+      <td style="text-align: right">52</td>
+      <td style="text-align: left">Boy Woodburn</td>
+      <td style="text-align: right">1922</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Matt Woodburn</td>
+      <td style="text-align: right">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">4</td>
+      <td style="text-align: left">A. Bromley Davenport</td>
+      <td style="text-align: right">52</td>
+      <td style="text-align: left">Captivation</td>
+      <td style="text-align: right">1931</td>
+      <td style="text-align: left">actor</td>
+      <td style="text-align: left">Colonel Jordan</td>
+      <td style="text-align: right">6</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finally, we can see which actors played mostly leading roles in their career. We will group by the actors name, then take the average of their listing number. The closer to 1.0 the number is the more leading roles they played. We will sort the values to see the actors closest to 1.0 at the top.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>merged.groupby('name')['n'].mean().sort_values()
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">name</th>
+      <th style="text-align: right">n</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">William S. Hart</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Yilmaz Güney</td>
+      <td style="text-align: right">1.01724</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mary Pickford</td>
+      <td style="text-align: right">1.03509</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Tom Mix</td>
+      <td style="text-align: right">1.06186</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Mary Miles Minter</td>
+      <td style="text-align: right">1.09804</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It appears that William S. Hart had a leading role in every film that he appeared in.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Pandas is an extremely powerful python library for doing data analysis. There can be a bit of a learning curve but it is worth spending some time exploring the library. Once you can perform some basic tasks (sorting, filtering, groupbys, plotting) then you will become a data analysis wizard!</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=ZyhVh-qRZPA&amp;list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS">Pandas tutorial series from Corey Schafer</a></li>
+  <li><a href="https://github.com/jvns/pandas-cookbook">Pandas cookbook</a></li>
+  <li><a href="https://github.com/brandon-rhodes/pycon-pandas-tutorial">Pandas From the Ground Up</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/p-is-for-pandas" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
