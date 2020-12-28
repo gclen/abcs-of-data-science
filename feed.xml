@@ -1,4 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-12-27T13:28:03-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">Q is for Q-learning</title><link href="https://abcsofdatascience.ca/blog/q-is-for-q-learning" rel="alternate" type="text/html" title="Q is for Q-learning" /><published>2020-12-27T00:00:00-06:00</published><updated>2020-12-27T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/q-is-for-q-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/q-is-for-q-learning">&lt;p&gt;How can we train a computer to play a video game? Here the goal could be something like “beat a level as quickly as possible” or “collect as many points as you can” or both of those objectives at the same time.  This is a very different task than the ones we’ve seen previously, such as trying to tell if a picture contains a dog, or how to group data together. To accomplish this we can use a framework of algorithms called &lt;strong&gt;reinforcement learning&lt;/strong&gt; (or RL). Reinforcement learning tries to train an &lt;strong&gt;agent&lt;/strong&gt; to learn a set of actions to achieve some goal. RL is used in a wide variety of disciplines such as&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-12-28T13:06:57-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">R is for Reproducibility</title><link href="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" rel="alternate" type="text/html" title="R is for Reproducibility" /><published>2020-12-28T00:00:00-06:00</published><updated>2020-12-28T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/r-is-for-reproducibility</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/r-is-for-reproducibility">&lt;p&gt;In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Do you have the same materials (either physical or data) as the original experiment?&lt;/li&gt;
+  &lt;li&gt;Can you recreate the experimental environment?&lt;/li&gt;
+  &lt;li&gt;Are the methods listed detailed enough?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Everyone agrees that reproducibility is important but that doesn’t make it less of a challenge in practice. In this blog I’ll focus on reproducibility in data science but this also applies to other fields (particularly computational) of science as well.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-is-it-so-hard&quot;&gt;Why is it so hard?&lt;/h3&gt;
+
+&lt;p&gt;It’s worth distinguishing between &lt;strong&gt;reproducibility&lt;/strong&gt; and &lt;strong&gt;repeatability&lt;/strong&gt;. Reproducibility is having another person (this can also be your future self) being able to fully recreate your results (either using the same or different methods). Repeatability (also known as replicability) is “given the same data and tools can you get the same result?”. In data science, people (including me!) tend to use the term reproducibility when they technically mean repeatability. For the rest of the blog I’ll use the two terms interchangeably.&lt;/p&gt;
+
+&lt;p&gt;One of the reasons reproducibility is hard is that things change all the time. Data changes, the tools change, there could be randomness baked into an algorithm etc. There are also other systemic factors which I will touch on later. For now, let’s just focus on the technical aspects.&lt;/p&gt;
+
+&lt;h3 id=&quot;do-you-have-the-same-data&quot;&gt;Do you have the same data?&lt;/h3&gt;
+
+&lt;p&gt;Imagine you’re reading a paper about a model that can predict if a tweet is positive or negative. You want to reproduce their results so that you can apply the model to a different data set. You look at the methods section and read “the model was trained on a random sample of 100 000 tweets”. That’s great, but &lt;em&gt;which&lt;/em&gt; 100 000 tweets?&lt;/p&gt;
+
+&lt;p&gt;There are many challenges associated having reproducible datasets&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The datasets need to be hosted somewhere (ideally somewhere you can interact with programatically). This could be something like an Amazon S3 bucket or &lt;a href=&quot;https://www.kaggle.com/datasets&quot;&gt;Kaggle&lt;/a&gt;. This can be expensive with large datasets.&lt;/li&gt;
+  &lt;li&gt;The dataset should be static (or you should at least know how it’s changed). If you are reproducing a model trained on IMDB movie reviews but there are now 25000 more reviews in the dataset, this could affect the results.&lt;/li&gt;
+  &lt;li&gt;It’s not enough to have the same raw data, the &lt;a href=&quot;(/blog/m-is-for-munging-data)&quot;&gt;processing pipeline should be the same&lt;/a&gt;. For example, how did the original authors handle missing data?&lt;/li&gt;
+  &lt;li&gt;The dataset might be sensitive! For example you might have a model trained on healthcare data where it is hard to share the underlying data.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Unfortunately there isn’t a solution to this problem that’s been widely adopted. There are a couple data version control solutions (e.g. https://dvc.org/) but many organizations create their own infrastructure (if they do anything at all). Many cloud providers provide dataset versioning but this can be expensive (especially for large datasets).&lt;/p&gt;
+
+&lt;h3 id=&quot;do-you-have-the-same-computational-environment&quot;&gt;Do you have the same computational environment?&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/r_is_for_reproducibility/phd_comics_scratch.png&quot; alt=&quot;&quot; title=&quot;Taken from http://phdcomics.com/comics/archive.php?comicid=1689&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Fortunately, in data science it is easier to be able to replicate the experimental environment. In theory you are able to rerun the same code that other researchers used. This assumes a few things:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The other researchers made their code available using a version control system like &lt;a href=&quot;https://github.com/&quot;&gt;github&lt;/a&gt; or &lt;a href=&quot;https://about.gitlab.com/&quot;&gt;gitlab&lt;/a&gt;. It’s far from guaranteed that the associated code for a paper is made available for reasons such as intellectual property or competitive advantage. There is a great website which lists &lt;a href=&quot;https://paperswithcode.com/&quot;&gt;popular papers and their implementations&lt;/a&gt; so you know before you read the paper that you will be able to see the code.&lt;/li&gt;
+  &lt;li&gt;You are using the same operating system as the original researchers. Let’s imagine you have a Windows machine and they were running Linux. This might not seem like a big difference but it can cause discrepancies.&lt;/li&gt;
+  &lt;li&gt;You have the same version of all the &lt;a href=&quot;https://xkcd.com/1987/&quot;&gt;code dependencies&lt;/a&gt;. What if the original researchers were using Tensorflow 1.15 and you have version 2.x installed? This could cause issues if the code behaviour has changed in some way.&lt;/li&gt;
+  &lt;li&gt;You have access to similar infrastructure. If the original model was trained on 1000 GPUs and you have a laptop, it will be impossible to reproduce the results.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;One way to standardize parts of the computational environment is to use a containerization solution like Docker. This allows you to have the same code, dependencies and runtime environment. This does not solve the infrastructure issue but it provides a decent solution. Unfortunately, using docker is also complicated so might have a high barrier to entry for a lot of scientists. Spinning up the required resources using a cloud provider is also possible, but again this costs money.&lt;/p&gt;
+
+&lt;h3 id=&quot;do-you-have-the-same-model-parameters&quot;&gt;Do you have the same model parameters?&lt;/h3&gt;
+
+&lt;p&gt;If you are able to reproduce the compute environment and data processing, you still might need to retrain the model. One way around this is for researchers to share pretrained models but this isn’t always done. If you need to retrain the model from scratch you might not get exactly the same results. It depends on if the algorithms are &lt;strong&gt;deterministic&lt;/strong&gt; or &lt;strong&gt;stochastic&lt;/strong&gt;. Deterministic means that given the same inputs, parameters, and initial conditions you will get the same output. Stochastic processes have randomness inherent in them so you will get different output for the same input if you run the algorithm multiple times. There are many places where randomness can pop up&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/g-is-for-gradient-descent&quot;&gt;Stochastic gradient descent&lt;/a&gt; is commonly used for optimization (e.g. in most &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;deep learning models&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;In many &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;embedding and dimension reduction&lt;/a&gt; algorithms there is randomness in the output. Points that are close in the higher dimensional space will still be close to points in the lower dimensional space, but the position of the points themselves may change&lt;/li&gt;
+  &lt;li&gt;Many models initialize their weights randomly&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s possible to seed random number generators so that you get the same results when generating random numbers. However, these may be buried deep in libraries or not configurable.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-barriers&quot;&gt;Other barriers&lt;/h3&gt;
+
+&lt;p&gt;There are other obstacles which prevent or discourage people from making truly reproducible models (or reproducing other peoples models). One of the biggest barriers is that reproducing others’ work is expensive both in terms of time and money. It can also be very frustrating when something doesn’t work as expected
+In academia researchers must publish papers which are novel in some way. It is very hard to publish a paper which says “we were able to reproduce this other work”. Researchers are incentivized to research new things rather than validating and exploring prior work. Similarly, in industry people are motivated to work on new products rather than replicating prior work.&lt;/p&gt;
+
+&lt;p&gt;Even if you are motivated, there are the challenges described above. Did the previous researchers make their data, compute environment, and methods available? One way to incentivize researchers to do this is to make it a mandatory component of publishing a paper.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;As you might have learned, reproducibility is very important but it’s also challenging to do in practice. Fortunately it’s not all bad news. There are tools which are making it easier to do reproducible science for those who are willing to put in the work.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mybinder.org/&quot;&gt;Binder&lt;/a&gt; makes it really easy to run someone else’s &lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter notebook&lt;/a&gt;. A Jupyter notebook is an interactive notebook which allows you to have code, documentation, and images (e.g. plots) all in the same document. They’re great for exploratory data analysis and documentation.&lt;/li&gt;
+  &lt;li&gt;Many cloud providers such as Azure provide &lt;a href=&quot;https://azure.microsoft.com/en-ca/services/machine-learning/#capabilities&quot;&gt;machine learning capabilities&lt;/a&gt;. This makes it easier to keep track of models, parameters, and datasets.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/hackalog/cookiecutter-easydata&quot;&gt;Easydata&lt;/a&gt; is a python library and git template to make it easier to do reproducible data science.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.podbean.com/ew/pb-wxkjp-ecfa7f&quot;&gt;Alan Turing Institute podcast on reproducible data science&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=x7gukmVdAxw&amp;amp;list=PLGVZCDnMOq0qaT_ji1YQ5O4bWTEarj9J8&amp;amp;index=30&amp;amp;t=0s&quot;&gt;Up your bus number tutorial&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/data-sciences-reproducibility-crisis-b87792d88513&quot;&gt;Data Science’s Reproducibility Crisis&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://lineardigressions.com/episodes/2017/9/3/data-lineage&quot;&gt;Linear digressions episode on data lineage&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as</summary></entry><entry><title type="html">Q is for Q-learning</title><link href="https://abcsofdatascience.ca/blog/q-is-for-q-learning" rel="alternate" type="text/html" title="Q is for Q-learning" /><published>2020-12-27T00:00:00-06:00</published><updated>2020-12-27T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/q-is-for-q-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/q-is-for-q-learning">&lt;p&gt;How can we train a computer to play a video game? Here the goal could be something like “beat a level as quickly as possible” or “collect as many points as you can” or both of those objectives at the same time.  This is a very different task than the ones we’ve seen previously, such as trying to tell if a picture contains a dog, or how to group data together. To accomplish this we can use a framework of algorithms called &lt;strong&gt;reinforcement learning&lt;/strong&gt; (or RL). Reinforcement learning tries to train an &lt;strong&gt;agent&lt;/strong&gt; to learn a set of actions to achieve some goal. RL is used in a wide variety of disciplines such as&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Physics/chemistry. We might want to improve the yield of a particular chemical reaction by changing things like temperature or concentration. Doing this manually is time consuming and requires a lot of resources/expertise. We can train an RL model to learn experimental parameters which will help optimize the reaction.&lt;/li&gt;
@@ -1373,70 +1455,4 @@ However, neural networks typically perform much better than other models. In ord
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;amp;index=41&amp;amp;t=0s&quot;&gt;Embed all the things - John Healy (talk from Pydata Los Angeles 2019)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In previous blogs we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:</summary></entry><entry><title type="html">H is for HDBSCAN</title><link href="https://abcsofdatascience.ca/blog/h-is-for-hdbscan" rel="alternate" type="text/html" title="H is for HDBSCAN" /><published>2020-07-01T00:00:00-05:00</published><updated>2020-07-01T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/h-is-for-hdbscan</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/h-is-for-hdbscan">&lt;p&gt;There are many data science problems where you don’t have labelled data and need to use &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; to find related points. For these clustering problems, HDBSCAN is a great algorithm. It was originally created by &lt;a href=&quot;https://link.springer.com/chapter/10.1007/978-3-642-37456-2_14&quot;&gt;Campello et al.&lt;/a&gt; and there is a &lt;a href=&quot;https://github.com/scikit-learn-contrib/hdbscan&quot;&gt;fast Python implementation&lt;/a&gt; written by &lt;a href=&quot;https://twitter.com/leland_mcinnes?lang=en&quot;&gt;Leland Mcinnes&lt;/a&gt; and &lt;a href=&quot;https://github.com/jc-healy&quot;&gt;John Healy&lt;/a&gt;. When I refer to HDBSCAN I’ll be talking about the python implementation/package. It is generally the first clustering method I try for a variety of reasons:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;You don’t need to specify the number of clusters. Other clustering methods such as k-means require that you specify the number of clusters to find in your data, and this is hard to know ahead of time. HDBSCAN will find the natural number of clusters in your data. All you need to specify is the minimum number of points that a cluster should have (which is much easier to have an intuition for).&lt;/li&gt;
-  &lt;li&gt;Many other clustering algorithms make assumptions about the shape of the clusters (e.g. they must fit in a circle) or they are all the same density. In real data this is generally not true and HDBSCAN finds clusters with varying shapes/densities.&lt;/li&gt;
-  &lt;li&gt;HDBSCAN will label points as noise/outliers. Many clustering algorithms force every point into a cluster. However, real world data is messy and having outliers improves the quality of the clusters (since they aren’t polluted by noise).&lt;/li&gt;
-  &lt;li&gt;It generally &lt;em&gt;just works&lt;/em&gt;. I find I spend much less time fiddling with parameters and spend more time looking at my actual data.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Much of this blog is based on examples in the wonderful &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/&quot;&gt;documentation for HDBSCAN&lt;/a&gt;. In particular, if you want to see how HDBSCAN compares to other clustering algorithms read &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/comparing_clustering_algorithms.html&quot;&gt;this page&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;lets-look-at-an-example&quot;&gt;Let’s look at an example&lt;/h3&gt;
-
-&lt;p&gt;The first thing we need is an &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;embedding&lt;/a&gt;, which as you might recall is just a numeric representation of your data with a way to measure distance between points.
-Shown below is a plot of a &lt;a href=&quot;https://github.com/scikit-learn-contrib/hdbscan/blob/master/notebooks/clusterable_data.npy&quot;&gt;sample dataset&lt;/a&gt;. While it is an artificial dataset, it has many properties of real data:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;There are a lot of noisy/outlying points which don’t belong in any cluster&lt;/li&gt;
-  &lt;li&gt;The groups of points are different shapes and you can see in some clusters that the points are much closer together, while in others they are less dense.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/h_is_for_hdbscan/sample_data.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s try clustering this data. First we import HDBSCAN and load our data&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;hdbscan&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'clusterable_data.npy'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Clustering the data is as simple as&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hdbscan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HDBSCAN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min_cluster_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metric&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'euclidean'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here we are saying that there must be &lt;em&gt;at least&lt;/em&gt; 15 points close together before we say that something is a cluster. How do we measure “close together”? We also specified a Euclidean distance metric. This is the default metric but HDBSCAN can use many &lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/basic_hdbscan.html#what-about-different-metrics&quot;&gt;other metrics&lt;/a&gt;. Euclidean is the default metric, but it is always better to explicitly state your distance measure for other people reading the code. If we wanted to use cosine distance instead of Euclidean (despite Euclidean being the better choice in this case) we could do&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hdbscan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HDBSCAN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;min_cluster_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;metric&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'cosine'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit_predict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;We can see which cluster each point belongs to using&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clusterer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels_&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;labels&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# [ 5  5  5 ... -1 -1  5]
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The first points shown are part of cluster 5. Points that are outliers are given a label of “-1” so they are easy to filter out. Let’s remake the plot above but colour the points based on their cluster label. The outlying points (part of the -1 cluster) will be grey.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/h_is_for_hdbscan/sample_data_clustered.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You can see that the resulting clusters are pretty good. More importantly, they match what we would intuitively pick as the clusters if we had to draw lines around the groups of points.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;HDBSCAN and its python implementation is a fast clustering algorithm that is easy to use. It naturally handles a lot of the messiness of real world data and lets you spend more time focussing on the problem you are trying to solve. If you want to learn more about how HDBSCAN works and see other examples check out the resources below.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/understanding-hdbscan-and-density-based-clustering-121dbee1320e&quot;&gt;Blog on understanding HDBSCAN&lt;/a&gt; which is similar to this blog but goes into much more detail&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://hdbscan.readthedocs.io/en/latest/how_hdbscan_works.html&quot;&gt;How HDBSCAN works&lt;/a&gt; from the official documentation&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://dev.tube/video/dGsxd67IFiU&quot;&gt;HDBSCAN, Fast Density Based Clustering, the How and the Why&lt;/a&gt; - John Healy&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">There are many data science problems where you don’t have labelled data and need to use clustering to find related points. For these clustering problems, HDBSCAN is a great algorithm. It was originally created by Campello et al. and there is a fast Python implementation written by Leland Mcinnes and John Healy. When I refer to HDBSCAN I’ll be talking about the python implementation/package. It is generally the first clustering method I try for a variety of reasons:</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In previous blogs we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:</summary></entry></feed>

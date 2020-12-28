@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>R is for Reproducibility | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="R is for Reproducibility" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as" />
+<meta property="og:description" content="In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-28T00:00:00-06:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/r-is-for-reproducibility"},"description":"In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as","@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/r-is-for-reproducibility","headline":"R is for Reproducibility","dateModified":"2020-12-28T00:00:00-06:00","datePublished":"2020-12-28T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>R is for Reproducibility | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="R is for Reproducibility" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as" />
+<meta property="og:description" content="In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-28T00:00:00-06:00" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/r-is-for-reproducibility"},"description":"In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as","@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/r-is-for-reproducibility","headline":"R is for Reproducibility","dateModified":"2020-12-28T00:00:00-06:00","datePublished":"2020-12-28T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">R is for Reproducibility</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-12-28T00:00:00-06:00" itemprop="datePublished">
+        Dec 28, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#reproducibility">reproducibility</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as</p>
+
+<ul>
+  <li>Do you have the same materials (either physical or data) as the original experiment?</li>
+  <li>Can you recreate the experimental environment?</li>
+  <li>Are the methods listed detailed enough?</li>
+</ul>
+
+<p>Everyone agrees that reproducibility is important but that doesn’t make it less of a challenge in practice. In this blog I’ll focus on reproducibility in data science but this also applies to other fields (particularly computational) of science as well.</p>
+
+<h3 id="why-is-it-so-hard">Why is it so hard?</h3>
+
+<p>It’s worth distinguishing between <strong>reproducibility</strong> and <strong>repeatability</strong>. Reproducibility is having another person (this can also be your future self) being able to fully recreate your results (either using the same or different methods). Repeatability (also known as replicability) is “given the same data and tools can you get the same result?”. In data science, people (including me!) tend to use the term reproducibility when they technically mean repeatability. For the rest of the blog I’ll use the two terms interchangeably.</p>
+
+<p>One of the reasons reproducibility is hard is that things change all the time. Data changes, the tools change, there could be randomness baked into an algorithm etc. There are also other systemic factors which I will touch on later. For now, let’s just focus on the technical aspects.</p>
+
+<h3 id="do-you-have-the-same-data">Do you have the same data?</h3>
+
+<p>Imagine you’re reading a paper about a model that can predict if a tweet is positive or negative. You want to reproduce their results so that you can apply the model to a different data set. You look at the methods section and read “the model was trained on a random sample of 100 000 tweets”. That’s great, but <em>which</em> 100 000 tweets?</p>
+
+<p>There are many challenges associated having reproducible datasets</p>
+
+<ul>
+  <li>The datasets need to be hosted somewhere (ideally somewhere you can interact with programatically). This could be something like an Amazon S3 bucket or <a href="https://www.kaggle.com/datasets">Kaggle</a>. This can be expensive with large datasets.</li>
+  <li>The dataset should be static (or you should at least know how it’s changed). If you are reproducing a model trained on IMDB movie reviews but there are now 25000 more reviews in the dataset, this could affect the results.</li>
+  <li>It’s not enough to have the same raw data, the <a href="(/blog/m-is-for-munging-data)">processing pipeline should be the same</a>. For example, how did the original authors handle missing data?</li>
+  <li>The dataset might be sensitive! For example you might have a model trained on healthcare data where it is hard to share the underlying data.</li>
+</ul>
+
+<p>Unfortunately there isn’t a solution to this problem that’s been widely adopted. There are a couple data version control solutions (e.g. https://dvc.org/) but many organizations create their own infrastructure (if they do anything at all). Many cloud providers provide dataset versioning but this can be expensive (especially for large datasets).</p>
+
+<h3 id="do-you-have-the-same-computational-environment">Do you have the same computational environment?</h3>
+
+<p><img src="/images/r_is_for_reproducibility/phd_comics_scratch.png" alt="" title="Taken from http://phdcomics.com/comics/archive.php?comicid=1689" /></p>
+
+<p>Fortunately, in data science it is easier to be able to replicate the experimental environment. In theory you are able to rerun the same code that other researchers used. This assumes a few things:</p>
+
+<ul>
+  <li>The other researchers made their code available using a version control system like <a href="https://github.com/">github</a> or <a href="https://about.gitlab.com/">gitlab</a>. It’s far from guaranteed that the associated code for a paper is made available for reasons such as intellectual property or competitive advantage. There is a great website which lists <a href="https://paperswithcode.com/">popular papers and their implementations</a> so you know before you read the paper that you will be able to see the code.</li>
+  <li>You are using the same operating system as the original researchers. Let’s imagine you have a Windows machine and they were running Linux. This might not seem like a big difference but it can cause discrepancies.</li>
+  <li>You have the same version of all the <a href="https://xkcd.com/1987/">code dependencies</a>. What if the original researchers were using Tensorflow 1.15 and you have version 2.x installed? This could cause issues if the code behaviour has changed in some way.</li>
+  <li>You have access to similar infrastructure. If the original model was trained on 1000 GPUs and you have a laptop, it will be impossible to reproduce the results.</li>
+</ul>
+
+<p>One way to standardize parts of the computational environment is to use a containerization solution like Docker. This allows you to have the same code, dependencies and runtime environment. This does not solve the infrastructure issue but it provides a decent solution. Unfortunately, using docker is also complicated so might have a high barrier to entry for a lot of scientists. Spinning up the required resources using a cloud provider is also possible, but again this costs money.</p>
+
+<h3 id="do-you-have-the-same-model-parameters">Do you have the same model parameters?</h3>
+
+<p>If you are able to reproduce the compute environment and data processing, you still might need to retrain the model. One way around this is for researchers to share pretrained models but this isn’t always done. If you need to retrain the model from scratch you might not get exactly the same results. It depends on if the algorithms are <strong>deterministic</strong> or <strong>stochastic</strong>. Deterministic means that given the same inputs, parameters, and initial conditions you will get the same output. Stochastic processes have randomness inherent in them so you will get different output for the same input if you run the algorithm multiple times. There are many places where randomness can pop up</p>
+
+<ul>
+  <li><a href="/blog/g-is-for-gradient-descent">Stochastic gradient descent</a> is commonly used for optimization (e.g. in most <a href="/blog/d-is-for-deep-learning">deep learning models</a>)</li>
+  <li>In many <a href="/blog/e-is-for-embeddings">embedding and dimension reduction</a> algorithms there is randomness in the output. Points that are close in the higher dimensional space will still be close to points in the lower dimensional space, but the position of the points themselves may change</li>
+  <li>Many models initialize their weights randomly</li>
+</ul>
+
+<p>It’s possible to seed random number generators so that you get the same results when generating random numbers. However, these may be buried deep in libraries or not configurable.</p>
+
+<h3 id="other-barriers">Other barriers</h3>
+
+<p>There are other obstacles which prevent or discourage people from making truly reproducible models (or reproducing other peoples models). One of the biggest barriers is that reproducing others’ work is expensive both in terms of time and money. It can also be very frustrating when something doesn’t work as expected
+In academia researchers must publish papers which are novel in some way. It is very hard to publish a paper which says “we were able to reproduce this other work”. Researchers are incentivized to research new things rather than validating and exploring prior work. Similarly, in industry people are motivated to work on new products rather than replicating prior work.</p>
+
+<p>Even if you are motivated, there are the challenges described above. Did the previous researchers make their data, compute environment, and methods available? One way to incentivize researchers to do this is to make it a mandatory component of publishing a paper.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>As you might have learned, reproducibility is very important but it’s also challenging to do in practice. Fortunately it’s not all bad news. There are tools which are making it easier to do reproducible science for those who are willing to put in the work.</p>
+
+<ul>
+  <li><a href="https://mybinder.org/">Binder</a> makes it really easy to run someone else’s <a href="https://jupyter.org/">Jupyter notebook</a>. A Jupyter notebook is an interactive notebook which allows you to have code, documentation, and images (e.g. plots) all in the same document. They’re great for exploratory data analysis and documentation.</li>
+  <li>Many cloud providers such as Azure provide <a href="https://azure.microsoft.com/en-ca/services/machine-learning/#capabilities">machine learning capabilities</a>. This makes it easier to keep track of models, parameters, and datasets.</li>
+  <li><a href="https://github.com/hackalog/cookiecutter-easydata">Easydata</a> is a python library and git template to make it easier to do reproducible data science.</li>
+</ul>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.podbean.com/ew/pb-wxkjp-ecfa7f">Alan Turing Institute podcast on reproducible data science</a></li>
+  <li><a href="https://www.youtube.com/watch?v=x7gukmVdAxw&amp;list=PLGVZCDnMOq0qaT_ji1YQ5O4bWTEarj9J8&amp;index=30&amp;t=0s">Up your bus number tutorial</a></li>
+  <li><a href="https://towardsdatascience.com/data-sciences-reproducibility-crisis-b87792d88513">Data Science’s Reproducibility Crisis</a></li>
+  <li><a href="https://lineardigressions.com/episodes/2017/9/3/data-lineage">Linear digressions episode on data lineage</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/r-is-for-reproducibility" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
