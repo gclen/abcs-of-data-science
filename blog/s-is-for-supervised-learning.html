@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>S is for Supervised Learning | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="S is for Supervised Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together." />
+<meta property="og:description" content="Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-17T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-01-17T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/s-is-for-supervised-learning"},"description":"Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.","@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/s-is-for-supervised-learning","headline":"S is for Supervised Learning","dateModified":"2021-01-17T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>S is for Supervised Learning | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="S is for Supervised Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together." />
+<meta property="og:description" content="Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-17T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-01-17T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/s-is-for-supervised-learning"},"description":"Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.","@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/s-is-for-supervised-learning","headline":"S is for Supervised Learning","dateModified":"2021-01-17T00:00:00-06:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">S is for Supervised Learning</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-17T00:00:00-06:00" itemprop="datePublished">
+        Jan 17, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#supervised_learning">supervised_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#random_forest">random_forest</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#deep_learning">deep_learning</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.</p>
+
+<p><strong>Supervised learning</strong> means that you have a labeled training set with some set of features and the given output. One category of supervised learning is regression which happens when you have continuous output data. For example, given features like the square footage of a house, predict the selling price. Classification is the other major category of supervised learning which occurs when you have discrete output (i.e a finite number of categories). For example, you are trying to predict if an email is spam
+or not. There are only two possible outcomes in this case (spam or not spam). In regression there are an infinite number of possibilities (i.e. the house could sell for <span>$</span>500 000, <span>$</span>500 001, <span>$</span>500 002 etc).</p>
+
+<h3 id="how-does-supervised-learning-work">How does supervised learning work?</h3>
+
+<p>To train any supervised learning model you need to have four things:</p>
+
+<ol>
+  <li>Labelled data</li>
+  <li>Features</li>
+  <li>An objective (or cost) function</li>
+  <li>A weight for each feature</li>
+</ol>
+
+<h5 id="labelled-data">Labelled data</h5>
+
+<p>As we’ve discussed before, getting high quality <a href="/blog/l-is-for-labelling-data">labelled data</a> is hard. It’s often extremely time intensive (and also very boring). Depending on the problem it can also require a substantial amount of expertise. For example, anyone can label images as having a dog or a cat but it requires medical professionals to label MRI scans for a particular disease.</p>
+
+<h5 id="features">Features</h5>
+
+<p>This is the processed data that gets put into your model. <a href="/blog/m-is-for-munging-data">Processing your data</a> and extracting relevant features is typically the bulk of the work involved in training a ML model. In images the raw pixels could be used as features (this is common in deep learning). <a href="/blog/n-is-for-natural-language-processing">Natural language processing</a> techniques are common for extracting features from text data. Getting useful features from tabular (i.e. in a table or CSV) data usually involves some level of expertise about the problem itself. In many cases you can get much better performance from a model by improving the features, as compared to using more sophisticated models.</p>
+
+<h5 id="objective-functions">Objective functions</h5>
+
+<p>An objective function (also called a cost function or loss function) tells us how well our predictions match the labeled data. It should give us more information than if the prediction was correct/incorrect. If the prediction was wrong, it should also tell us how wrong the prediction was. An example of an objective function for regression problems is Mean Absolute Error (MAE). This is just the difference between the actual value and predicted value. When trying to predict house prices being off by <span>$</span>300 000 is worse than being off by <span>$</span>1000. For classification problems, one common objective function is cross-entropy loss. It takes into account if the prediction was correct as well as how confident the model was about the prediction. If you are confident about a correct prediction you will be rewarded, but if you are confident about an incorrect prediction you’ll be penalized heavily. However, if you are not confident about your prediction the reward/penalty will be much lower. There are more examples of objective functions in <a href="/blog/d-is-for-deep-learning">D is for Deep Learning</a> and <a href="/blog/f-is-for-f1">F is for F1 Score</a>.</p>
+
+<h5 id="feature-weighting">Feature weighting</h5>
+
+<p>Let’s imagine we have an extremely simple model. We are going to try to predict the price of a house given two features: location (the distance to a major city), and if the house has a dishwasher or not. As you might expect, some features (e.g. location) are more important than others (e.g dishwasher). When we start training a model, the input data, features and objective function stay the same. The only thing that changes is the weighting of each feature. Typically these weights are chosen randomly before training. In our house example on the first iteration we might have</p>
+
+<p>$ \text{Prediction} = (0.33)\cdot(\text{Location}) + (0.67)\cdot(\text{Has dishwasher})$</p>
+
+<p>Here the dishwasher feature is twice as important as the location. This would probably lead to a bad model. After a few training iterations we might have</p>
+
+<p>$ \text{Prediction} = (0.99)\cdot(\text{Location}) + (0.01)\cdot(\text{Has dishwasher})$</p>
+
+<p>This makes more intuitive sense. Obviously the location matters a lot more but all other things being equal, a house with a dishwasher would sell for a bit more.</p>
+
+<h3 id="training-a-model">Training a model</h3>
+
+<p>Training a model refers to finding the feature weights which minimize/maximize the objective function. For some objective functions we want to find the minimum value, while for others we want to find the maximum value. There are different ways of finding these min/max values (called optimization methods) but <a href="/blog/g-is-for-gradient-descent">gradient descent</a> is an extremely common one.</p>
+
+<p>When we train a model we want to ensure our model does not overfit/underfit the data. We can do this by splitting our dataset into a training and test set. We only update the model weights based on data in the training set. The test set is used to evaluate the model on data it hasn’t seen. For more details on preventing over/underfitting see <a href="/blog/k-is-for-kfold-cross-validation">K is for K-fold Cross-Validation</a>.</p>
+
+<p>There are multiple factors that go into choosing an appropriate model for your problem. These include things like performance, training speed, interpretability, and data types. That being said three of the most common model types are:</p>
+
+<ul>
+  <li>Logistic regression</li>
+  <li>Random forests</li>
+  <li><a href="/blog/d-is-for-deep-learning">Deep learning models</a></li>
+</ul>
+
+<h3 id="building-a-cookie-classifier">Building a cookie classifier</h3>
+
+<h5 id="logistic-regression">Logistic regression</h5>
+
+<p>Let’s imagine we have a training set where cookies are deemed acceptable or unacceptable. Here we have two features: the cookie area and the chocolate chip density. In the plot below the blue circles indicate acceptable cookies while the red squares are rejected (though I’d probably still eat them).</p>
+
+<p><img src="/images/s_is_for_supervised_learning/cookie_classification_logistic_regression.png" alt="" /></p>
+
+<p>Using this training set, we can train a model to predict which of some new set of cookies (the test set) will be acceptable. One way that we could use to do this is called <strong>logistic regression</strong> which is a fairly popular algorithm. In logistic regression we are trying to learn the <strong>decision
+boundary</strong> which is shown above by the dotted black line. Points inside this circle are classified as acceptable while points outside are rejected. This decision boundary isn’t always a circle (in fact it usually isn’t). One nice feature of logistic regression is that you can have an arbitrarily shaped decision boundary (careful not to overfit!). As you can see, the classification isn't perfect and there are red squares misclassified as acceptable and vice versa. We can measure how well our classifier is doing using its <a href="/blog/f-is-for-f1">F1 score</a>.</p>
+
+<p>Classification algorithms typically have some level of confidence about their prediction (via a
+probability). So it may have classified the blue circle on the edge of the decision boundary as unacceptable but if you looked at the confidence it would probably be pretty low. The same thing is true for the misclassified red squares. This is particularly useful if you are doing something like classifying executable code as malicious or benign. You can order your predictions in terms of confidence to have the most malicious at the top and then get less confident as you scroll downwards.</p>
+
+<h5 id="random-forests">Random forests</h5>
+
+<p>There are two key concepts involved in a random forest model that are more broadly used in data science/machine learning as a whole. The first is the idea of a <strong>decision tree</strong>. A decision tree essentially looks like a flow chart. As you go down the tree, the data is categorized further
+and further. The figure below shows an example decision tree of our cookie classification example. As you can see it is much closer to what a human would think if they were trying to determine whether the cookie should be sold or not.</p>
+
+<p><img src="/images/s_is_for_supervised_learning/decision_tree.png" alt="" /></p>
+
+<p>The second key idea is the notion of <strong>ensembles</strong>. In an ensemble you take a bunch of weak learners (like a decision tree) and aggregate them together to create a strong learner. People also do ensembles with different machine learning algorithms (e.g. an ensemble of random
+forest, logistic regression, and support vector machine models) where each model has a vote in the final classification. There are different ways to create an ensemble (e.g. votes can be weighted) and they are an extremely useful tool.</p>
+
+<p>The forest portion of random forest comes from the fact that it is an ensemble of decision trees. But where does the random come from? The random forest algorithm works as follows:</p>
+
+<ol>
+  <li>Sample data your training set (with replacement) to create random subsets of data</li>
+  <li>For each subset choose a random set of predictor features (e.g. cookie size)</li>
+  <li>For each node in the tree, find the predictor variable that provides the best split of the data. For example you might find that cookies under 5cm are not worth selling.  At the next node choose another set of features and repeat the process.</li>
+</ol>
+
+<p>As a typical example you might have 100 decision trees (all trained on random sets of features) in your random forest. Each tree makes a prediction if the cookie is worth selling/not. The final prediction is made based on the class that gets the most votes.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Supervised learning is an extremely powerful tool that can help us automate many tasks and scale to levels where humans cannot. A common use case for supervised learning models is to automate the simple decisions and have humans look at the more complex cases. As always it’s important to have <a href="/blog/i-is-for-interpretability">interpretable models</a> as well as an <a href="/blog/b-is-for-bias">appeals process for wrong predictions</a>. While model choices are important, data preprocessing and feature selection can have a large effect on model performance. It’s usually better to start with a simpler model like logistic regression or random forests before moving into more sophisticated models like deep learning.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.coursera.org/learn/machine-learning">Andrew Ng’s ML course</a></li>
+  <li><a href="https://course.fast.ai/">Practical machine learning for coders</a></li>
+  <li><a href="https://www.youtube.com/watch?v=4qVRBYAdLAo">Crash Course AI #2: Supervised learning</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/s-is-for-supervised-learning" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

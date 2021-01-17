@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2020-12-28T13:06:57-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">R is for Reproducibility</title><link href="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" rel="alternate" type="text/html" title="R is for Reproducibility" /><published>2020-12-28T00:00:00-06:00</published><updated>2020-12-28T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/r-is-for-reproducibility</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/r-is-for-reproducibility">&lt;p&gt;In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-01-17T17:23:38-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">S is for Supervised Learning</title><link href="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" rel="alternate" type="text/html" title="S is for Supervised Learning" /><published>2021-01-17T00:00:00-06:00</published><updated>2021-01-17T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/s-is-for-supervised-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning">&lt;p&gt;Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Supervised learning&lt;/strong&gt; means that you have a labeled training set with some set of features and the given output. One category of supervised learning is regression which happens when you have continuous output data. For example, given features like the square footage of a house, predict the selling price. Classification is the other major category of supervised learning which occurs when you have discrete output (i.e a finite number of categories). For example, you are trying to predict if an email is spam
+or not. There are only two possible outcomes in this case (spam or not spam). In regression there are an infinite number of possibilities (i.e. the house could sell for &lt;span&gt;$&lt;/span&gt;500 000, &lt;span&gt;$&lt;/span&gt;500 001, &lt;span&gt;$&lt;/span&gt;500 002 etc).&lt;/p&gt;
+
+&lt;h3 id=&quot;how-does-supervised-learning-work&quot;&gt;How does supervised learning work?&lt;/h3&gt;
+
+&lt;p&gt;To train any supervised learning model you need to have four things:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Labelled data&lt;/li&gt;
+  &lt;li&gt;Features&lt;/li&gt;
+  &lt;li&gt;An objective (or cost) function&lt;/li&gt;
+  &lt;li&gt;A weight for each feature&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;labelled-data&quot;&gt;Labelled data&lt;/h5&gt;
+
+&lt;p&gt;As we’ve discussed before, getting high quality &lt;a href=&quot;/blog/l-is-for-labelling-data&quot;&gt;labelled data&lt;/a&gt; is hard. It’s often extremely time intensive (and also very boring). Depending on the problem it can also require a substantial amount of expertise. For example, anyone can label images as having a dog or a cat but it requires medical professionals to label MRI scans for a particular disease.&lt;/p&gt;
+
+&lt;h5 id=&quot;features&quot;&gt;Features&lt;/h5&gt;
+
+&lt;p&gt;This is the processed data that gets put into your model. &lt;a href=&quot;/blog/m-is-for-munging-data&quot;&gt;Processing your data&lt;/a&gt; and extracting relevant features is typically the bulk of the work involved in training a ML model. In images the raw pixels could be used as features (this is common in deep learning). &lt;a href=&quot;/blog/n-is-for-natural-language-processing&quot;&gt;Natural language processing&lt;/a&gt; techniques are common for extracting features from text data. Getting useful features from tabular (i.e. in a table or CSV) data usually involves some level of expertise about the problem itself. In many cases you can get much better performance from a model by improving the features, as compared to using more sophisticated models.&lt;/p&gt;
+
+&lt;h5 id=&quot;objective-functions&quot;&gt;Objective functions&lt;/h5&gt;
+
+&lt;p&gt;An objective function (also called a cost function or loss function) tells us how well our predictions match the labeled data. It should give us more information than if the prediction was correct/incorrect. If the prediction was wrong, it should also tell us how wrong the prediction was. An example of an objective function for regression problems is Mean Absolute Error (MAE). This is just the difference between the actual value and predicted value. When trying to predict house prices being off by &lt;span&gt;$&lt;/span&gt;300 000 is worse than being off by &lt;span&gt;$&lt;/span&gt;1000. For classification problems, one common objective function is cross-entropy loss. It takes into account if the prediction was correct as well as how confident the model was about the prediction. If you are confident about a correct prediction you will be rewarded, but if you are confident about an incorrect prediction you’ll be penalized heavily. However, if you are not confident about your prediction the reward/penalty will be much lower. There are more examples of objective functions in &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;D is for Deep Learning&lt;/a&gt; and &lt;a href=&quot;/blog/f-is-for-f1&quot;&gt;F is for F1 Score&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;feature-weighting&quot;&gt;Feature weighting&lt;/h5&gt;
+
+&lt;p&gt;Let’s imagine we have an extremely simple model. We are going to try to predict the price of a house given two features: location (the distance to a major city), and if the house has a dishwasher or not. As you might expect, some features (e.g. location) are more important than others (e.g dishwasher). When we start training a model, the input data, features and objective function stay the same. The only thing that changes is the weighting of each feature. Typically these weights are chosen randomly before training. In our house example on the first iteration we might have&lt;/p&gt;
+
+&lt;p&gt;$ \text{Prediction} = (0.33)\cdot(\text{Location}) + (0.67)\cdot(\text{Has dishwasher})$&lt;/p&gt;
+
+&lt;p&gt;Here the dishwasher feature is twice as important as the location. This would probably lead to a bad model. After a few training iterations we might have&lt;/p&gt;
+
+&lt;p&gt;$ \text{Prediction} = (0.99)\cdot(\text{Location}) + (0.01)\cdot(\text{Has dishwasher})$&lt;/p&gt;
+
+&lt;p&gt;This makes more intuitive sense. Obviously the location matters a lot more but all other things being equal, a house with a dishwasher would sell for a bit more.&lt;/p&gt;
+
+&lt;h3 id=&quot;training-a-model&quot;&gt;Training a model&lt;/h3&gt;
+
+&lt;p&gt;Training a model refers to finding the feature weights which minimize/maximize the objective function. For some objective functions we want to find the minimum value, while for others we want to find the maximum value. There are different ways of finding these min/max values (called optimization methods) but &lt;a href=&quot;/blog/g-is-for-gradient-descent&quot;&gt;gradient descent&lt;/a&gt; is an extremely common one.&lt;/p&gt;
+
+&lt;p&gt;When we train a model we want to ensure our model does not overfit/underfit the data. We can do this by splitting our dataset into a training and test set. We only update the model weights based on data in the training set. The test set is used to evaluate the model on data it hasn’t seen. For more details on preventing over/underfitting see &lt;a href=&quot;/blog/k-is-for-kfold-cross-validation&quot;&gt;K is for K-fold Cross-Validation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are multiple factors that go into choosing an appropriate model for your problem. These include things like performance, training speed, interpretability, and data types. That being said three of the most common model types are:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Logistic regression&lt;/li&gt;
+  &lt;li&gt;Random forests&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;Deep learning models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;building-a-cookie-classifier&quot;&gt;Building a cookie classifier&lt;/h3&gt;
+
+&lt;h5 id=&quot;logistic-regression&quot;&gt;Logistic regression&lt;/h5&gt;
+
+&lt;p&gt;Let’s imagine we have a training set where cookies are deemed acceptable or unacceptable. Here we have two features: the cookie area and the chocolate chip density. In the plot below the blue circles indicate acceptable cookies while the red squares are rejected (though I’d probably still eat them).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/s_is_for_supervised_learning/cookie_classification_logistic_regression.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using this training set, we can train a model to predict which of some new set of cookies (the test set) will be acceptable. One way that we could use to do this is called &lt;strong&gt;logistic regression&lt;/strong&gt; which is a fairly popular algorithm. In logistic regression we are trying to learn the &lt;strong&gt;decision
+boundary&lt;/strong&gt; which is shown above by the dotted black line. Points inside this circle are classified as acceptable while points outside are rejected. This decision boundary isn’t always a circle (in fact it usually isn’t). One nice feature of logistic regression is that you can have an arbitrarily shaped decision boundary (careful not to overfit!). As you can see, the classification isn't perfect and there are red squares misclassified as acceptable and vice versa. We can measure how well our classifier is doing using its &lt;a href=&quot;/blog/f-is-for-f1&quot;&gt;F1 score&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Classification algorithms typically have some level of confidence about their prediction (via a
+probability). So it may have classified the blue circle on the edge of the decision boundary as unacceptable but if you looked at the confidence it would probably be pretty low. The same thing is true for the misclassified red squares. This is particularly useful if you are doing something like classifying executable code as malicious or benign. You can order your predictions in terms of confidence to have the most malicious at the top and then get less confident as you scroll downwards.&lt;/p&gt;
+
+&lt;h5 id=&quot;random-forests&quot;&gt;Random forests&lt;/h5&gt;
+
+&lt;p&gt;There are two key concepts involved in a random forest model that are more broadly used in data science/machine learning as a whole. The first is the idea of a &lt;strong&gt;decision tree&lt;/strong&gt;. A decision tree essentially looks like a flow chart. As you go down the tree, the data is categorized further
+and further. The figure below shows an example decision tree of our cookie classification example. As you can see it is much closer to what a human would think if they were trying to determine whether the cookie should be sold or not.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/s_is_for_supervised_learning/decision_tree.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The second key idea is the notion of &lt;strong&gt;ensembles&lt;/strong&gt;. In an ensemble you take a bunch of weak learners (like a decision tree) and aggregate them together to create a strong learner. People also do ensembles with different machine learning algorithms (e.g. an ensemble of random
+forest, logistic regression, and support vector machine models) where each model has a vote in the final classification. There are different ways to create an ensemble (e.g. votes can be weighted) and they are an extremely useful tool.&lt;/p&gt;
+
+&lt;p&gt;The forest portion of random forest comes from the fact that it is an ensemble of decision trees. But where does the random come from? The random forest algorithm works as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Sample data your training set (with replacement) to create random subsets of data&lt;/li&gt;
+  &lt;li&gt;For each subset choose a random set of predictor features (e.g. cookie size)&lt;/li&gt;
+  &lt;li&gt;For each node in the tree, find the predictor variable that provides the best split of the data. For example you might find that cookies under 5cm are not worth selling.  At the next node choose another set of features and repeat the process.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;As a typical example you might have 100 decision trees (all trained on random sets of features) in your random forest. Each tree makes a prediction if the cookie is worth selling/not. The final prediction is made based on the class that gets the most votes.&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Supervised learning is an extremely powerful tool that can help us automate many tasks and scale to levels where humans cannot. A common use case for supervised learning models is to automate the simple decisions and have humans look at the more complex cases. As always it’s important to have &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;interpretable models&lt;/a&gt; as well as an &lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;appeals process for wrong predictions&lt;/a&gt;. While model choices are important, data preprocessing and feature selection can have a large effect on model performance. It’s usually better to start with a simpler model like logistic regression or random forests before moving into more sophisticated models like deep learning.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.coursera.org/learn/machine-learning&quot;&gt;Andrew Ng’s ML course&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://course.fast.ai/&quot;&gt;Practical machine learning for coders&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=4qVRBYAdLAo&quot;&gt;Crash Course AI #2: Supervised learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.</summary></entry><entry><title type="html">R is for Reproducibility</title><link href="https://abcsofdatascience.ca/blog/r-is-for-reproducibility" rel="alternate" type="text/html" title="R is for Reproducibility" /><published>2020-12-28T00:00:00-06:00</published><updated>2020-12-28T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/r-is-for-reproducibility</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/r-is-for-reproducibility">&lt;p&gt;In data science (and all fields of science), being able to reproduce existing results is critical. One could argue being able to reproduce results is fundamentally what makes it science. However, many fields (including data science) are going through a “reproducibility crisis” where scientists are unable to recreate the results from their own or other experiments. There are many factors contributing to this such as&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Do you have the same materials (either physical or data) as the original experiment?&lt;/li&gt;
@@ -1290,78 +1388,7 @@ A totally legitimate business&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/cross_validation.html&quot;&gt;Cross-validation explanation in scikit-learn&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/k-fold-cross-validation/&quot;&gt;K-fold cross-validation explanation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as training data. You might remember from F is for F1 score that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).</summary></entry><entry><title type="html">I is for Interpretability</title><link href="https://abcsofdatascience.ca/blog/i-is-for-interpretability" rel="alternate" type="text/html" title="I is for Interpretability" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/i-is-for-interpretability</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/i-is-for-interpretability">&lt;p&gt;Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be 
-&lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;far from perfect&lt;/a&gt;. In addition to being able to appeal the decisions made by a model, 
-it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;What does interpretability mean?&lt;/li&gt;
-  &lt;li&gt;Why does it matter?&lt;/li&gt;
-  &lt;li&gt;How do we actually interpret models in practice?&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;pinning-down-interpretability&quot;&gt;Pinning down interpretability&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.03490.pdf&quot;&gt;This paper&lt;/a&gt; titled &lt;em&gt;The Mythos of Model Interpretability&lt;/em&gt; by &lt;a href=&quot;https://twitter.com/zacharylipton&quot;&gt;Zachary Lipton&lt;/a&gt;, gives a really good overview of what people mean when they say “interpretability”. He argues that interpretability is not just one monolithic concept, but a number of distinct ideas. It’s worth looking at the different reasons we try to interpret ML models.&lt;/p&gt;
-
-&lt;h5 id=&quot;do-we-trust-the-model&quot;&gt;Do we trust the model?&lt;/h5&gt;
-
-&lt;p&gt;Using a ML model to automate some task often requires a human giving up control.  We often care about the kinds of predictions the model gets wrong and if there is a pattern to these incorrect predictions. For example, many facial recognition models have significantly worse performance on people of color than white people. In this case using the model with this bias would be unacceptable. However, there may be other cases where the model gets things wrong in the same way humans do. In that case it may be acceptable to use the model to make predictions.&lt;/p&gt;
-
-&lt;h5 id=&quot;can-we-use-the-model-to-learn-something-about-the-world&quot;&gt;Can we use the model to learn something about the world?&lt;/h5&gt;
-
-&lt;p&gt;Researchers will often look at which features of a trained model are most important in making predictions. Imagine you have a model which is trying to predict if a patient has lung cancer. As input features you have the number of years the patient has smoked cigarettes, and the number of years they have chewed bubble gum. Of course, smoking correlates much more with lung cancer than chewing bubble gum and that feature would have a much greater importance. It’s important to keep in mind that correlation does not equal causation. For example, [the per capita consumption of margarine in the US strongly correlates with the divorce rate in Maine(http://www.tylervigen.com/spurious-correlations)]. Researchers can then use these important features to create experiments to test if those correlations are causal.&lt;/p&gt;
-
-&lt;h5 id=&quot;will-the-ml-model-help-a-human-make-better-predictions&quot;&gt;Will the ML model help a human make better predictions?&lt;/h5&gt;
-
-&lt;p&gt;A common use of ML models is to help a human make a more informed decision. Imagine you work in cybersecurity and are tasked with finding malware. Fortunately, you have a ML model which determines if files are malware or benign. The important features used by the model (e.g. is the code heavily obfuscated?) can help you make a better decision in your investigation. ML models can also help you find similar examples to give you more context when triaging the file.&lt;/p&gt;
-
-&lt;h3 id=&quot;what-do-interpretable-models-look-like&quot;&gt;What do interpretable models look like?&lt;/h3&gt;
-
-&lt;p&gt;There are two broad categories of ways to interpret models: transparency and post-hoc explanations.&lt;/p&gt;
-
-&lt;h5 id=&quot;transparency&quot;&gt;Transparency&lt;/h5&gt;
-
-&lt;p&gt;This is basically “how does the model work?”. For example, simpler models such as linear regression are considered more interpretable than a deep neural network (which is sometimes referred to as a blackbox). Let’s imagine we want to train a model to predict house prices. We could have some features about the house such as the number of bedrooms, square footage, distance to a city with more than 500 000 people etc. A linear model is just taking these features and weights and adding them up.&lt;/p&gt;
-
-&lt;p&gt;$ \text{house price} = w_1 \cdot (\text{number of bedrooms}) + w_2\cdot(\text{square footage}) + w_3\cdot(\text{distance to city}) + … $&lt;/p&gt;
-
-&lt;p&gt;In these models a higher weight means the feature is more important so interpreting which features are more important is really easy. To say the models are interpretable overall assumes that the features themselves are also easily interpretable (e.g. number of bedrooms).&lt;/p&gt;
-
-&lt;p&gt;Other models may not be as easy to interpret directly. For example a random forest uses a bunch of decision trees (think flow charts). While the model may be harder to interpret overall, interpreting an individual decision tree is relatively straightforward.&lt;/p&gt;
-
-&lt;p&gt;Another reason that linear models are typically more interpretable than neural networks/deep learning is that we understand how they work in much more detail. For example, we can prove that a linear model will give a unique solution which is not the case with deep learning models.
-However, neural networks typically perform much better than other models. In order to get comparable performance out of these other models there may be tricks needed (e.g. feature engineering) which could make the model less interpretable overall.&lt;/p&gt;
-
-&lt;h5 id=&quot;post-hoc-interpretability&quot;&gt;Post-hoc interpretability&lt;/h5&gt;
-
-&lt;p&gt;Even if we don’t directly know how the model works, we can still get useful information by interpreting the predictions. It’s worth noting that this is how humans explain decisions. We don’t always know the exact cause of a decision but can try to provide a rational explanation after the fact. Interpreting the model after the fact means that we can potentially use models with higher performance (e.g. deep learning models).&lt;/p&gt;
-
-&lt;p&gt;One method of post-hoc interpretability is to have an “explanation by example”. This means getting the model to predict which other examples the model thinks are most similar. In the case of predicting malware or not, the examples most similar to a malicious PDF may be other malicious PDF documents. In the case of deep learning models, we can also gain insight by visualizing the &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;hidden layers&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Another technique that people use is to train two separate models. The first model makes the predictions, and the second model generates text that explains the prediction. For example, the first model may predict something about an image, while the second model generates a caption for that image.&lt;/p&gt;
-
-&lt;p&gt;Researchers may also train two separate models where one model is more interpretable than the other. For example they may train a deep neural network (with high performance but low interpretability) as well as a random forest model. While the random forest model may not perform as well, it can also give some insight into the problem space. However, this could be potentially misleading as the explanations given by the simpler model may not correspond to why the more complex model works.&lt;/p&gt;
-
-&lt;h3 id=&quot;things-to-keep-in-mind&quot;&gt;Things to keep in mind&lt;/h3&gt;
-
-&lt;p&gt;Interpretability and having explainable models is still a highly active area of research. There are a few things to keep in mind when doing this in practice&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Rules of thumb such as “linear models are more interpretable than neural nets” are generally true (but not always!)&lt;/li&gt;
-  &lt;li&gt;When talking about interpretability it is important to clarify what you mean exactly. I highly recommend reading Zachary Lipton’s paper for more specific definitions of the concepts above.&lt;/li&gt;
-  &lt;li&gt;There may be cases where an ML model can perform significantly better than humans. Making sure the model is transparent (and potentially reducing performance) is not always the correct decision depending on the overall goal. It might be sufficient to have a better performing model with a human appeals process in place.&lt;/li&gt;
-  &lt;li&gt;I recommend using existing libraries such as &lt;a href=&quot;https://github.com/interpretml/interpret&quot;&gt;interpret-ml&lt;/a&gt; which have a wide variety of methods and examples when trying to do this in practice.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.03490.pdf&quot;&gt;Zachary Lipton’s paper&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/interpretml/interpret&quot;&gt;interpret-ml package&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethics.fast.ai/&quot;&gt;Practical data ethics course from fast.ai&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2018/5/13/shap-shapley-values-in-machine-learning&quot;&gt;Podcast on using Shapley values to interpret models&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Machine learning models are increasingly used to make decisions in everyday life, and as we’ve discussed before, they can be far from perfect. In addition to being able to appeal the decisions made by a model, it is critical to be able to interpret their predictions. Doing this in practice opens up a huge number of questions including</summary></entry><entry><title type="html">J is for Jaccard metric</title><link href="https://abcsofdatascience.ca/blog/j-is-for-jaccard" rel="alternate" type="text/html" title="J is for Jaccard metric" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/j-is-for-jaccard</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/j-is-for-jaccard">&lt;p&gt;In &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;previous blogs&lt;/a&gt; we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:&lt;/p&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as training data. You might remember from F is for F1 score that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).</summary></entry><entry><title type="html">J is for Jaccard metric</title><link href="https://abcsofdatascience.ca/blog/j-is-for-jaccard" rel="alternate" type="text/html" title="J is for Jaccard metric" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/j-is-for-jaccard</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/j-is-for-jaccard">&lt;p&gt;In &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;previous blogs&lt;/a&gt; we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/j_is_for_jaccard/jaccard_small.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
