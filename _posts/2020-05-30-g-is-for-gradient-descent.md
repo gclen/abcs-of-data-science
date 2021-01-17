@@ -8,7 +8,7 @@ permalink: /blog/g-is-for-gradient-descent
 comments: true
 ---
 
-As I’ve said many times before AI/machine learning/deep learning is [not magic](https://abcsofdatascience.ca/blog/a-is-for-ai). In the case of supervised learning models (including [deep learning](https://abcsofdatascience.ca/blog/d-is-for-deep-learning)) you have four things:
+As I’ve said many times before AI/machine learning/deep learning is [not magic]({{ site.baseurl }}/blog/a-is-for-ai). In the case of supervised learning models (including [deep learning]({{ site.baseurl }}/blog/d-is-for-deep-learning)) you have four things:
 
 1. Labelled data
 2. Features (e.g. image pixels or text)

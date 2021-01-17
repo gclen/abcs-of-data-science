@@ -34,7 +34,7 @@ While this function passes through every point it won't work well on new data. W
 
 ### Testing our model
 
-So how do we tell if our model is any good? Typically, the training data is broken into 2 parts. There is a **training set** (about 70% of the data) and a **test set** (the remaining 30%). Splitting the data into training/test sets is known as **cross-validation**. As the name implies the parameters of the model are trained using the training set. The model is then fed in the data from the test set and the [error](https://abcsofdatascience.ca/blog/f-is-for-f1) is calculated. Using the error associated with both the training and the test sets you can diagnose if your model underfits, overfits, or is a good fit to the data. 
+So how do we tell if our model is any good? Typically, the training data is broken into 2 parts. There is a **training set** (about 70% of the data) and a **test set** (the remaining 30%). Splitting the data into training/test sets is known as **cross-validation**. As the name implies the parameters of the model are trained using the training set. The model is then fed in the data from the test set and the [error]({{ site.baseurl }}/blog/f-is-for-f1) is calculated. Using the error associated with both the training and the test sets you can diagnose if your model underfits, overfits, or is a good fit to the data. 
 
 In addition to using a train/test split, people will often use a third split: the **validation set** (sometimes called a development set). Let’s break down what each of those sets are used for:
 
