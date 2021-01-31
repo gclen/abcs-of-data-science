@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-01-17T17:25:28-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">S is for Supervised Learning</title><link href="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" rel="alternate" type="text/html" title="S is for Supervised Learning" /><published>2021-01-17T00:00:00-06:00</published><updated>2021-01-17T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/s-is-for-supervised-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning">&lt;p&gt;Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-01-31T10:54:21-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">T is for Transfer Learning</title><link href="https://abcsofdatascience.ca/blog/t-is-for-transfer-learning" rel="alternate" type="text/html" title="T is for Transfer Learning" /><published>2021-01-31T00:00:00-06:00</published><updated>2021-01-31T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/t-is-for-transfer-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/t-is-for-transfer-learning">&lt;p&gt;When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. &lt;strong&gt;Transfer learning&lt;/strong&gt; is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Many sophisticated models take a lot of time/money/computational power to train. Being able to start from these models reduces the overall cost of training a new model.&lt;/li&gt;
+  &lt;li&gt;Transfer learning typically improves performance (in addition to being easier to train).&lt;/li&gt;
+  &lt;li&gt;You typically need less labelled data for your problem with transfer learning. As I’ve blogged about &lt;a href=&quot;/blog/l-is-for-labelling-data&quot;&gt;before&lt;/a&gt; getting labelled data can be challenging.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Transfer learning is most commonly applied to &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;deep learning&lt;/a&gt; models for computer vision (images/videos) and &lt;a href=&quot;/blog/n-is-for-natural-language-processing&quot;&gt;natural language processing&lt;/a&gt; applications (text).&lt;/p&gt;
+
+&lt;h3 id=&quot;classifying-cats-and-dogs&quot;&gt;Classifying cats and dogs&lt;/h3&gt;
+
+&lt;p&gt;One of the most popular introductory Kaggle competitions is &lt;a href=&quot;https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition&quot;&gt;classifying images of cats and dogs&lt;/a&gt;. Here we need to predict if an image contains a cat or a dog.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/t_is_for_transfer_learning/casper_small.jpg&quot; alt=&quot;&quot; title=&quot;My dog Casper&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Instead of training the model completely from scratch, we can start with a model trained on the &lt;a href=&quot;http://www.image-net.org/&quot;&gt;ImageNet dataset&lt;/a&gt;. This is a dataset with millions of images that all belong to thousands of categories. For example, some images are categorized as “flamingo” or “basketball”. The &lt;a href=&quot;https://en.wikipedia.org/wiki/ImageNet#ImageNet_Challenge&quot;&gt;ImageNet challenge&lt;/a&gt; is a competition to train the best model to predict the correct class out of &lt;a href=&quot;https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a&quot;&gt;1000 preselected classes&lt;/a&gt;. Many of these classes are specific dog breeds (e.g. “Pembroke, Pembroke Welsh corgi”) but we are interested in the more generic question of “dog or cat?”. We can take a model that has already been trained on the ImageNet dataset and &lt;strong&gt;fine-tune&lt;/strong&gt; it to our specific problem. These &lt;strong&gt;pretrained&lt;/strong&gt; models are typically deep neural networks (specifically convolutional neural networks or CNNs).&lt;/p&gt;
+
+&lt;p&gt;As a refresher, let’s look at how a neural network works at a high level. There is an input layer where the raw data is fed. In the case of images this is pixels. There is an output layer which has a neuron for each class. In our case we have two classes: cats and dogs. In the middle there are hidden layers with weights for each feature. In deep neural networks the features come from the previous layer (e.g. the first hidden layer uses the input layer, the second layer uses the first etc).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/t_is_for_transfer_learning/casper_nn.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When we train a model from scratch, these weights are initialized randomly. In transfer learning, we start with the weights from the pretrained model. This means that we need to use the same model architecture (number of hidden layers, how they are connected etc). Popular pre-trained models/architectures for this ImageNet include VGG16, VGG19, ResNet50, Inception V3, and Xception (though you don’t really need to worry about this). We can change the number of neurons in the output layer, as the original model had 1000 neurons in its output layer while we only have two.&lt;/p&gt;
+
+&lt;p&gt;In CNNs the earlier layers (closer to the input layer) typically learn to identify more basic features about the images. For example, the first layer could identify things like horizontal or vertical lines. The second layer could identify corners while later layers can identify much more complicated structures like eyes or paws. The relevant features (horizontal/vertical lines) from the earlier layers probably won’t change much between the pretrained model and our model. The last few layers are much more likely to be different between the pretrained model and our model. For example, features that were relevant to identifying a basketball are not particularly useful for the cats vs dogs problem. Of course, this isn’t true if all of your dog pictures come from the Air Bud movies. One technique that people use when fine-tuning models is &lt;strong&gt;layer freezing&lt;/strong&gt;. This means that you don’t let the weights in the earlier layers change, while the weights in later layers can be updated. A related technique is called &lt;strong&gt;discriminative fine-tuning&lt;/strong&gt; which is where you have different &lt;a href=&quot;/blog/g-is-for-gradient-descent&quot;&gt;learning rates&lt;/a&gt; for each layer.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/t_is_for_transfer_learning/discriminative_fine_tuning.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;transfer-learning-for-nlp&quot;&gt;Transfer learning for NLP&lt;/h3&gt;
+
+&lt;p&gt;Transfer learning has been applied to computer vision for years. In the past couple of years it has also gained a lot of traction in NLP. Sebastien Ruder, one of the authors of &lt;a href=&quot;https://arxiv.org/abs/1801.06146&quot;&gt;ULMFiT&lt;/a&gt; (Universal Language Model Fine-tuning for Text Classification), wrote a blog post titled “&lt;a href=&quot;https://ruder.io/nlp-imagenet/&quot;&gt;NLP’s ImageNet moment has arrived&lt;/a&gt;”. In this post he outlines three methods for doing full transfer learning on text, including ULMFiT, ELMo, and Transformers. Historically, the first layer of deep learning models for NLP were initialized with word embeddings. The rest of the network was initialized randomly and needed to be trained from scratch. Each of these techniques uses a different approach (though they all use pretrained language models), but I’ll talk about how ULMFiT works at a high level.&lt;/p&gt;
+
+&lt;p&gt;Let’s imagine we want to train a classifier to predict if an email is spam/not spam. To give ourselves a headstart we can start with a language model. You might remember from &lt;a href=&quot;/blog/n-is-for-natural-language-processing&quot;&gt;N is for NLP&lt;/a&gt; that a language model is just a model that tries to predict the next word in a body of text. The corpus (set of documents) used to train the language model doesn’t need to be the same as what you are using for your downstream task (spam classification). A common approach is to train a language model on a large corpus such as English wikipedia. Training a model on all of wikipedia takes a huge amount of computational time and resources. Fortunately, someone has already done this and we can fine-tune our language model on the documents that we care about. When we are fine-tuning the language model, we start with a model that has been trained to predict the next word in a Wikipedia article. We then train the model to try to predict the next word in an email. Once we have fine-tuned our language model, we can slightly modify it to do text classification (spam/not spam).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/t_is_for_transfer_learning/ulmfit.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In practice there are a few things to keep in mind:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When using a pretrained model, you need to perform the exact same &lt;a href=&quot;/blog/m-is-for-munging-data&quot;&gt;preprocessing&lt;/a&gt; that was done for the original model.&lt;/li&gt;
+  &lt;li&gt;This method assumes that the way language is used in your corpus (e.g. emails) is similar to the general corpus (e.g. Wikipedia). It might not work as well if you try to predict tweet sentiments using academic papers as the general corpus.&lt;/li&gt;
+  &lt;li&gt;One benefit of this approach is that you don’t need extra labelled data for fine-tuning the language model. Let’s say you have 1500 emails labelled as spam/not spam. However, you might have an extra 50 000 emails without labels. Because the language models are self supervised (the word you are trying to predict is the label), you can use this extra unlabelled data to improve the performance of your model.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Transfer learning is an extremely powerful technique that can improve performance, training time, and reduce the amount of labelled data required. It’s worth keeping in mind that you will inherit any &lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;bias&lt;/a&gt; that exists in the pretrained models (or their underlying datasets). You also need to make sure the dataset used to train the pretrained model is similar to the dataset you are trying to use. Starting with a model trained on images of puppies will not be helpful when trying to classify medical images. Knowing when to use pretrained models comes with experience as well as asking domain experts.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=5gCQvuznKn0&amp;amp;list=PLtmWHNX-gukKocXQOkQjuVxglSDYWsSh9&amp;amp;index=10&amp;amp;t=0s&quot;&gt;Transfer learning (fastai NLP video 9)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ruder.io/nlp-imagenet/&quot;&gt;NLP’s ImageNet moment has arrived&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.image-net.org/&quot;&gt;ImageNet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/transfer-learning-for-deep-learning/#:~:text=Transfer%20learning%20is%20a%20machine,model%20on%20a%20second%20task.&quot;&gt;A Gentle Introduction to Transfer Learning for Deep Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:</summary></entry><entry><title type="html">S is for Supervised Learning</title><link href="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning" rel="alternate" type="text/html" title="S is for Supervised Learning" /><published>2021-01-17T00:00:00-06:00</published><updated>2021-01-17T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/s-is-for-supervised-learning</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/s-is-for-supervised-learning">&lt;p&gt;Supervised learning is one of the major categories of machine learning, and it helps us predict something about a given piece of data. Many of the concepts about supervised learning have come up in previous posts, but I’m hoping that this will provide a clearer picture of how they all fit together.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Supervised learning&lt;/strong&gt; means that you have a labeled training set with some set of features and the given output. One category of supervised learning is regression which happens when you have continuous output data. For example, given features like the square footage of a house, predict the selling price. Classification is the other major category of supervised learning which occurs when you have discrete output (i.e a finite number of categories). For example, you are trying to predict if an email is spam
 or not. There are only two possible outcomes in this case (spam or not spam). In regression there are an infinite number of possibilities (i.e. the house could sell for &lt;span&gt;$&lt;/span&gt;500 000, &lt;span&gt;$&lt;/span&gt;500 001, &lt;span&gt;$&lt;/span&gt;500 002 etc).&lt;/p&gt;
@@ -1388,98 +1443,4 @@ A totally legitimate business&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/cross_validation.html&quot;&gt;Cross-validation explanation in scikit-learn&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/k-fold-cross-validation/&quot;&gt;K-fold cross-validation explanation&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as training data. You might remember from F is for F1 score that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).</summary></entry><entry><title type="html">J is for Jaccard metric</title><link href="https://abcsofdatascience.ca/blog/j-is-for-jaccard" rel="alternate" type="text/html" title="J is for Jaccard metric" /><published>2020-09-27T00:00:00-05:00</published><updated>2020-09-27T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/j-is-for-jaccard</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/j-is-for-jaccard">&lt;p&gt;In &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;previous blogs&lt;/a&gt; we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/j_is_for_jaccard/jaccard_small.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;jaccard-similaritydistance&quot;&gt;Jaccard similarity/distance&lt;/h3&gt;
-
-&lt;p&gt;As a more concrete example let’s imagine that we have collected a list of people’s favourite pizza toppings and we want to find which people are most similar.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Kara likes pepperoni, mushrooms, and green pepper&lt;/li&gt;
-  &lt;li&gt;Zach likes ham, pineapple, and jalapeno peppers&lt;/li&gt;
-  &lt;li&gt;Rodney also likes pepperoni, mushrooms, and green peppers&lt;/li&gt;
-  &lt;li&gt;Sophie likes olives, ham, pepperoni, and mushrooms&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;So what are the Jaccard similarities between these people?&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Kara and Rodney like exactly the same toppings so their similarity is 1&lt;/li&gt;
-  &lt;li&gt;Rodney and Zach have nothing in common so their similarity is 0&lt;/li&gt;
-  &lt;li&gt;Kara and Sophie have some things in common but Sophie enjoys more toppings. Their similarity is 0.4 ([pepperoni, mushrooms]/[pepperoni, mushrooms, olives, ham])&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You’ll notice that two sets that are exactly the same have a similarity of 1. To change this into a distance we just to&lt;/p&gt;
-
-&lt;p&gt;$D_{Jaccard} = 1 - similarity$&lt;/p&gt;
-
-&lt;p&gt;Now Kara and Rodney have a distance of 0, while Rodney and Zach are a distance of 1 (which in this case is as far apart as you can be).&lt;/p&gt;
-
-&lt;h3 id=&quot;hellinger-distance&quot;&gt;Hellinger distance&lt;/h3&gt;
-
-&lt;p&gt;You might have noticed that Jaccard distance doesn’t take into account how frequently the items in the set occur. If counts do matter for your problem, then you will want to use &lt;a href=&quot;https://en.wikipedia.org/wiki/Hellinger_distance&quot;&gt;Hellinger distance&lt;/a&gt;. Let’s imagine you have some data on the number of times people have read a given book:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;Harry Potter&lt;/td&gt;
-      &lt;td&gt;Hello World&lt;/td&gt;
-      &lt;td&gt;The Hobbit&lt;/td&gt;
-      &lt;td&gt;The Great Gatsby&lt;/td&gt;
-      &lt;td&gt;Trick Mirror&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Marie&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Jordan&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Sarah&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Patrick&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Marie, Jordan, and Patrick have all read Harry Potter which would make them similar under Jaccard similarity. However, Marie and Patrick are probably more similar since they both read it multiple times. Hellinger distance takes this into account. I’ll try to give you some intuition for how it does this.&lt;/p&gt;
-
-&lt;p&gt;Imagine that each set of counts is generated by some weighted multi-sided die (that is different for each person). When we roll Maries die, it is more likely to come up with Harry Potter and less likely to come up with Hello World. The opposite is true for Sarah’s die, which is more likely to come up with Hello World and less likely to come up with Harry Potter. We calculate what the weights of these dice look like (these are called multinomial distributions).&lt;/p&gt;
-
-&lt;p&gt;We can then measure the mutual likelihood of these distributions. This just means “what is the probability of Jordans counts occuring using Maries die (and vice versa)”. If there is a high probability that Jordans counts occurred using Maries die, then Marie and Jordan should be considered close. If it is unlikely that Sarah’s counts occurred using Maries die, then Marie and Sarah should be pushed apart.&lt;/p&gt;
-
-&lt;p&gt;Hellinger distance is particularly useful if you have a bunch of text. You can consider two documents similar if you have the same words occurring at similar frequencies.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Jaccard and Hellinger are both very useful distance measures that can be used in dimension reduction and embeddings. If counts matter, use Hellinger, otherwise use Jaccard distance.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;amp;index=41&amp;amp;t=0s&quot;&gt;Embed all the things - John Healy (talk from Pydata Los Angeles 2019)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">In previous blogs we’ve talked about choosing a distance measure as a way of saying “these two things are close if …”. One useful measure is Jaccard similarity/distance since it measures the similarity between two sets. This is useful if you have a lot of categorical variables (i.e. ones that don’t have any inherent ordering). For example, two people are probably similar if they have the same sets of interests/hobbies. The Jaccard similarity of two sets is just the size of the intersection divided by the size of the union. Or put visually:</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">In supervised learning problems we have data as well as a label (something we need to predict) for each data point. We typically refer to the combination of data + labels as training data. You might remember from F is for F1 score that there are two broad categories of supervised learning problems: classification and regression. In classification, we are trying to predict which class (or category) the input data belongs to. For example, this might be trying to predict if an email is spam or not spam. There are typically a small number of categories to choose from (e.g. spam/not spam). In regression problems, we are trying to predict a continuous variable (i.e. a number) such as the selling price of a house based on some features (e.g. square footage). Here we are not trying to pick from a small group of categories, but to get close to the actual number (where there can be infinitely possible values).</summary></entry></feed>

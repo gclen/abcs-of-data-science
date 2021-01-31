@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>T is for Transfer Learning | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="T is for Transfer Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:" />
+<meta property="og:description" content="When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/t-is-for-transfer-learning" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/t-is-for-transfer-learning" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-31T00:00:00-06:00" />
+<script type="application/ld+json">
+{"dateModified":"2021-01-31T00:00:00-06:00","datePublished":"2021-01-31T00:00:00-06:00","description":"When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/t-is-for-transfer-learning"},"url":"https://abcsofdatascience.ca/blog/t-is-for-transfer-learning","headline":"T is for Transfer Learning","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>T is for Transfer Learning | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="T is for Transfer Learning" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:" />
+<meta property="og:description" content="When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/t-is-for-transfer-learning" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/t-is-for-transfer-learning" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-31T00:00:00-06:00" />
+<script type="application/ld+json">
+{"dateModified":"2021-01-31T00:00:00-06:00","datePublished":"2021-01-31T00:00:00-06:00","description":"When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. Transfer learning is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/t-is-for-transfer-learning"},"url":"https://abcsofdatascience.ca/blog/t-is-for-transfer-learning","headline":"T is for Transfer Learning","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">T is for Transfer Learning</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-31T00:00:00-06:00" itemprop="datePublished">
+        Jan 31, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#supervised_learning">supervised_learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#pretrained_models">pretrained_models</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>When you set out to learn something new, you typically aren’t starting completely from scratch. For example, you probably didn’t have to learn how to read English just to read this blog. <strong>Transfer learning</strong> is a way to take a model that has already been trained on a related problem and use it as a starting point. This has a few benefits:</p>
+
+<ul>
+  <li>Many sophisticated models take a lot of time/money/computational power to train. Being able to start from these models reduces the overall cost of training a new model.</li>
+  <li>Transfer learning typically improves performance (in addition to being easier to train).</li>
+  <li>You typically need less labelled data for your problem with transfer learning. As I’ve blogged about <a href="/blog/l-is-for-labelling-data">before</a> getting labelled data can be challenging.</li>
+</ul>
+
+<p>Transfer learning is most commonly applied to <a href="/blog/d-is-for-deep-learning">deep learning</a> models for computer vision (images/videos) and <a href="/blog/n-is-for-natural-language-processing">natural language processing</a> applications (text).</p>
+
+<h3 id="classifying-cats-and-dogs">Classifying cats and dogs</h3>
+
+<p>One of the most popular introductory Kaggle competitions is <a href="https://www.kaggle.com/c/dogs-vs-cats-redux-kernels-edition">classifying images of cats and dogs</a>. Here we need to predict if an image contains a cat or a dog.</p>
+
+<p><img src="/images/t_is_for_transfer_learning/casper_small.jpg" alt="" title="My dog Casper" /></p>
+
+<p>Instead of training the model completely from scratch, we can start with a model trained on the <a href="http://www.image-net.org/">ImageNet dataset</a>. This is a dataset with millions of images that all belong to thousands of categories. For example, some images are categorized as “flamingo” or “basketball”. The <a href="https://en.wikipedia.org/wiki/ImageNet#ImageNet_Challenge">ImageNet challenge</a> is a competition to train the best model to predict the correct class out of <a href="https://gist.github.com/yrevar/942d3a0ac09ec9e5eb3a">1000 preselected classes</a>. Many of these classes are specific dog breeds (e.g. “Pembroke, Pembroke Welsh corgi”) but we are interested in the more generic question of “dog or cat?”. We can take a model that has already been trained on the ImageNet dataset and <strong>fine-tune</strong> it to our specific problem. These <strong>pretrained</strong> models are typically deep neural networks (specifically convolutional neural networks or CNNs).</p>
+
+<p>As a refresher, let’s look at how a neural network works at a high level. There is an input layer where the raw data is fed. In the case of images this is pixels. There is an output layer which has a neuron for each class. In our case we have two classes: cats and dogs. In the middle there are hidden layers with weights for each feature. In deep neural networks the features come from the previous layer (e.g. the first hidden layer uses the input layer, the second layer uses the first etc).</p>
+
+<p><img src="/images/t_is_for_transfer_learning/casper_nn.png" alt="" /></p>
+
+<p>When we train a model from scratch, these weights are initialized randomly. In transfer learning, we start with the weights from the pretrained model. This means that we need to use the same model architecture (number of hidden layers, how they are connected etc). Popular pre-trained models/architectures for this ImageNet include VGG16, VGG19, ResNet50, Inception V3, and Xception (though you don’t really need to worry about this). We can change the number of neurons in the output layer, as the original model had 1000 neurons in its output layer while we only have two.</p>
+
+<p>In CNNs the earlier layers (closer to the input layer) typically learn to identify more basic features about the images. For example, the first layer could identify things like horizontal or vertical lines. The second layer could identify corners while later layers can identify much more complicated structures like eyes or paws. The relevant features (horizontal/vertical lines) from the earlier layers probably won’t change much between the pretrained model and our model. The last few layers are much more likely to be different between the pretrained model and our model. For example, features that were relevant to identifying a basketball are not particularly useful for the cats vs dogs problem. Of course, this isn’t true if all of your dog pictures come from the Air Bud movies. One technique that people use when fine-tuning models is <strong>layer freezing</strong>. This means that you don’t let the weights in the earlier layers change, while the weights in later layers can be updated. A related technique is called <strong>discriminative fine-tuning</strong> which is where you have different <a href="/blog/g-is-for-gradient-descent">learning rates</a> for each layer.</p>
+
+<p><img src="/images/t_is_for_transfer_learning/discriminative_fine_tuning.png" alt="" /></p>
+
+<h3 id="transfer-learning-for-nlp">Transfer learning for NLP</h3>
+
+<p>Transfer learning has been applied to computer vision for years. In the past couple of years it has also gained a lot of traction in NLP. Sebastien Ruder, one of the authors of <a href="https://arxiv.org/abs/1801.06146">ULMFiT</a> (Universal Language Model Fine-tuning for Text Classification), wrote a blog post titled “<a href="https://ruder.io/nlp-imagenet/">NLP’s ImageNet moment has arrived</a>”. In this post he outlines three methods for doing full transfer learning on text, including ULMFiT, ELMo, and Transformers. Historically, the first layer of deep learning models for NLP were initialized with word embeddings. The rest of the network was initialized randomly and needed to be trained from scratch. Each of these techniques uses a different approach (though they all use pretrained language models), but I’ll talk about how ULMFiT works at a high level.</p>
+
+<p>Let’s imagine we want to train a classifier to predict if an email is spam/not spam. To give ourselves a headstart we can start with a language model. You might remember from <a href="/blog/n-is-for-natural-language-processing">N is for NLP</a> that a language model is just a model that tries to predict the next word in a body of text. The corpus (set of documents) used to train the language model doesn’t need to be the same as what you are using for your downstream task (spam classification). A common approach is to train a language model on a large corpus such as English wikipedia. Training a model on all of wikipedia takes a huge amount of computational time and resources. Fortunately, someone has already done this and we can fine-tune our language model on the documents that we care about. When we are fine-tuning the language model, we start with a model that has been trained to predict the next word in a Wikipedia article. We then train the model to try to predict the next word in an email. Once we have fine-tuned our language model, we can slightly modify it to do text classification (spam/not spam).</p>
+
+<p><img src="/images/t_is_for_transfer_learning/ulmfit.png" alt="" /></p>
+
+<p>In practice there are a few things to keep in mind:</p>
+
+<ul>
+  <li>When using a pretrained model, you need to perform the exact same <a href="/blog/m-is-for-munging-data">preprocessing</a> that was done for the original model.</li>
+  <li>This method assumes that the way language is used in your corpus (e.g. emails) is similar to the general corpus (e.g. Wikipedia). It might not work as well if you try to predict tweet sentiments using academic papers as the general corpus.</li>
+  <li>One benefit of this approach is that you don’t need extra labelled data for fine-tuning the language model. Let’s say you have 1500 emails labelled as spam/not spam. However, you might have an extra 50 000 emails without labels. Because the language models are self supervised (the word you are trying to predict is the label), you can use this extra unlabelled data to improve the performance of your model.</li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>Transfer learning is an extremely powerful technique that can improve performance, training time, and reduce the amount of labelled data required. It’s worth keeping in mind that you will inherit any <a href="/blog/b-is-for-bias">bias</a> that exists in the pretrained models (or their underlying datasets). You also need to make sure the dataset used to train the pretrained model is similar to the dataset you are trying to use. Starting with a model trained on images of puppies will not be helpful when trying to classify medical images. Knowing when to use pretrained models comes with experience as well as asking domain experts.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=5gCQvuznKn0&amp;list=PLtmWHNX-gukKocXQOkQjuVxglSDYWsSh9&amp;index=10&amp;t=0s">Transfer learning (fastai NLP video 9)</a></li>
+  <li><a href="https://ruder.io/nlp-imagenet/">NLP’s ImageNet moment has arrived</a></li>
+  <li><a href="http://www.image-net.org/">ImageNet</a></li>
+  <li><a href="https://machinelearningmastery.com/transfer-learning-for-deep-learning/#:~:text=Transfer%20learning%20is%20a%20machine,model%20on%20a%20second%20task.">A Gentle Introduction to Transfer Learning for Deep Learning</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/t-is-for-transfer-learning" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
