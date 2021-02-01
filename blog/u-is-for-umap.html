@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>U is for UMAP | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="U is for UMAP" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Often in data science we have data with multiple dimensions/features that we want to visualize or embed for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 dimensions." />
+<meta property="og:description" content="Often in data science we have data with multiple dimensions/features that we want to visualize or embed for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 dimensions." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/u-is-for-umap" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/u-is-for-umap" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-01T00:00:00-06:00" />
+<script type="application/ld+json">
+{"dateModified":"2021-02-01T00:00:00-06:00","datePublished":"2021-02-01T00:00:00-06:00","description":"Often in data science we have data with multiple dimensions/features that we want to visualize or embed for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 dimensions.","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/u-is-for-umap"},"url":"https://abcsofdatascience.ca/blog/u-is-for-umap","headline":"U is for UMAP","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>U is for UMAP | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="U is for UMAP" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Often in data science we have data with multiple dimensions/features that we want to visualize or embed for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 dimensions." />
+<meta property="og:description" content="Often in data science we have data with multiple dimensions/features that we want to visualize or embed for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 dimensions." />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/u-is-for-umap" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/u-is-for-umap" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-01T00:00:00-06:00" />
+<script type="application/ld+json">
+{"dateModified":"2021-02-01T00:00:00-06:00","datePublished":"2021-02-01T00:00:00-06:00","description":"Often in data science we have data with multiple dimensions/features that we want to visualize or embed for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 dimensions.","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/u-is-for-umap"},"url":"https://abcsofdatascience.ca/blog/u-is-for-umap","headline":"U is for UMAP","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">U is for UMAP</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-02-01T00:00:00-06:00" itemprop="datePublished">
+        Feb 1, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#embedding">embedding</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#dimension_reduction">dimension_reduction</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Often in data science we have data with multiple dimensions/features that we want to visualize or <a href="/blog/e-is-for-embeddings">embed</a> for further analysis. UMAP (Uniform Manifold Approximation and Projection) is one method for doing dimension reduction which will help us with visualizations/embeddings. What do I mean by dimensions? You can think of a dimension as a column in a table or a spreadsheet. For example, let’s say we have a survey about people’s movie preferences. Each person was asked to rate a genre of movies on a scale of 0-5. By looking at the table, we can see that Alice and Mallory have similar tastes. Bob and Trent also seem to like the same genres as well. Since there are 5 different columns/movie genres we say that this data has 5 <strong>dimensions</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Comedy</th>
+      <th>Sci-Fi</th>
+      <th>Drama</th>
+      <th>Horror</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Alice</td>
+      <td>5</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Bob</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1</td>
+      <td>5</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Mallory</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Trent</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Wendy</td>
+      <td>1</td>
+      <td>5</td>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To get a better understanding of this data we want to visualize it. Unfortunately, unless you live in the <a href="https://www.imdb.com/title/tt0816692/">Interstellar universe</a>, humans can only see in 3 dimensions or less. We want to find a way to represent this data in 2 dimensions where points that are close in the higher dimensional space are close in the lower dimensional space. More concretely, in the new 2D representation, Alice should be close to Mallory and Bob should be close to Trent (because they are similar in the higher dimension). <strong>Dimension reduction</strong> is a general term for any method that represents high-dimensional data into a lower dimensional space. It’s also known as <strong>embedding</strong> your data into a lower dimensional space (and I’ll use the terms interchangeably). The two new dimensions of the embedding are related to the original features but are not just a subset. In our movie example it is not just as simple as saying “Comedy and Horror are the important features”. How you combine the original features into a new representation depends on the method of dimension reduction used.</p>
+
+<h3 id="methods-for-dimension-reduction">Methods for dimension reduction</h3>
+
+<p>There are <a href="https://www.youtube.com/watch?v=9iol3Lk6kyU">many methods</a> for doing dimension reduction but here are three popular ones:</p>
+
+<ul>
+  <li>Principal Component Analysis (PCA). This is fast, well understood, and the resulting dimensions are <em>kind of</em> interpretable.</li>
+  <li>t-distributed stochastic neighbor embedding (t-SNE). Mostly used for visualization and is used in a wide variety of applications.</li>
+  <li>Uniform Manifold Approximation and Projection (UMAP). Developed by <a href="https://twitter.com/leland_mcinnes?lang=en">Leland McInnes</a> and <a href="https://github.com/jc-healy">John Healy</a> (who also made <a href="/blog/h-is-for-hdbscan">HDBSCAN</a>) it has been growing in popularity in recent years. It’s faster than t-SNE and arguably preserves the higher dimensional structure better than t-SNE.</li>
+</ul>
+
+<h3 id="using-umap-for-document-embeddingclustering">Using UMAP for document embedding/clustering</h3>
+
+<p>I’m intending this blog to give you the overall flavour of how dimension reduction methods like UMAP are used. If you’re interested in using UMAP I recommend reading the wonderful <a href="https://umap-learn.readthedocs.io/en/latest/basic_usage.html">getting started guide</a> in the documentation. There’s a <a href="https://www.youtube.com/watch?v=nq6iPZVUxZU">great video</a> from Leland McInnes giving a higher level intuition of how it works. If you’re brave (or have a background in topological data analysis) you can dig into the <a href="https://arxiv.org/abs/1802.03426">mathematical details</a> of why UMAP works.</p>
+
+<p>As a more concrete example let’s imagine we want to find groups of related forum posts. We can use the <a href="http://qwone.com/~jason/20Newsgroups/">20 newsgroups dataset</a> which is a collection of newsgroup documents across different topics. This example combines a lot of ideas we’ve seen in previous blog posts. If you want code and further explanations to go along with this example, I recommend reading this [document embedding tutorial][https://umap-learn.readthedocs.io/en/latest/document_embedding.html].</p>
+
+<p>We want to find groups of related things, which sounds like we’ll need to use a <a href="/blog/c-is-for-clustering">clustering algorithm</a>. The clustering algorithm can’t just use the raw data on its own, so we’ll need to pass in an embedding. You might recall from <a href="/blog/e-is-for-embeddings">“E is for Embeddings”</a> that an embedding requires two things:</p>
+
+<ol>
+  <li>A numeric representation of your data (because we need to do math)</li>
+  <li>A distance measure (so we can determine how close/far two points are from one another)</li>
+</ol>
+
+<p>Let’s start with the numeric representation aspect. Forum posts are mostly text so we’ll need to use natural language processing (NLP) techniques. To represent a forum post, we can just count how often a word from a vocabulary appears in that post. This is known as <strong>count vectorization</strong> and there are a lot more details in <a href="/blog/n-is-for-natural-language-processing">“N is for NLP”</a>. This will give us a word-document matrix that could look something like</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>the</th>
+      <th>pizza</th>
+      <th>baseball</th>
+      <th>…</th>
+      <th>CPU</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Post 1</td>
+      <td>7</td>
+      <td>0</td>
+      <td>2</td>
+      <td>…</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Post 2</td>
+      <td>15</td>
+      <td>0</td>
+      <td>0</td>
+      <td>…</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Post 3</td>
+      <td>10</td>
+      <td>1</td>
+      <td>3</td>
+      <td>…</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Each row corresponds to a forum post and each column represents a word in the vocabulary. And the value of each cell in the table is how often that word appeared in a given post. Now we have a numeric representation of our data! Now we just need a way of measuring distance between two posts. For example, it looks like post 1 and post 3 are similar because they are both talking about baseball. The fact that we have a series of counts makes Hellinger distance a good choice. There are more details on Hellinger distance in <a href="/blog/j-is-for-jaccard">“J is for Jaccard Metric”</a>.</p>
+
+<p>If we calculate the word-document matrix for the 20 newsgroups dataset we get 34880 unique words over 18846 forum posts! This also ignores all words that occur less than 5 times in the whole corpus. Now as you can imagine this is a <strong>sparse matrix</strong> (there are a lot of zeroes) because most forum posts don’t have 35000 unique words in them. This means that all of the points are spread far apart. Density based clustering algorithms like <a href="/blog/h-is-for-hdbscan">HDBSCAN</a> assume that clusters are groups of points that are close together. We need to use dimension reduction to go from 34880 dimensions to a lower dimensional space.</p>
+
+<p>In 34880 dimensions, all the points are spread far apart. However, while 2D is useful for visualization, the points can get smushed together and you can lose information which will help you distinguish groups of posts. Fortunately, UMAP lets you embed into an arbitrary number of dimensions such as 10, 25, or 50. I find it is useful to try clustering on data that has been embedded into 10 or 20 dimensions as you data is no longer sparse, but you still can keep a lot of information about the individual data points. Finding which lower dimensional space works best is mostly a matter of trying different values and seeing what works best. I recommend trying different values like 10, 20, 40 (as compared to 10, 11, 12 etc).</p>
+
+<p>We can also embed the 20 newsgroups data into 2D for visualization and colour the points by the forum topic (e.g. rec.sport.hockey or comp.sys.ibm.pc.hardware). This was done by count vectorizing the data and using Hellinger distance as described.</p>
+
+<p><img src="/images/u_is_for_umap/20newsgroups_hellinger_counts.png" alt="" /></p>
+
+<p>This embedding looks pretty good. There are groups that you would expect to be together (e.g. the sports related topics). Additionally, the big clump in the middle has topics that are very related (computer hardware). On this embedding (or one in a slightly higher dimension) we can run a clustering algorithm to find all the related posts without having to use the topic labels.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>UMAP is a great tool to have in your data science toolbox for dimension reduction. This blog barely scratches the surface of what it can do but here are some highlights</p>
+
+<ul>
+  <li>UMAP works on a wide variety of data types such as images, text, and tabular data. As long as you have a numeric representation of that data and a meaningful distance measure you can embed it with UMAP.</li>
+  <li>The canonical implementation of UMAP is in <a href="https://github.com/lmcinnes/umap">Python</a> but there are implementations in other languages such as <a href="https://github.com/tkonopka/umap">R</a>.</li>
+  <li>UMAP is actively developed and there are useful features being added all the time. For example, the latest release makes it easier to align embeddings over time which is incredibly powerful.</li>
+  <li>You can also combine dimension reduction methods like PCA and UMAP. For very high dimensional data it is a common workflow to apply PCA first and then UMAP on the embedded data.</li>
+</ul>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=OtVR_ZnXLu4&amp;list=PLGVZCDnMOq0pHVE3SB0ecki__VMncQPKo&amp;index=41&amp;t=0s">Embed all the things - John Healy (talk from Pydata Los Angeles 2019)</a></li>
+  <li><a href="https://umap-learn.readthedocs.io/en/latest/index.html">UMAP documentation</a></li>
+  <li><a href="https://www.youtube.com/watch?v=nq6iPZVUxZU">UMAP Uniform Manifold Approximation and Projection for Dimension Reduction - SciPy 2018</a></li>
+  <li><a href="http://lineardigressions.com/episodes/2019/12/22/umap-the-latest-in-dimensionality-reduction-for-clustering">An episode of the podcast Linear Digressions on UMAP</a></li>
+  <li><a href="https://towardsdatascience.com/a-one-stop-shop-for-principal-component-analysis-5582fb7e0a9c">A One-Stop Shop for Principal Component Analysis</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/u-is-for-umap" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
