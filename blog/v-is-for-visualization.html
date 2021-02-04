@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>V is for Visualization | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="V is for Visualization" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data. Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:" />
+<meta property="og:description" content="One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data. Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/v-is-for-visualization" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/v-is-for-visualization" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-03T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"V is for Visualization","dateModified":"2021-02-03T00:00:00-06:00","datePublished":"2021-02-03T00:00:00-06:00","description":"One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data. Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/v-is-for-visualization"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/v-is-for-visualization","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>V is for Visualization | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="V is for Visualization" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data. Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:" />
+<meta property="og:description" content="One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data. Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/v-is-for-visualization" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/v-is-for-visualization" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-03T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"V is for Visualization","dateModified":"2021-02-03T00:00:00-06:00","datePublished":"2021-02-03T00:00:00-06:00","description":"One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data. Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/v-is-for-visualization"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/v-is-for-visualization","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">V is for Visualization</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-02-03T00:00:00-06:00" itemprop="datePublished">
+        Feb 3, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#visualization">visualization</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#plotting">plotting</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data.  Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:</p>
+
+<ul>
+  <li><strong>Who is your audience?</strong> Are they other data scientists? Subject matter experts? Other stakeholders (e.g. executives)?</li>
+  <li><strong>What are you trying to convey?</strong> It’s worth thinking of visualizations as representations of one aspect of your dataset. Try to make sure you are clearly communicating one aspect/concept.</li>
+  <li><strong>Are your visualizations easy to understand?</strong>. You’ve probably spent the most amount of time exploring your data. For people who are less familiar, they need to be able to quickly understand what you are showing. You don’t want people to dismiss the rest of your hard work because of some boring or complicated visualizations.</li>
+</ul>
+
+<p>How do you make an effective visualization? One of the first questions you need to ask is what type of data you have.</p>
+
+<h3 id="types-of-data">Types of data</h3>
+
+<p>There are two broad categories of data,  quantitative and qualitative, and each have a couple sub categories.</p>
+
+<h5 id="quantitative">Quantitative</h5>
+<p>This is numeric data and represents something like a measurement or a count. There are two subtypes</p>
+
+<ul>
+  <li><strong>Continuous</strong>: Here we can have an infinite number of values (e.g. 2, 5.983, 8749). Good examples of continuous data include height, temperature, and average selling price. WIth continuous variables you can compute statistics such as mean, median, standard deviation etc.</li>
+  <li><strong>Discrete</strong>: These are still numbers but can’t be meaningfully divided into smaller chunks. For example, you can have 1 or 2 children but not 1.5 children. However,  you can still compute statistics such as mean or standard deviation. You could say the average household had 1.54 children.</li>
+</ul>
+
+<h5 id="qualitative">Qualitative</h5>
+
+<p>Qualitative data is something that can be categorized based on traits/characteristics (as compared to numbers).</p>
+
+<ul>
+  <li>
+    <p><strong>Categorical:</strong> Categorical data is data that fit into a finite number of categories that have no inherent ordering. Colours (blue, red, green) are classified as categorical data because one colour is not inherently better than another.</p>
+  </li>
+  <li>
+    <p><strong>Ordinal:</strong> Ordinal data is a type of categorical data with at least three categories. As you might guess from the name there is an inherent order. A good example of ordinal data is agreement data (strongly disagree to strongly agree) commonly found in surveys.</p>
+  </li>
+</ul>
+
+<p>Here are some general rules of thumb for plotting different data types:</p>
+
+<ol>
+  <li>If you have categorical data use a bar chart (especially if you need precise comparisons!). For example, here is a plot comparing the most frequently used tools on the <a href="https://www.reddit.com/r/dataisbeautiful/">DataIsBeautiful subreddit</a>.</li>
+</ol>
+
+<p><img src="/images/v_is_for_visualization/DIB-tools-used-bar.png" alt="" title="Taken from http://www.randalolson.com/2016/03/11/what-data-visualization-tools-do-rdataisbeautiful-oc-creators-use/" /></p>
+
+<ol>
+  <li>Use a scatterplot or line plot if you’re comparing two quantitative variables. Here’s a plot comparing NBA/NCAA shooting accuracy vs distance from the basket.</li>
+</ol>
+
+<p><img src="/images/v_is_for_visualization/fgp_by_distance.png" alt="" title="Taken from https://toddwschneider.com/posts/nba-vs-ncaa-basketball-shooting-performance/" /></p>
+
+<ol>
+  <li>If you have qualitative data (or multiple comparisons in quantitative data) add extra attributes to visually distinguish between data types. You should also not just rely on colour (as some people have trouble distinguishing between colours). For example, texture (making your points dotted or striped) is very effective for categorical data as it provides a visual marker to differentiate between your categories. But this is not effective for quantitative (i.e. is striped bigger than dotted?). Keep these attributes in mind the next time you are making a plot, and think about what is the best way to represent your underlying data.</li>
+  <li>If you need to communicate uncertainty in measurements, you will need to add error bars</li>
+</ol>
+
+<p>Of course there are many more chart types than histograms, bar charts, scatter plots, and line charts. It’s important to consider the type of data you are plotting as well as your audience. For example, a <a href="https://xkcd.com/1967/">violin plot</a> can be enlightening for other data scientists but might not be as intuitive for other people.</p>
+
+<h3 id="plotting-libraries">Plotting libraries</h3>
+
+<p>There are loads of plotting libraries (as shown in the graph above) but here are a few of my favourites (mostly Python libraries):</p>
+
+<ul>
+  <li><a href="https://matplotlib.org/">Matplotlib</a> is extremely powerful but there can be a pretty steep learning curve. Fortunately there are many libraries that wrap matplotlib but still let you dive into it when needed. <a href="/blog/p-is-for-pandas">Pandas</a> plotting is one such wrapper.</li>
+  <li><a href="https://seaborn.pydata.org/">Seaborn</a> also wraps matplotlib and has a lot of great functionality. For example, <a href="https://seaborn.pydata.org/generated/seaborn.pairplot.html">pairplot</a> will create a plot for every pair of variables in the dataframe you pass it.</li>
+  <li><a href="https://ggplot2.tidyverse.org/">ggplot2</a> is an R library which is very powerful and can make very nice looking plots.</li>
+  <li><a href="https://docs.bokeh.org/en/latest/index.html">Bokeh</a> lets you make interactive plots in Python and is particularly handy when using Jupyter notebooks</li>
+</ul>
+
+<h3 id="things-to-consider">Things to consider</h3>
+
+<p>Once you’ve decided on what concept you want to convey and picked the appropriate chart type, there are a few other things to consider.</p>
+
+<ul>
+  <li>Check that your colour scheme works for both your data and the platform you’re presenting it on. For example, if you’re presenting categorical data, don’t use 7 shades of blue. Your chart might look great on your 5K display at your desk but could look washed out and hard to decipher on the projector screen when you’re giving a presentation.</li>
+  <li>Ensure your axes make sense. Your axes don’t always need to start from zero. In fact you should zoom in if you want to show data fluctuation more precisely. Just don’t make your graph look like this</li>
+</ul>
+
+<p><img src="/images/v_is_for_visualization/eu_payment.png" alt="" /></p>
+
+<ul>
+  <li>Be careful about using logarithmic axes. For the right audience (who are used to interpreting them) they can be okay but you need to make it clear that it’s a nonlinear scale. You can try normalizing your points to the mean instead.</li>
+  <li>Avoid overplotting. Overplotting is when data or labels in a visualization overlap so it can be hard to distinguish individual points. Try making your points semi-transparent or hollow circles so that it makes it easier to see specific points.</li>
+</ul>
+
+<p><img src="/images/v_is_for_visualization/overplotting.png" alt="" title="Taken from https://python-graph-gallery.com/wp-content/uploads/134_Fighting_overplotting1.png" /></p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Effective visualizations can help you deliver a story about your data/models and any insights that you’ve found. In addition to convincing stakeholders/clients, they can be extremely helpful in exploratory data analysis to convince yourself about your understanding of the data. There are many things to consider when creating a visualization but it’s worth getting it right. It can be easy to create misleading charts</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://towardsdatascience.com/data-visualization-101-7-steps-for-effective-visualizations-491a17d974de">Data Visualization 101: 7 Steps for Effective Visualizations</a></li>
+  <li><a href="https://ilovecharts.tumblr.com/">ilovecharts</a></li>
+  <li><a href="https://statisticsbyjim.com/basics/data-types/">Guide to Data Types and How to Graph Them in Statistics</a></li>
+  <li><a href="http://www.tylervigen.com/spurious-correlations">Spurious correlations</a></li>
+  <li><a href="https://heap.io/blog/data-stories/how-to-lie-with-data-visualization">How to Lie with Data Visualization</a></li>
+</ul>
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/v-is-for-visualization" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
