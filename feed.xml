@@ -1,4 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-03T19:49:12-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">V is for Visualization</title><link href="https://abcsofdatascience.ca/blog/v-is-for-visualization" rel="alternate" type="text/html" title="V is for Visualization" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/v-is-for-visualization</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/v-is-for-visualization">&lt;p&gt;One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data.  Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-04T15:29:06-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">W is for Wasserstein GANs</title><link href="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans" rel="alternate" type="text/html" title="W is for Wasserstein GANs" /><published>2021-02-04T00:00:00-06:00</published><updated>2021-02-04T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans">&lt;p&gt;You may have seen or heard of the term “&lt;a href=&quot;https://en.wikipedia.org/wiki/Deepfake&quot;&gt;deepfakes&lt;/a&gt;” where realistic looking images/videos/audio have been generated to look or sound like a specific person (e.g. a famous politician). Deepfakes is a more colloquial term for the field of &lt;strong&gt;synthetic media&lt;/strong&gt; which is the use of AI to generate images/audio/videos. Faking images is not a new phenomenon (e.g. photoshop) but historically faking video has been challenging. 
+One of the main drivers of the recent breakthroughs in synthetic media are the use of Generative adversarial networks (GANs). While there are some concerns about how GANs and related techniques will be used more broadly, there are legitimate purposes for it. For example, &lt;a href=&quot;https://arxiv.org/abs/1612.07828&quot;&gt;Apple used GANs&lt;/a&gt; to generate images of faces where they knew the direction the person was looking. This makes it easier to get training data that can be used for other models.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/w_is_for_wasserstein_gans/AI_generated_face.jpg&quot; alt=&quot;&quot; title=&quot;Image of a synthetically generated face. Taken from https://commons.wikimedia.org/wiki/File:AI_generated_face.jpg&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;generative-adversarial-networks&quot;&gt;Generative Adversarial Networks&lt;/h3&gt;
+
+&lt;p&gt;GANs are a technique created by &lt;a href=&quot;https://twitter.com/goodfellow_ian?lang=en&quot;&gt;Ian Goodfellow&lt;/a&gt; which involves two &lt;a href=&quot;/blog/d-is-for-deep-learning&quot;&gt;neural networks&lt;/a&gt; pitted against one another. One neural network (called the generator/creator) tries to create realistic looking data (typically starting from random noise). The other network (the discriminator/investigator) is fed a combination of fake and real data and it tries to predict whether the data is real or fake. This is a zero-sum game, so any gains made by the generator are lost by the discriminator. As training goes on, both models will get better at their tasks and the generated data will be more realistic. To steal an analogy from this &lt;a href=&quot;http://lineardigressions.com/episodes/2019/6/30/deepfakes&quot;&gt;great episode of Linear Digressions&lt;/a&gt; it’s like one person is trying to counterfeit money and the other person needs to determine counterfeit from the real money. Below is a high level view of the architecture of a GAN. Initially the generated data is pretty clearly fake&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/w_is_for_wasserstein_gans/gan_arch_initial_training.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After training the generated data will become much more realistic&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/w_is_for_wasserstein_gans/gan_arch_final_training.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In a standard GAN, the discriminator outputs a &lt;strong&gt;probability&lt;/strong&gt; that the input is real or fake (i.e. some number between 0 and 1). The loss function is typically based on the &lt;a href=&quot;https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence&quot;&gt;Jensen-Shannon divergence&lt;/a&gt; (JS divergence) which is a way of measuring the similarity of two probability distributions. The generator wants to minimize this loss (i.e. the real and fake distributions should look the same), while the discriminator wants to maximize it. It’s worth noting that after training you have both a model that can generate realistic data as well as a model that can distinguish between real and fake data.&lt;/p&gt;
+
+&lt;h3 id=&quot;wasserstein-gans&quot;&gt;Wasserstein GANs&lt;/h3&gt;
+
+&lt;p&gt;Standard GANs can be hard to train in practice. This is because you need to find some stable equilibrium for both the generator and discriminator. &lt;a href=&quot;https://arxiv.org/abs/1701.07875&quot;&gt;Wasserstein GANs&lt;/a&gt; (also known as WGANs) make a few modifications to the standard GAN which make it better in practice.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Instead of using JS divergence, they use Wasserstein distance (also known as earth-mover distance) to measure the similarity of the two probability distributions. This has some nice theoretical justifications (i.e. the math works out).&lt;/li&gt;
+  &lt;li&gt;They call the discriminator a “critic”. Instead of having to output a probability (which is restricted to a number between 0 and 1), WGANs don’t have this constraint. This means that there can be bigger differences between the losses, leading to better training.&lt;/li&gt;
+  &lt;li&gt;The critic is updated more often than the generator (e.g. 5x more)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are a few other implementation details but these are the bigger ones. Overall they are easier to train and more stable, producing better results. WGANs are just useful for generating images. They’re used to generate text and other kinds of data such as realistic looking &lt;a href=&quot;https://arxiv.org/abs/1911.06285&quot;&gt;domain names&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;stylegan&quot;&gt;StyleGAN&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1812.04948&quot;&gt;StyleGAN&lt;/a&gt; is another GAN extension which was developed by Nvidia. It’s not directly related to WGANs but has produced impressive looking images of faces. I’m not going to go into how they work here, but there is a &lt;a href=&quot;https://towardsdatascience.com/generating-with-style-the-mechanics-behind-nvidias-highly-realistic-gan-images-b6937237e3c6&quot;&gt;good overview&lt;/a&gt; written by Cody Wild.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/w_is_for_wasserstein_gans/stylegan_results.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;GANs are being used in a wide variety of applications including making art, music, and generating training data for other ML models. GANs and synthetic media can definitely seem scary and there are societal implications to consider in addition to the technical ones. This is a very active field with research into generating more realistic media as well as detecting if an image is fake or not. Tools to detect synthetic media will become increasingly important but education can play a large part in making the public more critical in the images/videos they see. While generated outputs are always improving, there are subtle signs to look for to tell if an image is fake or not. This includes things like asymmetry (e.g. someone wearing one earring), noise in the background, or other oddities. &lt;a href=&quot;https://kcimc.medium.com/how-to-recognize-fake-ai-generated-images-4d1f6f9a2842&quot;&gt;Here&lt;/a&gt; is a good article detailing the things to look for when trying to tell if an image is fake.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/how-to-implement-wasserstein-loss-for-generative-adversarial-networks/&quot;&gt;How to Implement Wasserstein Loss for Generative Adversarial Networks&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1701.07875&quot;&gt;Wasserstein GAN paper&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2016/5/28/neural-nets-play-cops-and-robbers-aka-generative-adversarial-networks&quot;&gt;Episode of Linear Digressions on GANs&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/6/30/deepfakes&quot;&gt;Episode of Linear Digressions on deepfakes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">You may have seen or heard of the term “deepfakes” where realistic looking images/videos/audio have been generated to look or sound like a specific person (e.g. a famous politician). Deepfakes is a more colloquial term for the field of synthetic media which is the use of AI to generate images/audio/videos. Faking images is not a new phenomenon (e.g. photoshop) but historically faking video has been challenging. One of the main drivers of the recent breakthroughs in synthetic media are the use of Generative adversarial networks (GANs). While there are some concerns about how GANs and related techniques will be used more broadly, there are legitimate purposes for it. For example, Apple used GANs to generate images of faces where they knew the direction the person was looking. This makes it easier to get training data that can be used for other models.</summary></entry><entry><title type="html">V is for Visualization</title><link href="https://abcsofdatascience.ca/blog/v-is-for-visualization" rel="alternate" type="text/html" title="V is for Visualization" /><published>2021-02-03T00:00:00-06:00</published><updated>2021-02-03T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/v-is-for-visualization</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/v-is-for-visualization">&lt;p&gt;One of the most important aspects of data science is being able to effectively communicate and use your data to tell a story. Often you’ve spent a lot of time and effort cleaning your data, training models, and exploring your data.  Visualizing your data is a crucial aspect of being able to tell that story and show off any insights you might have gained. You should always keep the following questions in mind:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;strong&gt;Who is your audience?&lt;/strong&gt; Are they other data scientists? Subject matter experts? Other stakeholders (e.g. executives)?&lt;/li&gt;
@@ -1436,135 +1482,4 @@ A totally legitimate business&lt;br /&gt;&lt;/p&gt;
   &lt;li&gt;&lt;a href=&quot;https://gretchenmcculloch.com/book/&quot;&gt;Because Internet: Understanding the New Rules of Language&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oi0JXuL19TA&amp;amp;list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&amp;amp;t=0s&quot;&gt;Natural Language Processing: Crash Course AI #7&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/tokenization-for-natural-language-processing-a179a891bad4&quot;&gt;Tokenization strategies&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including</summary></entry><entry><title type="html">M is for Munging Data</title><link href="https://abcsofdatascience.ca/blog/m-is-for-munging-data" rel="alternate" type="text/html" title="M is for Munging Data" /><published>2020-10-10T00:00:00-05:00</published><updated>2020-10-10T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/m-is-for-munging-data</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/m-is-for-munging-data">&lt;p&gt;You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes &lt;a href=&quot;/blog/l-is-for-labelling-data&quot;&gt;getting labels&lt;/a&gt;. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Getting and cleaning the data&lt;/li&gt;
-  &lt;li&gt;Selecting features&lt;/li&gt;
-  &lt;li&gt;Engineering features&lt;/li&gt;
-  &lt;li&gt;Transforming the data&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;To paraphrase the bodybuilder &lt;a href=&quot;https://www.youtube.com/watch?v=4UlgXIL0-3g&quot;&gt;Ronnie Coleman&lt;/a&gt; “everybody wants to be a data scientist but don’t nobody want to munge no ugly-ass data!”. While it isn’t the most glamorous part of data science, good data preparation is critical for having models that perform well. Properly cleaned data and good features can give better performance than trying to tweak the model itself.&lt;/p&gt;
-
-&lt;h3 id=&quot;getting-data&quot;&gt;Getting data&lt;/h3&gt;
-
-&lt;p&gt;Datasets can come in a wide variety of formats but there are a few common ways of accessing them:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Spreadsheets: These are typically excel spreadsheets or CSV (comma separated value) files. These can be easily read in using something like the pandas library in python.&lt;/li&gt;
-  &lt;li&gt;Web APIs: Many data sources provide an API for fetching data, and you can interact with these APIs using python’s requests module. If you need to scrape the website itself, the beautifulsoup module is extremely helpful.&lt;/li&gt;
-  &lt;li&gt;Databases: Data scientists will often interact with their data in databases using SQL.&lt;/li&gt;
-  &lt;li&gt;Unstructured data: All of the formats above provide data in some structured manner. Unfortunately, this is not always possible and you may need to use &lt;a href=&quot;https://xkcd.com/208/&quot;&gt;regular expressions&lt;/a&gt; and other techniques to parse the data.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;cleaning-and-transforming-data&quot;&gt;Cleaning and transforming data&lt;/h3&gt;
-
-&lt;p&gt;When you are first looking at a new dataset it is extremely important that you &lt;strong&gt;look at your data&lt;/strong&gt;! A fancier term for looking at your data is Exploratory Data Analysis (EDA). Once you have an environment set up, what does EDA look like in practice?&lt;/p&gt;
-
-&lt;h5 id=&quot;looking-for-missing-data&quot;&gt;Looking for missing data&lt;/h5&gt;
-
-&lt;p&gt;Real world data is messy and there can be mistakes or missing data. You might need to infer missing values or drop rows with too much missing data. How you infer missing data depends on the data type and what works best for your problem. For example, if you have a field with missing numbers, you could fill in the missing value with the average or just put 0. You also need to check if there is a pattern to which rows/fields have missing values. If there is a pattern (i.e. it isn’t random) you will need to compensate for that as well.&lt;/p&gt;
-
-&lt;h5 id=&quot;visualizing-data&quot;&gt;Visualizing data&lt;/h5&gt;
-
-&lt;p&gt;Data visualization is an invaluable tool when exploring data. Below are some questions that we are typically trying to answer by visualizing data&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;What do the feature distributions look like? This could be as simple as answering the question “Do some values occur very frequently?”. This might be answered by making a histogram of your data.&lt;/li&gt;
-  &lt;li&gt;Do some features correlate with one another? For example in a census dataset, the neighbourhood someone lives in will typically correlate with household income.&lt;/li&gt;
-  &lt;li&gt;Are there big patterns that jump out in the data? It might be hard to see these patterns (e.g. lots of duplicate points) when looking at a spreadsheet, but when plotted are very obvious.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;transforming-data&quot;&gt;Transforming data&lt;/h5&gt;
-
-&lt;p&gt;It is pretty common to have to tweak your data into a format that a machine learning algorithm expects. Let’s imagine we have a dataset about video games&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Title&lt;/th&gt;
-      &lt;th&gt;Metacritic score (/100)&lt;/th&gt;
-      &lt;th&gt;IGN score (/10)&lt;/th&gt;
-      &lt;th&gt;Genre&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;The Legend of Zelda: Breath of the Wild&lt;/td&gt;
-      &lt;td&gt;97&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;Action-adventure&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Untitled Goose Game&lt;/td&gt;
-      &lt;td&gt;81&lt;/td&gt;
-      &lt;td&gt;8&lt;/td&gt;
-      &lt;td&gt;Puzzle&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;James Bond 007: Nightfire&lt;/td&gt;
-      &lt;td&gt;80&lt;/td&gt;
-      &lt;td&gt;7&lt;/td&gt;
-      &lt;td&gt;First person shooter&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here we have two numeric columns (metacritic score and IGN score) but they are on different scales. One goes from 0-100 while the other is from 0-10. Some ML algorithms assume that all of the features are on the same scale, so we would need to &lt;strong&gt;normalize&lt;/strong&gt; these features. This could mean converting all the numbers so that they are between 0 and 1 (e.g. 8/10 becomes 0.8).&lt;/p&gt;
-
-&lt;p&gt;Many ML algorithms assume that all of your input is numeric. How do we convert the genre field (which is a &lt;strong&gt;categorical value&lt;/strong&gt;) to a numeric one? One simple way to do this is known as &lt;strong&gt;one-hot encoding&lt;/strong&gt;. This just means representing all categories as a vector where there is a 1 if the category matches and a 0 if it doesn’t. Using our example above we have:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Action-adventure&lt;/th&gt;
-      &lt;th&gt;Puzzle&lt;/th&gt;
-      &lt;th&gt;First person shooter&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;The Legend of Zelda: Breath of the Wild&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Untitled Goose Game&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;James Bond 007: Nightfire&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;So instead of having the genre value of “Puzzle” for Untitled Goose Game, we would have [0, 1, 0]. A one-hot encoding is a very simple version of an &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;embedding&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;If we have text data there are many techniques that we can use which I’ll talk about in the next blog N is for Natural Language Processing.&lt;/p&gt;
-
-&lt;h5 id=&quot;common-tools-for-eda&quot;&gt;Common tools for EDA&lt;/h5&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://jupyter.org/&quot;&gt;Jupyter notebooks&lt;/a&gt; are a popular environment for doing EDA, since it provides an interactive development environment where you can see output (e.g. plots) inline with your code. The &lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;pandas&lt;/a&gt; module in python is very commonly used for data munging tasks and has a lot of useful utilities. I’ll talk more about the pandas library in a later blog post.&lt;/p&gt;
-
-&lt;h3 id=&quot;feature-selection-and-engineering&quot;&gt;Feature selection and engineering&lt;/h3&gt;
-
-&lt;p&gt;When preparing data for training a model you need to figure out which features in your data will be most relevant for the problem you are trying to solve (e.g. classification). There may be features that would be helpful that don’t exist in the data as it comes in. Creating new features is referred to as feature engineering. Both feature selection and engineering require some expertise in the problem domain. One way to determine useful features if you have labels is to look at the features which are strongly correlated with those labels. Imagine you are trying to predict if a file is malware or benign. If there are attributes of that file that occur frequently when the file is malware and don’t occur when it is benign, that would be a useful feature. In the case of classification, you are looking for features that make it easy to discriminate between the classes. In the case of &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt; you need to choose features that say “these points are similar if they have X in common”. Feature selection/engineering is more of an art than a science and can involve some trial and error.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Data munging is a crucial part of data science (and you could argue it’s the majority of data science). Properly cleaning and normalizing your data can have huge benefits for the downstream task you are trying to solve. It is challenging and sometimes frustrating (looking at you regular expressions!) task but is necessary to understand your data and train an effective model.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/what-is-data-preparation-in-machine-learning/&quot;&gt;More on data preparation&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/10/1/whats-really-so-hard-about-feature-engineering&quot;&gt;What’s &lt;em&gt;really&lt;/em&gt; so hard about feature engineering&lt;/a&gt; (episode of the Linear Digressions podcast)&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">You might think that data scientists spend most of their time training machine learning models. In fact most of the time (60%-80%) spent on a data science project is acquiring and preparing the data. In the case of supervised learning problems this also includes getting labels. This process of preparing data is often referred to as data munging or data wrangling. Data wrangling typically includes a number of tasks:</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including</summary></entry></feed>
