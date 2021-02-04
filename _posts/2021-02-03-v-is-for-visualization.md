@@ -74,7 +74,7 @@ Once you’ve decided on what concept you want to convey and picked the appropri
 
 ### Summary
 
-Effective visualizations can help you deliver a story about your data/models and any insights that you’ve found. In addition to convincing stakeholders/clients, they can be extremely helpful in exploratory data analysis to convince yourself about your understanding of the data. There are many things to consider when creating a visualization but it’s worth getting it right. It can be easy to create misleading charts 
+Effective visualizations can help you deliver a story about your data/models and any insights that you’ve found. In addition to convincing stakeholders/clients, they can be extremely helpful in exploratory data analysis to convince yourself about your understanding of the data. There are many things to consider (and it's easy to make misleading charts) when creating a visualization but it’s worth getting it right.
 
 ### Other resources
 
