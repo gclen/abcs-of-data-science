@@ -50,7 +50,7 @@ Data science involves a lot of skills and no one can do it all. We tend to focus
 * [Practical Tips for Real-World Data Science](https://locallyoptimistic.com/post/practical_ml/)
 * [Agile for Data Science](https://towardsdatascience.com/applying-agile-methodology-to-data-science-projects-db50ebbef115#:~:text=The%20Agile%20way%20of%20working%20allows%20data%20scientists%20the%20ability,for%20the%20next%20incremental%20improvement)
 * [Data scientists: beware of simple metrics](http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics)
-
+* [How to define your machine learning problem](https://machinelearningmastery.com/how-to-define-your-machine-learning-problem/)
 
 
 
