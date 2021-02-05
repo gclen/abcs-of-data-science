@@ -484,8 +484,8 @@ table { font-size: 100%; }
 
 .PageNavigation a { display: block; width: 50%; margin: 1em 0; }
 
-.PageNavigation .prev { text-align: left; }
+.PageNavigation .prev { float: left; }
 
-.PageNavigation .next { text-align: right; }
+.PageNavigation .next { float: right; }
 
 /*# sourceMappingURL=style.css.map */
