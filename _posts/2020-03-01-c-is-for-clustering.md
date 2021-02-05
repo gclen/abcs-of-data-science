@@ -29,7 +29,7 @@ Take a look at the image below (courtesy of [Leland Mcinnes](https://twitter.com
 
 The simple definition of clustering “find similar groups of stuff” sounds fairly simple at the surface. If you think about it a bit more you’ll realize that there are a number of questions that need to be answered:
 
-1. _How do you define similarity?_ In every clustering algorithm you need to specify a way of measuring the distance between two points. This is often referred to as a __distance metric__. As you would expect, points are similar if they are close together (the distance between them is small) and less similar the farther apart they are. There are many kinds of distance metrics, which I will touch on in later blog posts.
+1. _How do you define similarity?_ In every clustering algorithm you need to specify a way of measuring the distance between two points. This is often referred to as a __distance metric__. As you would expect, points are similar if they are close together (the distance between them is small) and less similar the farther apart they are. There are many kinds of distance metrics, and choosing the right wone depends on your data. For more about distance metrics see ["E is for Embeddings"]({{ site.baseurl }}/blog/e-is-for-embeddings) and ["J is for Jaccard Metric"]({{ site.baseurl }}/blog/j-is-for-jaccard).
 2. _Does every point need to belong to a group? Can a point belong to multiple groups?_ The answers to these questions depend on the algorithm. In some cases, points can only belong to one group. This is known as __hard clustering__. In other cases they have a probability associated with being part of a cluster. This is known as __soft clustering__ (or fuzzy clustering). Some clustering algorithms will force every point into a group (whether it belongs in there or not), while others will just label those points as outliers/noise.
    
 ### Types of clustering methods
@@ -72,7 +72,7 @@ There are basically two ways to create this dendrogram. The first is a bottom up
 
 ### How do I choose which clustering (or class of) algorithm to use?
 
-Some of this depends on your data. In practice many algorithms combine elements of these classes. One example of this is [HDBSCAN](https://hdbscan.readthedocs.io/en/latest/) (hierarchical DBSCAN), which is an extremely useful clustering algorithm. I’ll talk about HDBSCAN in more detail in a future blog post but HDBSCAN is a good first choice. If you’re looking for a comparison of different clustering algorithms on the sample data I showed above, take a look at the link “Comparing clustering algorithms” in the resources below.
+Some of this depends on your data. In practice many algorithms combine elements of these classes. One example of this is [HDBSCAN](https://hdbscan.readthedocs.io/en/latest/) (hierarchical DBSCAN), which is an extremely useful clustering algorithm. I’ll talk about HDBSCAN in more detail in [H is for HDBSCAN]({{ site.baseurl }}/blog/h-is-for-hdbscan) but HDBSCAN is a good first choice. If you’re looking for a comparison of different clustering algorithms on the sample data I showed above, take a look at the link “Comparing clustering algorithms” in the resources below.
 
 ### Other resources
 

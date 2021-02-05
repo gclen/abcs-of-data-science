@@ -8,7 +8,7 @@ permalink: /blog/b-is-for-bias
 comments: true
 ---
 
-The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog and will talk about tuning models/measuring model performance in later blogs.
+The term bias is used in a few different contexts within data science. When people mention bias they are typically referring to either the “bias-variance tradeoff” or “unjust bias”. I’ll primarily talk about unjust bias in this blog. If you want to learn about the other kind of bias see ["K is for K-fold cross-validation"]({{ site.baseurl }}/blog/k-is-for-kfold-cross-validation).
 
 ### Bias-variance tradeoff
 

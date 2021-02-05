@@ -69,7 +69,7 @@ If we have text data there are many techniques that we can use which I’ll talk
 
 ##### Common tools for EDA
 
-[Jupyter notebooks](https://jupyter.org/) are a popular environment for doing EDA, since it provides an interactive development environment where you can see output (e.g. plots) inline with your code. The [pandas](https://pandas.pydata.org/) module in python is very commonly used for data munging tasks and has a lot of useful utilities. I’ll talk more about the pandas library in a later blog post.
+[Jupyter notebooks](https://jupyter.org/) are a popular environment for doing EDA, since it provides an interactive development environment where you can see output (e.g. plots) inline with your code. The [pandas](https://pandas.pydata.org/) module in python is very commonly used for data munging tasks and has a lot of useful utilities. I’ll talk more about the pandas library in [P is for Pandas]({{ site.baseurl }}/blog/p-is-for-pandas).
 
 ### Feature selection and engineering
 
