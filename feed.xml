@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-05T11:55:04-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">X is for XGBoost</title><link href="https://abcsofdatascience.ca/blog/x-is-for-xgboost" rel="alternate" type="text/html" title="X is for XGBoost" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/x-is-for-xgboost</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/x-is-for-xgboost">&lt;p&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/&quot;&gt;XGBoost&lt;/a&gt; is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-05T15:29:49-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">Y is for You Should Talk to Your Clients</title><link href="https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients" rel="alternate" type="text/html" title="Y is for You Should Talk to Your Clients" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients">&lt;p&gt;Many of the &lt;a href=&quot;&quot;&gt;previous blogs&lt;/a&gt; in this series have focused on the more technical aspects of data science like training models and measuring performance. In all real world data science projects, you’ll need to do more than just the technical aspects. Unless you’re doing it to learn (a perfectly valid reason!), we typically aren’t doing data science for the sake of doing data science. We don’t want to spend tons of time and effort on a data science project, just to have it dropped on the floor or ignored. It’s crucial to communicate with &lt;strong&gt;everyone&lt;/strong&gt; involved in your data science projects to increase the chances of your projects being adopted/recognized.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-science-is-a-team-sport&quot;&gt;Data science is a team sport&lt;/h3&gt;
+
+&lt;p&gt;Data science involves a wide range of skills and expertise, especially in large projects. You need people who can &lt;a href=&quot;/blog/m-is-for-munging-data&quot;&gt;munge data&lt;/a&gt;, &lt;a href=&quot;/blog/s-is-for-supervised-learning&quot;&gt;train models&lt;/a&gt;, and have subject matter expertise in the specific problem domain. For large projects, you’ll want people with software engineering experience to help you build maintainable code and systems. The traditional Venn diagram for describing data science comes from &lt;a href=&quot;http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram&quot;&gt;Drew Conway&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/y_is_for_you_should_talk_to_your_clients/conway_venn_diagram.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s pretty unlikely that one person is an expert in all of these fields (which is why they are referred to as unicorns!). Successful data science projects usually need input from a variety of people. A more accurate Venn diagram might look like&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/y_is_for_you_should_talk_to_your_clients/gartner_venn_diagram.png&quot; alt=&quot;&quot; title=&quot;Taken from https://blogs.gartner.com/christi-eubanks/three-lessons-crossfit-taught-data-science/&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clearly there is a lot to get right for a successful data science project. In my experience, people tend to focus on the more technical aspects and ignore the customer/client angle. There are a lot more resources for the data preparation and model training parts of this Venn diagram. It’s also important to understand the marketing angle.&lt;/p&gt;
+
+&lt;h3 id=&quot;marketing-your-work&quot;&gt;Marketing your work&lt;/h3&gt;
+
+&lt;p&gt;It’s important to communicate with the people who are going to actually &lt;em&gt;use&lt;/em&gt; the models that you’ve built. People won’t just use your models for no reason, they actually need to be useful. Here are a few things to keep in mind when trying to make sure the project you’re working on is useful. You should talk to your clients (either internal or external) to figure out the problems that they need solving.&lt;/p&gt;
+
+&lt;h5 id=&quot;understand-their-workflow&quot;&gt;Understand their workflow&lt;/h5&gt;
+
+&lt;p&gt;Talk to experts in the problem domain that you’re working in. These could be doctors, business analysts at your company, or just some trusted friends/family. Try to understand what the pain points are in their workflow and figure out ways that you might be able to help solve it. Machine learning works best on specific, well-defined problems. Talking to experts can help you pinpoint these specific problems. Saying I’m going to train a machine learning model to look at MRI images for a specific disease is a more achievable goal than saying “AI/ML for medicine”. You should make sure that everyone is on the same page and using the same language. Additionally, trust the expertise of the people you are talking to! You don’t want to be this person&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgs.xkcd.com/comics/here_to_help.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;manage-expectations&quot;&gt;Manage expectations&lt;/h5&gt;
+
+&lt;p&gt;It’s possible you’ve been tasked by your management to “use machine learning”. You should also know by now that machine learning/AI is not magic. For people who are less familiar with the field, it can be hard to tell what is &lt;a href=&quot;https://xkcd.com/1425/&quot;&gt;doable&lt;/a&gt; or still an active area of research. It’s really important to be honest about what is realistically achievable. You should also make it clear if the tools you are developing are intended to take automated actions, or help humans make better decisions.
+Fit into their workflow
+If possible you should try to avoid building shiny new tools to display your model results. People typically have workflows and existing tools that they are comfortable with. You should try to fit your model results into these tools (or at the very least link your tool from the existing ones).&lt;/p&gt;
+
+&lt;h5 id=&quot;communicate-early-and-often&quot;&gt;Communicate early and often&lt;/h5&gt;
+&lt;p&gt;As the project progresses, you should update your clients with any results that you’ve found. You should also ask for their input regularly. For example, if you hear them saying “why did the model make THAT prediction?” you might want to focus on more &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;interpretable&lt;/a&gt; models. It can be very helpful to have a small group of trusted clients who are closely involved with the process. Management or software engineering teams might be familiar with &lt;a href=&quot;https://en.wikipedia.org/wiki/Agile_software_development&quot;&gt;Agile software development&lt;/a&gt; as a way to manage projects. There are some good parts that can be adapted for data science projects. Linear Digressions did a good two part series on Agile for Data Science, talking about &lt;a href=&quot;http://lineardigressions.com/episodes/2018/8/19/agile-development-for-data-scientists-part-1-the-good&quot;&gt;the good&lt;/a&gt; and &lt;a href=&quot;http://lineardigressions.com/episodes/2018/8/26/agile-development-for-data-scientists-part-2-where-modifications-help&quot;&gt;adjustments that should be made&lt;/a&gt;. Be clear in what you are asking for feedback on. If you are looking for feedback on the way you are displaying results (as compared to the results themselves), make that obvious!&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Data science involves a lot of skills and no one can do it all. We tend to focus on the technical parts of the data science pipeline, but communication and marketing are crucial skills. A person with domain expertise and the ability to communicate with end users and other data scientists is as valuable as the people training the models and preparing the data.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://locallyoptimistic.com/post/practical_ml/&quot;&gt;Practical Tips for Real-World Data Science&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/applying-agile-methodology-to-data-science-projects-db50ebbef115#:~:text=The%20Agile%20way%20of%20working%20allows%20data%20scientists%20the%20ability,for%20the%20next%20incremental%20improvement&quot;&gt;Agile for Data Science&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics&quot;&gt;Data scientists: beware of simple metrics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Many of the previous blogs in this series have focused on the more technical aspects of data science like training models and measuring performance. In all real world data science projects, you’ll need to do more than just the technical aspects. Unless you’re doing it to learn (a perfectly valid reason!), we typically aren’t doing data science for the sake of doing data science. We don’t want to spend tons of time and effort on a data science project, just to have it dropped on the floor or ignored. It’s crucial to communicate with everyone involved in your data science projects to increase the chances of your projects being adopted/recognized.</summary></entry><entry><title type="html">X is for XGBoost</title><link href="https://abcsofdatascience.ca/blog/x-is-for-xgboost" rel="alternate" type="text/html" title="X is for XGBoost" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/x-is-for-xgboost</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/x-is-for-xgboost">&lt;p&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/&quot;&gt;XGBoost&lt;/a&gt; is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.&lt;/p&gt;
 
 &lt;h3 id=&quot;ensembling&quot;&gt;Ensembling&lt;/h3&gt;
 
@@ -1258,122 +1301,4 @@ print(cast.head())
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ZyhVh-qRZPA&amp;amp;list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS&quot;&gt;Pandas tutorial series from Corey Schafer&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/jvns/pandas-cookbook&quot;&gt;Pandas cookbook&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://github.com/brandon-rhodes/pycon-pandas-tutorial&quot;&gt;Pandas From the Ground Up&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:</summary></entry><entry><title type="html">O is for Outlier Detection</title><link href="https://abcsofdatascience.ca/blog/o-is-for-outlier-detection" rel="alternate" type="text/html" title="O is for Outlier Detection" /><published>2020-10-23T00:00:00-05:00</published><updated>2020-10-23T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/o-is-for-outlier-detection</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/o-is-for-outlier-detection">&lt;p&gt;Outlier (or anomaly) detection is the technical term for “finding weird stuff”. It’s used in a wide variety of applications including malware detection and looking for credit card fraud. For example, if you live in Ottawa but your credit card was used to buy a gaming console in Boise, Idaho (without any other purchases) that would be anomalous. Outlier detection is related to &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt;. In clustering we are trying to find the groups of related data. In outlier detection we are trying to find the points that don’t belong to any groups. There are three different categories of outliers&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Local (or contextual) outliers&lt;/strong&gt;: These are points that are close to groups of data but don’t belong to any cluster. This could be an email which seems mostly legitimate except something seems a little off (e.g. “Follow us on Twittterr”) .&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Global (or point) outliers&lt;/strong&gt;: These are the data points that are completely off on their own and are far away from other data points. Going back to the email example, this would be like having an email in German if the rest of your inbox had English/French emails.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Collective outliers&lt;/strong&gt; : These are groups of outlying points which may have some underlying pattern. This would be like having a spam campaign of emails where they look strange compared to normal email, but are all related to one another.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/outlier_data.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In many (all?) large datasets there are bound to be lots of outliers. It’s like being a woman trying to find a partner on a dating app: “the odds are good but the goods are odd”. It’s relatively easy to find anomalies but it’s more challenging to find &lt;strong&gt;interesting&lt;/strong&gt; outliers.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;It’s worth noting that in a lot of cases if something is anomalous it doesn’t necessarily mean that it is bad. It just means that the data point is different from the others. However, it probably means that it is more interesting and may need to be investigated.&lt;/li&gt;
-  &lt;li&gt;To find out if an outlier is truly interesting or not you need to combine it with extra context. For example, if you find an anomalous credit card purchase (such as a gaming console in Idaho) it’s worth looking at the other purchases around that time (did they also buy plane tickets to Idaho?).&lt;/li&gt;
-  &lt;li&gt;You can also find interesting patterns by grouping anomalies together. In malware detection this could mean “did a bunch of suspicious activity happen on one computer in a short time frame?”. Here you need something else to group on (in this case it’s by looking at anomalies for one computer at a time).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;how-do-we-actually-find-anomalies&quot;&gt;How do we actually find anomalies?&lt;/h3&gt;
-
-&lt;h5 id=&quot;low-frequency-events&quot;&gt;Low frequency events&lt;/h5&gt;
-
-&lt;p&gt;One of the easiest ways to find outliers is to say “show me events that occur less than X% of the time”. This is really easy because we can just count all the events we are interested in and then divide by the total number of events. Let’s imagine we have a survey of what people put in their coffee&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Raw count&lt;/th&gt;
-      &lt;th&gt;Frequency (count/total)&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Nothing (black)&lt;/td&gt;
-      &lt;td&gt;95&lt;/td&gt;
-      &lt;td&gt;0.35&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Milk&lt;/td&gt;
-      &lt;td&gt;120&lt;/td&gt;
-      &lt;td&gt;0.44&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Sugar&lt;/td&gt;
-      &lt;td&gt;53&lt;/td&gt;
-      &lt;td&gt;0.20&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Butter&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;0.01&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;In this case it’s pretty clear that people &lt;a href=&quot;https://www.nytimes.com/2014/12/14/style/the-cult-of-the-bulletproof-coffee-diet.html&quot;&gt;putting butter in their coffee&lt;/a&gt; is weird. This method breaks down if there are lots of different options or one or two very popular options.&lt;/p&gt;
-
-&lt;h5 id=&quot;modelling-the-distribution-of-your-data&quot;&gt;Modelling the distribution of your data&lt;/h5&gt;
-
-&lt;p&gt;One way to find outliers is to look at how far a point deviates from the average (mean). If your data is &lt;strong&gt;normally distributed&lt;/strong&gt; (i.e. looks like a bell curve) you can look at how many standard deviations a point is from the mean. In a normal distribution 68% of the data falls within one standard deviation, 95% within two standard deviations etc. For example, if the average height of a man is 5’10” and the standard deviation is 4” then 68% of men are between 5’6” and 6’2”. If you have a man who is 7 feet tall, then they would be more than 3 standard deviations away from the mean. It’s fair to say that this person is abnormally tall (unless you compare them only to &lt;a href=&quot;https://www.youtube.com/watch?v=88w_cA1QyeQ&quot;&gt;NBA players&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/normal_distribution.png&quot; alt=&quot;&quot; title=&quot;Taken from https://upload.wikimedia.org/wikipedia/commons/a/a9/Empirical_Rule.PNG&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;using-clustering-to-find-outliers&quot;&gt;Using clustering to find outliers&lt;/h5&gt;
-
-&lt;p&gt;Some clustering algorithms (such as &lt;a href=&quot;/blog/h-is-for-hdbscan&quot;&gt;HDBSCAN&lt;/a&gt;) label points which don’t fall into any cluster as outliers. These points could be global or local outliers. They may also include the probability that a point belongs in a cluster. This can be used to find local outliers by looking for points with relatively low probabilities. If we look back to the sample dataset in my post on HDBSCAN, all of the grey points are listed as noise/outliers.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/sample_data_clustered.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;time-series-modelling&quot;&gt;Time series modelling&lt;/h5&gt;
-
-&lt;p&gt;In many cases what counts as an anomaly depends on when it occurs. For example, a store doing $100 000 in sales in one day could be abnormally high in February but unusually low in the holiday season. The average amount of sales changes throughout the year so we need to take time into account when doing outlier detection. &lt;a href=&quot;https://facebook.github.io/prophet/&quot;&gt;Prophet&lt;/a&gt; is a popular python library for dealing with time series data.&lt;/p&gt;
-
-&lt;h5 id=&quot;isolation-forests&quot;&gt;Isolation forests&lt;/h5&gt;
-
-&lt;p&gt;One way we can find anomalies is using a method called &lt;strong&gt;isolation forests&lt;/strong&gt;.  Isolation forests take advantage of two key properties of anomalies:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;There are fewer of them&lt;/li&gt;
-  &lt;li&gt;They have attributes that are different than most of the points&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;These properties mean that the anomalies are more prone to isolation. What do I mean by isolation? Imagine I have the data points shown in blue below.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/isolated_forest_points_no_cuts.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The idea behind isolated forests is to keep making cuts in the data so that each point is in its own partition. From these cuts we can build up trees to use in our forest. For example:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/o_is_for_outlier_detection/isolated_forest_points.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In this case, the first cut is shown in red. Everything above it is in one partition (which in this case is an isolated point), while everything below it is in another. We can make a cut to the bottom partition (shown in black) and isolate another point. We can keep cutting and build up the tree. At the end, every leaf node will correspond to an isolated point. The hypothesis is that anomalies will be closer to the root node than “normal” points. The algorithm works as follows:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Take a random subset of the data and build up the tree for that subset.&lt;/li&gt;
-  &lt;li&gt;Repeat step 1 a bunch of times. Since all of the cuts are fairly arbitrary, we will use an ensemble of trees to average out our choice of cuts.&lt;/li&gt;
-  &lt;li&gt;From the forest of trees calculate the average path length to each leaf node. This just means “on average how many cuts did we need to make to isolate that point”.&lt;/li&gt;
-  &lt;li&gt;Use the average path length to calculate a score which we can use to determine if something is an outlier. The smaller the average path length (i.e. we needed less cuts), the more likely a point is to be an outlier.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;This algorithm is useful for a few reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Typically outlier detection algorithms work by profiling what is “normal” and then finding deviations from that. This isn’t required when using isolation forests&lt;/li&gt;
-  &lt;li&gt;It’s fast (and scales fairly well)&lt;/li&gt;
-  &lt;li&gt;It doesn’t require a distance metric&lt;/li&gt;
-  &lt;li&gt;There is an &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html&quot;&gt;implementation&lt;/a&gt; of it in the popular python ML library scikit-learn&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Anomaly detection is a task that shows up in many different applications. It’s typically used when “we want to find something interesting but we don’t know what that is”. In order to find the truly interesting data points, you need to add context by combining them with other information. This is especially important if you want to take an action (e.g. cancelling someone’s credit card) based on anomalous activity.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/a-brief-overview-of-outlier-detection-techniques-1e0b2c19e561&quot;&gt;A brief overview of outlier detection techniques&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.floydhub.com/introduction-to-anomaly-detection-in-python/&quot;&gt;Introduction to anomaly detection in python&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Outlier (or anomaly) detection is the technical term for “finding weird stuff”. It’s used in a wide variety of applications including malware detection and looking for credit card fraud. For example, if you live in Ottawa but your credit card was used to buy a gaming console in Boise, Idaho (without any other purchases) that would be anomalous. Outlier detection is related to clustering. In clustering we are trying to find the groups of related data. In outlier detection we are trying to find the points that don’t belong to any groups. There are three different categories of outliers</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:</summary></entry></feed>
