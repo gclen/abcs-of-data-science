@@ -480,7 +480,7 @@ table td { text-overflow: ellipsis; overflow: hidden; max-width: 15em; }
 
 table { font-size: 100%; }
 
-.PageNavigation { font-size: 18px; display: block; width: auto; overflow: hidden; }
+.PageNavigation { font-size: 100%; display: block; width: auto; overflow: hidden; }
 
 .PageNavigation a { display: block; width: 50%; margin: 1em 0; }
 
