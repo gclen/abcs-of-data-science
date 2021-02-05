@@ -1,4 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-04T15:29:06-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">W is for Wasserstein GANs</title><link href="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans" rel="alternate" type="text/html" title="W is for Wasserstein GANs" /><published>2021-02-04T00:00:00-06:00</published><updated>2021-02-04T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans">&lt;p&gt;You may have seen or heard of the term “&lt;a href=&quot;https://en.wikipedia.org/wiki/Deepfake&quot;&gt;deepfakes&lt;/a&gt;” where realistic looking images/videos/audio have been generated to look or sound like a specific person (e.g. a famous politician). Deepfakes is a more colloquial term for the field of &lt;strong&gt;synthetic media&lt;/strong&gt; which is the use of AI to generate images/audio/videos. Faking images is not a new phenomenon (e.g. photoshop) but historically faking video has been challenging. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-05T11:55:04-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">X is for XGBoost</title><link href="https://abcsofdatascience.ca/blog/x-is-for-xgboost" rel="alternate" type="text/html" title="X is for XGBoost" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/x-is-for-xgboost</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/x-is-for-xgboost">&lt;p&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/&quot;&gt;XGBoost&lt;/a&gt; is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.&lt;/p&gt;
+
+&lt;h3 id=&quot;ensembling&quot;&gt;Ensembling&lt;/h3&gt;
+
+&lt;p&gt;If you remember from &lt;a href=&quot;/blog/s-is-for-supervised-learning&quot;&gt;“S is for Supervised Learning”&lt;/a&gt; an ensemble is a collection of weak learners (such as decision trees). The idea is that each learner on its own is not particularly strong, but in aggregate they will become a stronger learner. There are two main methods to combine the predictions of the weak learners: &lt;strong&gt;averaging&lt;/strong&gt; and &lt;strong&gt;boosting&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;averaging-methods&quot;&gt;Averaging methods&lt;/h5&gt;
+
+&lt;p&gt;In a random forest model, you might have 500 decision trees which are all trained on different subsets of the data as well as different features. Each tree gets a vote based on their prediction and the class with the majority of votes is chosen as the prediction (this is analogous to the &lt;a href=&quot;https://en.wikipedia.org/wiki/Wisdom_of_the_crowd&quot;&gt;wisdom of the crowds&lt;/a&gt;). Let’s imagine you are trying to predict if something is a &lt;a href=&quot;https://www.theincomparable.com/robot/&quot;&gt;Robot or Not&lt;/a&gt;. If 70% of the trees predict “robot”, and 30% of the trees predict “not a robot” then the overall prediction will be “robot”.  This an example of an &lt;strong&gt;averaging ensemble&lt;/strong&gt; because we trained 500 trees independently and then averaged the predictions.&lt;/p&gt;
+
+&lt;h5 id=&quot;boosting-methods&quot;&gt;Boosting methods&lt;/h5&gt;
+
+&lt;p&gt;In &lt;strong&gt;boosting&lt;/strong&gt; we train the individual learners sequentially instead of independently. In theory, the 2nd decision tree can learn from the mistakes of the first, the 3rd tree from the 2nd and so on.  At the very least we hope it will make &lt;em&gt;different&lt;/em&gt; mistakes. &lt;a href=&quot;https://scikit-learn.org/stable/modules/ensemble.html#adaboost&quot;&gt;AdaBoost&lt;/a&gt; (Adaptive Boosting) is a popular method for boosting and is relatively straightforward to understand.&lt;/p&gt;
+
+&lt;p&gt;Let’s imagine we are trying to predict which players should be drafted by the NBA from draft eligible players. We have three features: the players height, average number of points scored per game in their last two seasons, and their teams winning percentage. AdaBoost typically uses &lt;strong&gt;decision stumps&lt;/strong&gt; (as compared to trees) as its weak learner. A decision stump is just a very shallow tree (with only one node and two leaves). This means each stump only looks at one variable (e.g. height) at a time. The decision stump could learn that if a player is taller than 6’6” then they should be drafted (and not drafted if they are shorter than that). Here are the steps of how AdaBoost works:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Train a weak classifier (e.g. our decision stump using height as a variable) on all of the data. Each data point is given a weight (initially they are all equal).&lt;/li&gt;
+  &lt;li&gt;Create a decision stump for all variables (height, PPG, average wins). After training check how well each stump performs (did it classify the points correctly?).&lt;/li&gt;
+  &lt;li&gt;For all of the data points which were not classified correctly, increase their weight. For correctly classified samples, decrease their weight. This forces the overall model to focus on points that are hard to classify.&lt;/li&gt;
+  &lt;li&gt;Repeat steps 2 and 3 until you reach the maximum number of iterations (or all points have been correctly classified).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;At the end, all of the weak learners get a weighted vote to produce the final prediction.&lt;/p&gt;
+
+&lt;h5 id=&quot;gradient-boosted-trees&quot;&gt;Gradient boosted trees&lt;/h5&gt;
+
+&lt;p&gt;If we want to train an ensemble of decision trees how should we do it? We can generalize boosting on decision trees to use arbitrary &lt;a href=&quot;/blog/s-is-for-supervised-learning&quot;&gt;loss functions&lt;/a&gt;. Once we’ve picked a loss function we can use &lt;a href=&quot;/blog/g-is-for-gradient-descent&quot;&gt;gradient descent&lt;/a&gt; to optimize it. Using this technique is typically called &lt;strong&gt;Gradient Boosted Decision Trees&lt;/strong&gt; or &lt;strong&gt;Gradient Boosted Trees&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;when-should-i-use-ensembles-of-decision-trees&quot;&gt;When should I use ensembles of decision trees?&lt;/h3&gt;
+
+&lt;p&gt;Models like Random Forests or Gradient Boosted Trees are a good starting point for many problems.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;They can be used for both classification and regression&lt;/li&gt;
+  &lt;li&gt;They work on a wide variety of datasets. In particular, they work well on tabular data (think Excel spreadsheets)&lt;/li&gt;
+  &lt;li&gt;Random forests handle missing values and categorical data well&lt;/li&gt;
+  &lt;li&gt;They typically handle high dimensional data (large numbers of features) well&lt;/li&gt;
+  &lt;li&gt;You can typically &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;interpret&lt;/a&gt; the predictions made by these models&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;XGBoost is a library which implements gradient boosting and is extremely fast. It’s available in a wide variety of languages and frameworks. For Python you can &lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/build.html&quot;&gt;install it&lt;/a&gt; using&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install xgboost
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Even if you don’t use XGBoost, I recommend starting with decision tree based models as a starting point for most ML problems. You can often get further with some other models but they typically require more hyperparameter optimization and deep understanding of your data.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2017/1/22/ensemble-algorithms&quot;&gt;Episode of Linear Digressions on Ensembles&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://scikit-learn.org/stable/modules/ensemble.html&quot;&gt;Scikit-learn documentation on ensemble methods&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/index.html&quot;&gt;XGBoost documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/tutorials/model.html&quot;&gt;Introduction to boosted trees from XGBoosts documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/gentle-introduction-xgboost-applied-machine-learning/&quot;&gt;A Gentle Introduction to XGBoost for Applied Machine Learning&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">XGBoost is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many Kaggle competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.</summary></entry><entry><title type="html">W is for Wasserstein GANs</title><link href="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans" rel="alternate" type="text/html" title="W is for Wasserstein GANs" /><published>2021-02-04T00:00:00-06:00</published><updated>2021-02-04T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans">&lt;p&gt;You may have seen or heard of the term “&lt;a href=&quot;https://en.wikipedia.org/wiki/Deepfake&quot;&gt;deepfakes&lt;/a&gt;” where realistic looking images/videos/audio have been generated to look or sound like a specific person (e.g. a famous politician). Deepfakes is a more colloquial term for the field of &lt;strong&gt;synthetic media&lt;/strong&gt; which is the use of AI to generate images/audio/videos. Faking images is not a new phenomenon (e.g. photoshop) but historically faking video has been challenging. 
 One of the main drivers of the recent breakthroughs in synthetic media are the use of Generative adversarial networks (GANs). While there are some concerns about how GANs and related techniques will be used more broadly, there are legitimate purposes for it. For example, &lt;a href=&quot;https://arxiv.org/abs/1612.07828&quot;&gt;Apple used GANs&lt;/a&gt; to generate images of faces where they knew the direction the person was looking. This makes it easier to get training data that can be used for other models.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/w_is_for_wasserstein_gans/AI_generated_face.jpg&quot; alt=&quot;&quot; title=&quot;Image of a synthetically generated face. Taken from https://commons.wikimedia.org/wiki/File:AI_generated_face.jpg&quot; /&gt;&lt;/p&gt;
@@ -1318,168 +1376,4 @@ print(cast.head())
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/a-brief-overview-of-outlier-detection-techniques-1e0b2c19e561&quot;&gt;A brief overview of outlier detection techniques&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://blog.floydhub.com/introduction-to-anomaly-detection-in-python/&quot;&gt;Introduction to anomaly detection in python&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Outlier (or anomaly) detection is the technical term for “finding weird stuff”. It’s used in a wide variety of applications including malware detection and looking for credit card fraud. For example, if you live in Ottawa but your credit card was used to buy a gaming console in Boise, Idaho (without any other purchases) that would be anomalous. Outlier detection is related to clustering. In clustering we are trying to find the groups of related data. In outlier detection we are trying to find the points that don’t belong to any groups. There are three different categories of outliers</summary></entry><entry><title type="html">N is for Natural Language Processing (NLP)</title><link href="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing" rel="alternate" type="text/html" title="N is for Natural Language Processing (NLP)" /><published>2020-10-18T00:00:00-05:00</published><updated>2020-10-18T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/n-is-for-natural-language-processing">&lt;p&gt;Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Autocorrect&lt;/li&gt;
-  &lt;li&gt;Chatbots and virtual assistants (e.g. Siri or Alexa)&lt;/li&gt;
-  &lt;li&gt;Language translation (e.g. Google translate)&lt;/li&gt;
-  &lt;li&gt;Document summarization&lt;/li&gt;
-  &lt;li&gt;Text classification (e.g. is this email spam or not?)&lt;/li&gt;
-  &lt;li&gt;Sentiment analysis (e.g. is this movie review positive or negative?)&lt;/li&gt;
-  &lt;li&gt;Grouping documents&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In recent years, machine learning (&lt;a href=&quot;(/blog/d-is-for-deep-learning)&quot;&gt;deep learning&lt;/a&gt; in particular) has become increasingly popular within NLP but there are still a number of non-ML based techniques.&lt;/p&gt;
-
-&lt;h3 id=&quot;language-models&quot;&gt;Language models&lt;/h3&gt;
-
-&lt;p&gt;If you’ve ever tried to learn a new language, you probably know that languages are &lt;strong&gt;hard&lt;/strong&gt;. There are lots of weird rules (i.e. grammar) and there are even more exceptions to those rules. Language also changes depending on the context. For example, the language used in academic papers is very different from tweets. So given a &lt;strong&gt;corpus&lt;/strong&gt; (the technical term for a bunch of data such as documents) we want to learn how language is used within that set of documents. A document could be a tweet, an academic paper, an email etc. It’s nearly impossible to code all of the grammatical rules ahead of time, so we try to use NLP techniques to model language as it’s used in that corpus. The goal of this is not to relearn grammar, but give a better footing for the task that we really care about (e.g. sentiment analysis).&lt;/p&gt;
-
-&lt;p&gt;A common practice in many NLP tasks is to use a &lt;strong&gt;language model&lt;/strong&gt; which lets us learn how specific words are used in a corpus. For example, words such as “the” or “and” occur much more frequently than say “lagniappe”. To train a language model, we take a bunch of text and then try to predict the next word. If we have the sentence “I have a golden retriever and she is the best” we want to use the previous words to predict the next word.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Given “I”, predict “have”&lt;/li&gt;
-  &lt;li&gt;Given [“I”, “have”], predict “a”&lt;/li&gt;
-  &lt;li&gt;Given [“I”, “have”, “a”], predict “golden”&lt;/li&gt;
-  &lt;li&gt;Continue until you’ve predicted the number of words in the sentence&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;We repeat this process and compare how our predictions match the actual text to improve the model. At the end of this we will have a predictive model for how different words are used in practice (e.g. “the” is much more likely than “pizza”). This is obviously a challenging task (and the model will often be wrong). Fortunately we can train models on huge amounts of text (e.g. wikipedia). We don’t even need extra labels since we already know what the next word is in a given sentence! In practice we can use language models that have already been trained so we don’t need to train a new language model on wikipedia for every task.  Language models are typically used as the starting point for other &lt;strong&gt;downstream tasks&lt;/strong&gt; such as text classification. In some cases they are used directly in applications like predictive text/autocorrect on your phone. The benefit and downside of language models is that they model how a language is used. This means that if enough people type something incorrectly it’s possible that the model will start suggesting the incorrect version. How a language model performs (which will then affect downstream task performance) is typically dependent on the amount of preprocessing done (more on that later).&lt;/p&gt;
-
-&lt;h3 id=&quot;finding-spam-emails&quot;&gt;Finding spam emails&lt;/h3&gt;
-
-&lt;p&gt;Let’s imagine we want to train a model to predict if an email is spam or not spam (ham). This is an example of a &lt;strong&gt;text classification&lt;/strong&gt; problem.&lt;/p&gt;
-
-&lt;p&gt;Regular email:&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Hey,&lt;br /&gt;&lt;/p&gt;
-
-  &lt;p&gt;Want to grab lunch today? There’s a new taco truck downtown that looks great :)&lt;br /&gt;&lt;/p&gt;
-
-  &lt;p&gt;-Alice&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Spam email:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Dear valued customer,&lt;br /&gt;&lt;/p&gt;
-
-  &lt;p&gt;Your invoice is attached. In order to see your purchase history click &lt;a href=&quot;/images/n_is_for_nlp/click_me.jpg&quot;&gt;here&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;
-
-  &lt;p&gt;Sincerely,&lt;br /&gt;
-A totally legitimate business&lt;br /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;First we need to turn the corpus of emails into a format that our machine learning model can understand (i.e. numbers). This is called &lt;strong&gt;vectorization&lt;/strong&gt;. The simplest thing we could do is to count how often each word appears in each document. Unsurprisingly, this is called count vectorization. This gives us a &lt;strong&gt;word-document matrix&lt;/strong&gt; where each row corresponds to a document and each column corresponds to a word. The values in the matrix are how often each word occurred in a given document. As an example, let’s say we have the following three short emails (documents):&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;The boss wants the report by Friday.&lt;/li&gt;
-  &lt;li&gt;Pizza half price! This Friday only!&lt;/li&gt;
-  &lt;li&gt;I ordered the pizza for the party.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Our word-document matrix would look something like this (for brevity not all words are included)&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;the&lt;/th&gt;
-      &lt;th&gt;pizza&lt;/th&gt;
-      &lt;th&gt;report&lt;/th&gt;
-      &lt;th&gt;…&lt;/th&gt;
-      &lt;th&gt;friday&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Doc 1&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;…&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Doc 2&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;…&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Doc 3&lt;/td&gt;
-      &lt;td&gt;2&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-      &lt;td&gt;…&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The columns are known as the &lt;strong&gt;vocabulary&lt;/strong&gt; since it is the unique set of words occurring in all documents. As you might imagine this matrix could get very big if there is a big vocabulary (and lots of documents). However, the matrix will be &lt;strong&gt;sparse&lt;/strong&gt; (mostly filled with zeroes) since most words will not appear in most documents. Fortunately, computer scientists have lots of ways to deal with sparse matrices so this is not a problem in practice.&lt;/p&gt;
-
-&lt;p&gt;You might notice that the word columns aren’t in the same order as the words in the original documents. We call this a &lt;strong&gt;bag-of-words model&lt;/strong&gt; since we throw out all word ordering. Using a bag-of-words model means that we lose some information but it’s much faster computationally and it works surprisingly well in practice. Of course there are some applications (e.g. the language models described above) where order does matter.&lt;/p&gt;
-
-&lt;p&gt;Count vectorization is very simple where we just count how often a word appears in a document. But how do we figure out what the words are? What if words are slightly different (e.g. “Pizza” and “pizza”)?&lt;/p&gt;
-
-&lt;h3 id=&quot;preprocessing&quot;&gt;Preprocessing&lt;/h3&gt;
-
-&lt;p&gt;Preprocessing is a catch-all term for anything we do to text before passing it into a model (including vectorization). You can potentially drastically improve the performance of your model by using more sophisticated preprocessing techniques. That being said, it’s often worth trying the simple things first!&lt;/p&gt;
-
-&lt;h5 id=&quot;tokenization&quot;&gt;Tokenization&lt;/h5&gt;
-
-&lt;p&gt;Tokenization is where we split some text into tokens (e.g. words). Taking a sentence and splitting it into words seems simple enough right? It’s easy enough to split a sentence on spaces and then use the resulting words. There are also more sophisticated tokenization techniques which will split within words (e.g. turning #datascience into “#” and “datascience”). This is also related to &lt;strong&gt;chunking&lt;/strong&gt; where you try to find the sentence boundaries in large pieces of text. How you tokenize a sentence also depends on the language. For example, a language like German which has a tendency to make new words by combining a bunch of existing words. You might want to split the new word into its original components.&lt;/p&gt;
-
-&lt;p&gt;Related to tokenization is the notion of &lt;strong&gt;n-grams&lt;/strong&gt;. These are sequences of tokens which have n elements. For example, if we split the sentence “the dog loves treats” into bigrams (n=2) we would have&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[(“the”, “dog”), (“dog”, “loves”), (“loves”, “treats”)]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;This lets you capture a little more context around each word. Once we have n-grams we can just do count vectorization like we did above. Instead of columns corresponding to words (unigrams) they will correspond to n-grams. This means that our matrix is not “how often did this word appear in this document” it is “how often did this &lt;em&gt;sequence&lt;/em&gt; of words appear in this document”.&lt;/p&gt;
-
-&lt;p&gt;It’s worth noting that you don’t need to have traditional language to tokenize. For example you could take file paths “/this/is/a/file/path” and split it into individual files/directories ([“this”, “is”, “a”, “file”, “path”]). Once you have tokens you can apply a wide range of NLP techniques.&lt;/p&gt;
-
-&lt;h5 id=&quot;lowercasing-all-tokens&quot;&gt;Lowercasing all tokens&lt;/h5&gt;
-
-&lt;p&gt;A really common (and easy) preprocessing step is to make everything lowercase. This means that “Friday” and “friday” are not treated as two separate tokens.&lt;/p&gt;
-
-&lt;h5 id=&quot;stop-word-removal&quot;&gt;Stop word removal&lt;/h5&gt;
-
-&lt;p&gt;Stop words are words that occur very frequently in a given language/corpus. In English these are words such as “the”, “and”, “they” (though there is no definitive list of stopwords). In many cases we want to filter out stop words since they don’t carry much information. This is more useful in tasks like text classification. In other cases such as automated translation you will need to keep stop words.&lt;/p&gt;
-
-&lt;h5 id=&quot;stemminglemmatization&quot;&gt;Stemming/lemmatization&lt;/h5&gt;
-
-&lt;p&gt;Stemming and lemmatization are used to help normalize text. There are many forms of words that all have the same base. For example, “the dog barks/barked/is barking” are all semantically similar. If we are training a model (say a language model) “barks”, “barked”, “barking” will all be treated as separate tokens. To make it easier we would like to normalize all of those tokens to “bark”, giving us the sentence “the dog bark”. Stemming turns a word into its base (e.g. barked to bark),  using language specific rules for removing prefixes or suffixes.  However, there are many edge cases so it’s not 100% effective. This is done Lemmatization is a more sophisticated form of stemming and normalizes words into their true base (e.g. normalizing “was” to “be”). Again, this is based on language specific rules (and a bunch of lookup tables).&lt;/p&gt;
-
-&lt;h5 id=&quot;minimum-termdocument-frequency&quot;&gt;Minimum term/document frequency&lt;/h5&gt;
-
-&lt;p&gt;If we keep every word that shows up in any of our documents our vocabulary size will be enormous. In order to reduce the vocabulary size, one common trick is to only keep words/tokens that only occur more than N times. For example, if there is a document that contains the token “maewpfaefamefaef” it’s pretty unlikely that it’s going to show up frequently. So we can just get rid of this by saying “don’t include words that occur less than 5 times”. Similarly, we can also drop words if they show up in less than N (e.g. 5) documents. For example, if we had a document that was “&lt;a href=&quot;https://en.wikipedia.org/wiki/Buffalo_buffalo_Buffalo_buffalo_buffalo_buffalo_Buffalo_buffalo&quot;&gt;Buffalo buffalo Buffalo buffalo buffalo buffalo Buffalo buffalo&lt;/a&gt;” the word buffalo occurs more than 5 times. But if that was the only document that buffalo appeared in, we probably want to drop buffalo from our vocabulary.&lt;/p&gt;
-
-&lt;h3 id=&quot;beyond-simple-counting&quot;&gt;Beyond simple counting&lt;/h3&gt;
-
-&lt;p&gt;If we just count how often words appear in documents, there are going to be words (e.g. “the”) which occur frequently but don’t contain much information. How do we deal with the fact that some words convey more information than others? One way to do this is to weight our counts using “Term Frequency - Inverse Document Frequency” (TF-IDF). The intuition behind TF-IDF is as follows:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;If a word appears frequently in most documents in the corpus it probably doesn’t give much information. So we should give those words less weight since they don’t mean as much.&lt;/li&gt;
-  &lt;li&gt;If a word appears frequently in a small number of documents then it probably has more information. For example, the word “inheritance” might appear more often than you would expect in spam emails, but not in most normal emails. We should give these words more weight.&lt;/li&gt;
-  &lt;li&gt;If a word doesn’t occur that frequently, then it doesn’t really give useful information. For example, if the word “oxymoron” occurred 10 times in our email corpus it doesn’t really help us distinguish between spam/not spam.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In &lt;a href=&quot;https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html&quot;&gt;TF-IDF vectorization&lt;/a&gt;, we do count vectorization as we did before then apply one additional step. This extra step is just multiplying the counts by the weight of each word. Using this weighting will help our model distinguish more easily between spam and not/spam.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;This was just a brief introduction to some of the concepts used in NLP. There are many things that can make NLP more complicated in practice such as dealing with multiple languages in the same corpus. NLP techniques can be a really powerful toolset to have at your disposal and they don’t just apply to traditional text data. If you have data that you can tokenize, then you can apply all of the techniques described above. If you want to dive into some NLP projects I recommend starting with &lt;a href=&quot;https://www.fast.ai/2019/07/08/fastai-nlp/&quot;&gt;this course&lt;/a&gt; from fast.ai.&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.fast.ai/2019/07/08/fastai-nlp/&quot;&gt;A Code-First Introduction to Natural Language Processing&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://gretchenmcculloch.com/book/&quot;&gt;Because Internet: Understanding the New Rules of Language&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oi0JXuL19TA&amp;amp;list=PL8dPuuaLjXtO65LeD2p4_Sb5XQ51par_b&amp;amp;t=0s&quot;&gt;Natural Language Processing: Crash Course AI #7&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/tokenization-for-natural-language-processing-a179a891bad4&quot;&gt;Tokenization strategies&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Natural Language Processing (NLP) is a huge area within data science. It’s so huge that this blog will barely scratch the surface and will just give you a flavour of the kinds of things people try to use NLP for. As you might guess, the goal of NLP is to try and gain insights and information from language (either spoken or text). Text data can come from a wide variety of sources such as tweets, news articles, or transcripts of speech-to-text. NLP is used in a lot of applications, including</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Outlier (or anomaly) detection is the technical term for “finding weird stuff”. It’s used in a wide variety of applications including malware detection and looking for credit card fraud. For example, if you live in Ottawa but your credit card was used to buy a gaming console in Boise, Idaho (without any other purchases) that would be anomalous. Outlier detection is related to clustering. In clustering we are trying to find the groups of related data. In outlier detection we are trying to find the points that don’t belong to any groups. There are three different categories of outliers</summary></entry></feed>
