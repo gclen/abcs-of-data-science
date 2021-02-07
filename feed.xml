@@ -1,48 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-05T17:02:24-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">Y is for You Should Talk to Your Clients</title><link href="https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients" rel="alternate" type="text/html" title="Y is for You Should Talk to Your Clients" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients">&lt;p&gt;Many of the &lt;a href=&quot;&quot;&gt;previous blogs&lt;/a&gt; in this series have focused on the more technical aspects of data science like training models and measuring performance. In all real world data science projects, you’ll need to do more than just the technical aspects. Unless you’re doing it to learn (a perfectly valid reason!), we typically aren’t doing data science for the sake of doing data science. We don’t want to spend tons of time and effort on a data science project, just to have it dropped on the floor or ignored. It’s crucial to communicate with &lt;strong&gt;everyone&lt;/strong&gt; involved in your data science projects to increase the chances of your projects being adopted/recognized.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://abcsofdatascience.ca/feed.xml" rel="self" type="application/atom+xml" /><link href="https://abcsofdatascience.ca/" rel="alternate" type="text/html" /><updated>2021-02-06T19:40:32-06:00</updated><id>https://abcsofdatascience.ca/feed.xml</id><title type="html">ABCs of data science</title><subtitle>A gentle introduction to many data science concepts for readers of all backgrounds</subtitle><entry><title type="html">Z is for Zero to Done</title><link href="https://abcsofdatascience.ca/blog/z-is-for-zero-to-done" rel="alternate" type="text/html" title="Z is for Zero to Done" /><published>2021-02-06T00:00:00-06:00</published><updated>2021-02-06T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/z-is-for-zero-to-done</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/z-is-for-zero-to-done">&lt;p&gt;We’ve covered a &lt;a href=&quot;/categories&quot;&gt;lot of topics&lt;/a&gt; in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:&lt;/p&gt;
 
-&lt;h3 id=&quot;data-science-is-a-team-sport&quot;&gt;Data science is a team sport&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Are you trying a smaller data science to learn about a particular topic?&lt;/li&gt;
+  &lt;li&gt;Are you trying to build a product to be used by other people?&lt;/li&gt;
+  &lt;li&gt;How mature is your organization with regards to data science? If you’re the first one doing this, things will take longer.&lt;/li&gt;
+  &lt;li&gt;Do you have a team of people or are you doing this individually?&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Data science involves a wide range of skills and expertise, especially in large projects. You need people who can &lt;a href=&quot;/blog/m-is-for-munging-data&quot;&gt;munge data&lt;/a&gt;, &lt;a href=&quot;/blog/s-is-for-supervised-learning&quot;&gt;train models&lt;/a&gt;, and have subject matter expertise in the specific problem domain. For large projects, you’ll want people with software engineering experience to help you build maintainable code and systems. The traditional Venn diagram for describing data science comes from &lt;a href=&quot;http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram&quot;&gt;Drew Conway&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;There are 5 major steps you need to do in most data science projects&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/y_is_for_you_should_talk_to_your_clients/conway_venn_diagram.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Define your problem&lt;/li&gt;
+  &lt;li&gt;Prepare your data&lt;/li&gt;
+  &lt;li&gt;Train your model&lt;/li&gt;
+  &lt;li&gt;Get feedback&lt;/li&gt;
+  &lt;li&gt;Productionize your pipeline&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;It’s pretty unlikely that one person is an expert in all of these fields (which is why they are referred to as unicorns!). Successful data science projects usually need input from a variety of people. A more accurate Venn diagram might look like&lt;/p&gt;
+&lt;h3 id=&quot;define-your-problem&quot;&gt;Define your problem&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/y_is_for_you_should_talk_to_your_clients/gartner_venn_diagram.png&quot; alt=&quot;&quot; title=&quot;Taken from https://blogs.gartner.com/christi-eubanks/three-lessons-crossfit-taught-data-science/&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;As you’re starting you’ll want to answer the following questions. I find it’s helpful to write down your answers or talk about them with a friend/colleague.&lt;/p&gt;
 
-&lt;p&gt;Clearly there is a lot to get right for a successful data science project. In my experience, people tend to focus on the more technical aspects and ignore the customer/client angle. There are a lot more resources for the data preparation and model training parts of this Venn diagram. It’s also important to understand the marketing angle.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;What are you trying to solve?&lt;/strong&gt; Talk about the problem that you are trying to solve. You should make this as &lt;strong&gt;specific&lt;/strong&gt; as possible. If you are trying to do “machine learning for cyber security” figure out what aspect is most interesting/useful. A more specific problem is “can I predict if a file is malware or not?”&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Why are you trying to solve it?&lt;/strong&gt; Describe how solving this problem will benefit people. This could be benefiting yourself (a learning experience), internal clients (make them more productive), or benefit customers/the world more broadly.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;How is this solution going to be used?&lt;/strong&gt; Write down if the problem is solved how your solution will be used. Is it going to make decisions automatically? Is it going to give context to a human so that they have extra information? Is it trying to predict something about an individual data point or is it trying to group related things together?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Who is asking for a solution to this problem?&lt;/strong&gt; Document who is asking for this to be solved. These people could be domain experts, your boss, or someone else. Make sure that everyone has the same expectations. For more about this read &lt;a href=&quot;/blog/y-is-for-you-should-talk-to-your-clients&quot;&gt;Y is for You Should Talk to Your Clients&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;How would you do it manually?&lt;/strong&gt; Try to go through the process of solving the problem manually multiple times. For example, if you’re trying to figure out if a file is malware or not, sit down with some cybersecurity analysts and triage the files together. This will give you a better understanding of the domain and may give you ideas for relevant features.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;What tools are you going to use?&lt;/strong&gt; If this is just an individual project you’re free to use whatever you like! If you’re working in a team you’ll need to figure out which tools people have the most experience with. In some cases you might be forced to use an existing set of tools if they are the ones adopted by your organization.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;marketing-your-work&quot;&gt;Marketing your work&lt;/h3&gt;
+&lt;h3 id=&quot;prepare-your-data&quot;&gt;Prepare your data&lt;/h3&gt;
 
-&lt;p&gt;It’s important to communicate with the people who are going to actually &lt;em&gt;use&lt;/em&gt; the models that you’ve built. People won’t just use your models for no reason, they actually need to be useful. Here are a few things to keep in mind when trying to make sure the project you’re working on is useful. You should talk to your clients (either internal or external) to figure out the problems that they need solving.&lt;/p&gt;
+&lt;p&gt;Without data, it’s pretty hard to do data science! Make sure you have data that you can use (or at least process into something useful).&lt;/p&gt;
 
-&lt;h5 id=&quot;understand-their-workflow&quot;&gt;Understand their workflow&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;What data do you have available?&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Are there external datasets you can use to enrich your data?&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;What data processing do you need?&lt;/strong&gt; In all real-world cases you’ll need to do &lt;a href=&quot;/blog/m-is-for-munging-data&quot;&gt;data munging&lt;/a&gt;. For text data you’ll need to apply &lt;a href=&quot;/blog/n-is-for-natural-language-processing&quot;&gt;natural language processing&lt;/a&gt; techniques to create features from it.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Do you need to embed your data or do dimension reduction?&lt;/strong&gt; In many cases you’ll need to embed your data into a feature space. For more information on that I recommend reading &lt;a href=&quot;/blog/e-is-for-embeddings&quot;&gt;E is for Embeddings&lt;/a&gt; and &lt;a href=&quot;/blog/u-is-for-umap&quot;&gt;U is for UMAP&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Do you have labels?&lt;/strong&gt; If you’re working on a supervised learning problem then you need labelled data. For more information about ways to get that read &lt;a href=&quot;/blog/l-is-for-labelling-data&quot;&gt;L is for Labelling Data&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Have you explored your data?&lt;/strong&gt; You’ll need to look at your data and see if there are missing values, &lt;a href=&quot;/blog/v-is-for-visualization&quot;&gt;visualize&lt;/a&gt; it, look for relevant features etc.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Talk to experts in the problem domain that you’re working in. These could be doctors, business analysts at your company, or just some trusted friends/family. Try to understand what the pain points are in their workflow and figure out ways that you might be able to help solve it. Machine learning works best on specific, well-defined problems. Talking to experts can help you pinpoint these specific problems. Saying I’m going to train a machine learning model to look at MRI images for a specific disease is a more achievable goal than saying “AI/ML for medicine”. You should make sure that everyone is on the same page and using the same language. Additionally, trust the expertise of the people you are talking to! You don’t want to be this person&lt;/p&gt;
+&lt;h3 id=&quot;train-your-model&quot;&gt;Train your model&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://imgs.xkcd.com/comics/here_to_help.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Once you’ve processed your data you’ll actually need to train your model(s).&lt;/p&gt;
 
-&lt;h5 id=&quot;manage-expectations&quot;&gt;Manage expectations&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Does your problem require a supervised or unsupervised model?&lt;/strong&gt; If you are trying to predict something about individual data points you’ll want to use &lt;a href=&quot;/blog/s-is-for-supervised-learning&quot;&gt;supervised learning&lt;/a&gt;. If you’re trying to group stuff together you’ll want to do &lt;a href=&quot;/blog/c-is-for-clustering&quot;&gt;clustering&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;What kind of model should you choose?&lt;/strong&gt; This depends on the problem and data type but here are my starting points. If you have images you might want to use &lt;a href=&quot;Jekyll::Drops::SiteDrop/blog/d-is-for-deep-learning&quot;&gt;deep learning&lt;/a&gt; (typically convolutional neural networks are used). For text or tabular data it’s a good idea to start with  &lt;a href=&quot;/blog/x-is-for-xgboost&quot;&gt;Random Forest or Gradient Boosted Trees&lt;/a&gt;. It’s worth trying to get a simple model working (even if it’s not the new shiny thing).&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Are there pretrained models you can start from?&lt;/strong&gt; &lt;a href=&quot;/blog/t-is-for-transfer-learning&quot;&gt;Transfer learning&lt;/a&gt; is a powerful technique that can let you make progress quickly.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Do you need to do any post-processing?&lt;/strong&gt; Especially in the case of clustering you might need to apply additional filters on your clusters for them to be useful. For example, your model could find 1000 groups of stuff but a human might only have time to look at 50 groups. Heuristics on top of your clusters can be a useful way to rank your clusters in terms of usefulness.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;It’s possible you’ve been tasked by your management to “use machine learning”. You should also know by now that machine learning/AI is not magic. For people who are less familiar with the field, it can be hard to tell what is &lt;a href=&quot;https://xkcd.com/1425/&quot;&gt;doable&lt;/a&gt; or still an active area of research. It’s really important to be honest about what is realistically achievable. You should also make it clear if the tools you are developing are intended to take automated actions, or help humans make better decisions.
-Fit into their workflow
-If possible you should try to avoid building shiny new tools to display your model results. People typically have workflows and existing tools that they are comfortable with. You should try to fit your model results into these tools (or at the very least link your tool from the existing ones).&lt;/p&gt;
+&lt;h3 id=&quot;get-feedback&quot;&gt;Get feedback&lt;/h3&gt;
 
-&lt;h5 id=&quot;communicate-early-and-often&quot;&gt;Communicate early and often&lt;/h5&gt;
-&lt;p&gt;As the project progresses, you should update your clients with any results that you’ve found. You should also ask for their input regularly. For example, if you hear them saying “why did the model make THAT prediction?” you might want to focus on more &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;interpretable&lt;/a&gt; models. It can be very helpful to have a small group of trusted clients who are closely involved with the process. Management or software engineering teams might be familiar with &lt;a href=&quot;https://en.wikipedia.org/wiki/Agile_software_development&quot;&gt;Agile software development&lt;/a&gt; as a way to manage projects. There are some good parts that can be adapted for data science projects. Linear Digressions did a good two part series on Agile for Data Science, talking about &lt;a href=&quot;http://lineardigressions.com/episodes/2018/8/19/agile-development-for-data-scientists-part-1-the-good&quot;&gt;the good&lt;/a&gt; and &lt;a href=&quot;http://lineardigressions.com/episodes/2018/8/26/agile-development-for-data-scientists-part-2-where-modifications-help&quot;&gt;adjustments that should be made&lt;/a&gt;. Be clear in what you are asking for feedback on. If you are looking for feedback on the way you are displaying results (as compared to the results themselves), make that obvious!&lt;/p&gt;
+&lt;p&gt;You should continuously ask for feedback on all parts of your pipeline. This will help make sure that you and your clients are on the same page.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Is the output of your models useful?&lt;/strong&gt; If you show the results of your model to subject matter experts do they agree with it? You may want to look into &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;model interpretability&lt;/a&gt; methods to try and figure out why your model made a given prediction.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Does your output fit into your customers workflow?&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Are your models biased in any way?&lt;/strong&gt; This can be a hard problem to diagnose but it’s an extremely important one. For more information read &lt;a href=&quot;/blog/b-is-for-bias&quot;&gt;B is for Bias&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;productionize-your-pipeline&quot;&gt;Productionize your pipeline&lt;/h3&gt;
+
+&lt;p&gt;Once you have a successful prototype, it’s time to put it into production. As your doing so, you’ll want to think about the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;How can you access the results of your model?&lt;/strong&gt; One option is setting up a REST API using a framework like &lt;a href=&quot;https://fastapi.tiangolo.com/&quot;&gt;FastAPI&lt;/a&gt;. Many cloud providers like Azure and AWS offer SaaS solutions for this. Are you results available as part of an app?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Are you retraining the model on a regular basis?&lt;/strong&gt; You should retrain the model periodically to ensure that it’s behaving as you expect. You’ll need to measure model drift which is how the performance changes over time on new data.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Is your workflow repeatable?&lt;/strong&gt; For more on this read &lt;a href=&quot;/blog/r-is-for-reproducibility&quot;&gt;R is for Reproducibility&lt;/a&gt;. How easy is it for someone else to maintain your workflow?&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
 
-&lt;p&gt;Data science involves a lot of skills and no one can do it all. We tend to focus on the technical parts of the data science pipeline, but communication and marketing are crucial skills. A person with domain expertise and the ability to communicate with end users and other data scientists is as valuable as the people training the models and preparing the data.&lt;/p&gt;
+&lt;p&gt;There are lots of moving parts involved in completing a fully productionized data science pipeline. It’s okay if it seems overwhelming! No one is an expert in everything, which makes it even more important to work with other people. If you have any questions don’t hesitate to leave a comment, send me a message on &lt;a href=&quot;https://twitter.com/abcsofdatasci&quot;&gt;twitter&lt;/a&gt; send me an email at abcsofdatascience [at] gmail [dot] com.&lt;/p&gt;
 
 &lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://locallyoptimistic.com/post/practical_ml/&quot;&gt;Practical Tips for Real-World Data Science&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/applying-agile-methodology-to-data-science-projects-db50ebbef115#:~:text=The%20Agile%20way%20of%20working%20allows%20data%20scientists%20the%20ability,for%20the%20next%20incremental%20improvement&quot;&gt;Agile for Data Science&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics&quot;&gt;Data scientists: beware of simple metrics&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/how-to-define-your-machine-learning-problem/&quot;&gt;How to define your machine learning problem&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Many of the previous blogs in this series have focused on the more technical aspects of data science like training models and measuring performance. In all real world data science projects, you’ll need to do more than just the technical aspects. Unless you’re doing it to learn (a perfectly valid reason!), we typically aren’t doing data science for the sake of doing data science. We don’t want to spend tons of time and effort on a data science project, just to have it dropped on the floor or ignored. It’s crucial to communicate with everyone involved in your data science projects to increase the chances of your projects being adopted/recognized.</summary></entry><entry><title type="html">X is for XGBoost</title><link href="https://abcsofdatascience.ca/blog/x-is-for-xgboost" rel="alternate" type="text/html" title="X is for XGBoost" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/x-is-for-xgboost</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/x-is-for-xgboost">&lt;p&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/&quot;&gt;XGBoost&lt;/a&gt; is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.&lt;/p&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/process-for-working-through-machine-learning-problems/&quot;&gt;Applied Machine Learning Process&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/how-to-define-your-machine-learning-problem/&quot;&gt;How to Define Your Machine Learning Problem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:</summary></entry><entry><title type="html">X is for XGBoost</title><link href="https://abcsofdatascience.ca/blog/x-is-for-xgboost" rel="alternate" type="text/html" title="X is for XGBoost" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/x-is-for-xgboost</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/x-is-for-xgboost">&lt;p&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/&quot;&gt;XGBoost&lt;/a&gt; is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many &lt;a href=&quot;https://www.kaggle.com/&quot;&gt;Kaggle&lt;/a&gt; competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.&lt;/p&gt;
 
 &lt;h3 id=&quot;ensembling&quot;&gt;Ensembling&lt;/h3&gt;
 
@@ -100,7 +142,51 @@ If possible you should try to avoid building shiny new tools to display your mod
   &lt;li&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/index.html&quot;&gt;XGBoost documentation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://xgboost.readthedocs.io/en/latest/tutorials/model.html&quot;&gt;Introduction to boosted trees from XGBoosts documentation&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/gentle-introduction-xgboost-applied-machine-learning/&quot;&gt;A Gentle Introduction to XGBoost for Applied Machine Learning&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">XGBoost is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many Kaggle competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.</summary></entry><entry><title type="html">W is for Wasserstein GANs</title><link href="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans" rel="alternate" type="text/html" title="W is for Wasserstein GANs" /><published>2021-02-04T00:00:00-06:00</published><updated>2021-02-04T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans">&lt;p&gt;You may have seen or heard of the term “&lt;a href=&quot;https://en.wikipedia.org/wiki/Deepfake&quot;&gt;deepfakes&lt;/a&gt;” where realistic looking images/videos/audio have been generated to look or sound like a specific person (e.g. a famous politician). Deepfakes is a more colloquial term for the field of &lt;strong&gt;synthetic media&lt;/strong&gt; which is the use of AI to generate images/audio/videos. Faking images is not a new phenomenon (e.g. photoshop) but historically faking video has been challenging. 
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">XGBoost is a software package/algorithm that has been used to train impressive models in recent years (particularly on tabular/structured data). It’s also extremely fast and has wrappers in a wide variety of languages (Python, C++, Ruby, R, etc). For these reasons, as well as the fact that it has been used to win many Kaggle competitions it has become very popular in the past few years. XGBoost stands for “Extreme Gradient Boosting”, which despite sounding like something on the side of a pre-workout supplement, is a very useful technique for improving ensembles. In this blog I’ll explain how XGBoost and related methods work and the types of problems that it’s applicable for.</summary></entry><entry><title type="html">Y is for You Should Talk to Your Clients</title><link href="https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients" rel="alternate" type="text/html" title="Y is for You Should Talk to Your Clients" /><published>2021-02-05T00:00:00-06:00</published><updated>2021-02-05T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/y-is-for-you-should-talk-to-your-clients">&lt;p&gt;Many of the &lt;a href=&quot;&quot;&gt;previous blogs&lt;/a&gt; in this series have focused on the more technical aspects of data science like training models and measuring performance. In all real world data science projects, you’ll need to do more than just the technical aspects. Unless you’re doing it to learn (a perfectly valid reason!), we typically aren’t doing data science for the sake of doing data science. We don’t want to spend tons of time and effort on a data science project, just to have it dropped on the floor or ignored. It’s crucial to communicate with &lt;strong&gt;everyone&lt;/strong&gt; involved in your data science projects to increase the chances of your projects being adopted/recognized.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-science-is-a-team-sport&quot;&gt;Data science is a team sport&lt;/h3&gt;
+
+&lt;p&gt;Data science involves a wide range of skills and expertise, especially in large projects. You need people who can &lt;a href=&quot;/blog/m-is-for-munging-data&quot;&gt;munge data&lt;/a&gt;, &lt;a href=&quot;/blog/s-is-for-supervised-learning&quot;&gt;train models&lt;/a&gt;, and have subject matter expertise in the specific problem domain. For large projects, you’ll want people with software engineering experience to help you build maintainable code and systems. The traditional Venn diagram for describing data science comes from &lt;a href=&quot;http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram&quot;&gt;Drew Conway&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/y_is_for_you_should_talk_to_your_clients/conway_venn_diagram.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s pretty unlikely that one person is an expert in all of these fields (which is why they are referred to as unicorns!). Successful data science projects usually need input from a variety of people. A more accurate Venn diagram might look like&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/y_is_for_you_should_talk_to_your_clients/gartner_venn_diagram.png&quot; alt=&quot;&quot; title=&quot;Taken from https://blogs.gartner.com/christi-eubanks/three-lessons-crossfit-taught-data-science/&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clearly there is a lot to get right for a successful data science project. In my experience, people tend to focus on the more technical aspects and ignore the customer/client angle. There are a lot more resources for the data preparation and model training parts of this Venn diagram. It’s also important to understand the marketing angle.&lt;/p&gt;
+
+&lt;h3 id=&quot;marketing-your-work&quot;&gt;Marketing your work&lt;/h3&gt;
+
+&lt;p&gt;It’s important to communicate with the people who are going to actually &lt;em&gt;use&lt;/em&gt; the models that you’ve built. People won’t just use your models for no reason, they actually need to be useful. Here are a few things to keep in mind when trying to make sure the project you’re working on is useful. You should talk to your clients (either internal or external) to figure out the problems that they need solving.&lt;/p&gt;
+
+&lt;h5 id=&quot;understand-their-workflow&quot;&gt;Understand their workflow&lt;/h5&gt;
+
+&lt;p&gt;Talk to experts in the problem domain that you’re working in. These could be doctors, business analysts at your company, or just some trusted friends/family. Try to understand what the pain points are in their workflow and figure out ways that you might be able to help solve it. Machine learning works best on specific, well-defined problems. Talking to experts can help you pinpoint these specific problems. Saying I’m going to train a machine learning model to look at MRI images for a specific disease is a more achievable goal than saying “AI/ML for medicine”. You should make sure that everyone is on the same page and using the same language. Additionally, trust the expertise of the people you are talking to! You don’t want to be this person&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://imgs.xkcd.com/comics/here_to_help.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;manage-expectations&quot;&gt;Manage expectations&lt;/h5&gt;
+
+&lt;p&gt;It’s possible you’ve been tasked by your management to “use machine learning”. You should also know by now that machine learning/AI is not magic. For people who are less familiar with the field, it can be hard to tell what is &lt;a href=&quot;https://xkcd.com/1425/&quot;&gt;doable&lt;/a&gt; or still an active area of research. It’s really important to be honest about what is realistically achievable. You should also make it clear if the tools you are developing are intended to take automated actions, or help humans make better decisions.
+Fit into their workflow
+If possible you should try to avoid building shiny new tools to display your model results. People typically have workflows and existing tools that they are comfortable with. You should try to fit your model results into these tools (or at the very least link your tool from the existing ones).&lt;/p&gt;
+
+&lt;h5 id=&quot;communicate-early-and-often&quot;&gt;Communicate early and often&lt;/h5&gt;
+&lt;p&gt;As the project progresses, you should update your clients with any results that you’ve found. You should also ask for their input regularly. For example, if you hear them saying “why did the model make THAT prediction?” you might want to focus on more &lt;a href=&quot;/blog/i-is-for-interpretability&quot;&gt;interpretable&lt;/a&gt; models. It can be very helpful to have a small group of trusted clients who are closely involved with the process. Management or software engineering teams might be familiar with &lt;a href=&quot;https://en.wikipedia.org/wiki/Agile_software_development&quot;&gt;Agile software development&lt;/a&gt; as a way to manage projects. There are some good parts that can be adapted for data science projects. Linear Digressions did a good two part series on Agile for Data Science, talking about &lt;a href=&quot;http://lineardigressions.com/episodes/2018/8/19/agile-development-for-data-scientists-part-1-the-good&quot;&gt;the good&lt;/a&gt; and &lt;a href=&quot;http://lineardigressions.com/episodes/2018/8/26/agile-development-for-data-scientists-part-2-where-modifications-help&quot;&gt;adjustments that should be made&lt;/a&gt;. Be clear in what you are asking for feedback on. If you are looking for feedback on the way you are displaying results (as compared to the results themselves), make that obvious!&lt;/p&gt;
+
+&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;Data science involves a lot of skills and no one can do it all. We tend to focus on the technical parts of the data science pipeline, but communication and marketing are crucial skills. A person with domain expertise and the ability to communicate with end users and other data scientists is as valuable as the people training the models and preparing the data.&lt;/p&gt;
+
+&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://locallyoptimistic.com/post/practical_ml/&quot;&gt;Practical Tips for Real-World Data Science&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/applying-agile-methodology-to-data-science-projects-db50ebbef115#:~:text=The%20Agile%20way%20of%20working%20allows%20data%20scientists%20the%20ability,for%20the%20next%20incremental%20improvement&quot;&gt;Agile for Data Science&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2019/12/22/data-scientists-beware-of-simple-metrics&quot;&gt;Data scientists: beware of simple metrics&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://machinelearningmastery.com/how-to-define-your-machine-learning-problem/&quot;&gt;How to define your machine learning problem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Many of the previous blogs in this series have focused on the more technical aspects of data science like training models and measuring performance. In all real world data science projects, you’ll need to do more than just the technical aspects. Unless you’re doing it to learn (a perfectly valid reason!), we typically aren’t doing data science for the sake of doing data science. We don’t want to spend tons of time and effort on a data science project, just to have it dropped on the floor or ignored. It’s crucial to communicate with everyone involved in your data science projects to increase the chances of your projects being adopted/recognized.</summary></entry><entry><title type="html">W is for Wasserstein GANs</title><link href="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans" rel="alternate" type="text/html" title="W is for Wasserstein GANs" /><published>2021-02-04T00:00:00-06:00</published><updated>2021-02-04T00:00:00-06:00</updated><id>https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/w-is-for-wasserstein-gans">&lt;p&gt;You may have seen or heard of the term “&lt;a href=&quot;https://en.wikipedia.org/wiki/Deepfake&quot;&gt;deepfakes&lt;/a&gt;” where realistic looking images/videos/audio have been generated to look or sound like a specific person (e.g. a famous politician). Deepfakes is a more colloquial term for the field of &lt;strong&gt;synthetic media&lt;/strong&gt; which is the use of AI to generate images/audio/videos. Faking images is not a new phenomenon (e.g. photoshop) but historically faking video has been challenging. 
 One of the main drivers of the recent breakthroughs in synthetic media are the use of Generative adversarial networks (GANs). While there are some concerns about how GANs and related techniques will be used more broadly, there are legitimate purposes for it. For example, &lt;a href=&quot;https://arxiv.org/abs/1612.07828&quot;&gt;Apple used GANs&lt;/a&gt; to generate images of faces where they knew the direction the person was looking. This makes it easier to get training data that can be used for other models.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/w_is_for_wasserstein_gans/AI_generated_face.jpg&quot; alt=&quot;&quot; title=&quot;Image of a synthetically generated face. Taken from https://commons.wikimedia.org/wiki/File:AI_generated_face.jpg&quot; /&gt;&lt;/p&gt;
@@ -761,545 +847,4 @@ In academia researchers must publish papers which are novel in some way. It is v
   &lt;li&gt;&lt;a href=&quot;http://lineardigressions.com/episodes/2016/8/20/reinforcement-learning-for-artificial-intelligence&quot;&gt;Linear digressions episode on RL&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.learndatasci.com/tutorials/reinforcement-q-learning-scratch-python-openai-gym/&quot;&gt;Q-learning example in OpenAI gym&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://towardsdatascience.com/a-beginners-guide-to-reinforcement-learning-with-a-mario-bros-example-fa0e0563aeb7&quot;&gt;Using RL to beat Mario&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">How can we train a computer to play a video game? Here the goal could be something like “beat a level as quickly as possible” or “collect as many points as you can” or both of those objectives at the same time. This is a very different task than the ones we’ve seen previously, such as trying to tell if a picture contains a dog, or how to group data together. To accomplish this we can use a framework of algorithms called reinforcement learning (or RL). Reinforcement learning tries to train an agent to learn a set of actions to achieve some goal. RL is used in a wide variety of disciplines such as</summary></entry><entry><title type="html">P is for Pandas</title><link href="https://abcsofdatascience.ca/blog/p-is-for-pandas" rel="alternate" type="text/html" title="P is for Pandas" /><published>2020-10-25T00:00:00-05:00</published><updated>2020-10-25T00:00:00-05:00</updated><id>https://abcsofdatascience.ca/blog/p-is-for-pandas</id><content type="html" xml:base="https://abcsofdatascience.ca/blog/p-is-for-pandas">&lt;p&gt;&lt;a href=&quot;https://pandas.pydata.org/docs/index.html&quot;&gt;Pandas&lt;/a&gt; is a very popular data analysis library for python. It’s an invaluable tool for transforming and &lt;a href=&quot;(/blog/m-is-for-munging-data)&quot;&gt;munging data&lt;/a&gt;. Some of my favourite features include:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;It can read data from a ton of formats including csv, json, and database tables&lt;/li&gt;
-  &lt;li&gt;There are lots of convenience features built in such as easy plotting, filling in missing data, dropping duplicates, filtering data etc&lt;/li&gt;
-  &lt;li&gt;It’s compatible with a lot of other python data science libraries (e.g. numpy, scikit-learn, etc)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It makes it really easy to read and explore your data since you can read, filter, and plot your data in just a few lines of code. This blog is not going to be a comprehensive tutorial (there are actual tutorials linked in the Other Resources section below). It’s intended to give you a brief idea of the kinds of things that pandas can do (to save you from rewriting code to do that yourself). The &lt;a href=&quot;https://pandas.pydata.org/docs/getting_started/overview.html&quot;&gt;documentation&lt;/a&gt; is quite good and will give you an idea of the types of analysis you should use pandas for (hint: most of them).&lt;/p&gt;
-
-&lt;p&gt;The main data types in pandas are series and dataframes. You can think of a dataframe as a spreadsheet or a table in a database. Dataframes are made up of series (just think of a series as a column in a spreadsheet/table).&lt;/p&gt;
-
-&lt;h3 id=&quot;using-pandas&quot;&gt;Using pandas&lt;/h3&gt;
-
-&lt;h5 id=&quot;installing-and-importing-pandas&quot;&gt;Installing and importing pandas&lt;/h5&gt;
-
-&lt;p&gt;If you’re already familiar with installing python packages use &lt;code class=&quot;highlighter-rouge&quot;&gt;conda install pandas&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;pip install pandas&lt;/code&gt;. For more in depth instructions there is a guide &lt;a href=&quot;https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html&quot;&gt;here&lt;/a&gt;. Once you have it installed you can import it using&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import pandas as pd
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;People conventionally rename pandas to pd (e.g. pd.DataFrame instead of pandas.DataFrame) since you will end up typing pandas/pd a lot.&lt;/p&gt;
-
-&lt;p&gt;Here I’m going to use the movie data used in &lt;a href=&quot;https://github.com/brandon-rhodes/pycon-pandas-tutorial&quot;&gt;Brandon Rhode’s “Pandas From the Ground Up” tutorial&lt;/a&gt;. This includes CSV (comma separated value) files with movie titles and release dates as well as casting. After we’ve downloaded the data we want to load it into a dataframe. We can do that using&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;titles = pd.read_csv('titles.csv')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;If we want to look at the first 10 rows of the dataframe we can use the &lt;code class=&quot;highlighter-rouge&quot;&gt;head&lt;/code&gt; method&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;print(titles.head(10))
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;which will output the first N rows (in this case 10). This is an easy way to see what the data looks like and if the data is well formatted.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;title&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Lusty Neighbors&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1970&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;The Adventures of Priscilla, Queen of the Desert&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1994&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Captain Sindbad&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1963&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Cold Dark Mirror&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2015&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ostatnia Rawa Ryska Riedla&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1997&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;5&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Forever and Ever&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2018&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;6&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Western Conviction&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2018&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;7&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;5 Estrellas&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2018&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;8&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ropewalk&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2000&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;9&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Sally in Our Alley&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1931&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h5 id=&quot;selecting-and-filtering-data&quot;&gt;Selecting and filtering data&lt;/h5&gt;
-&lt;p&gt;We can easily select rows in our dataframe. For example if we wanted to find movies released in 1991&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;titles[titles['year'] == 1991]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;title&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;71&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Le voleur d’enfants&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1991&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;132&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Madreseye piremardha&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1991&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;196&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Pyat pokhishchennykh monakhov&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1991&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;217&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Canh bac&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1991&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;509&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Itakwil man ako ng langit&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1991&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Let’s break down the above statement a bit. We use &lt;code class=&quot;highlighter-rouge&quot;&gt;titles[‘year’]&lt;/code&gt; to select the year column in the data frame. &lt;code class=&quot;highlighter-rouge&quot;&gt;titles[‘year’] == 1991&lt;/code&gt; returns a series of booleans (True if the year is 1991 and False otherwise). Finally, &lt;code class=&quot;highlighter-rouge&quot;&gt;titles[titles['year'] == 1991]&lt;/code&gt; says “give me the rows from titles where the condition is True”. We don’t just have to look for rows with exact matches. Let’s search for movies containing “The Hobbit” in the title&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;titles[titles['title'].str.contains('The Hobbit')]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;title&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;121727&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;The Hobbit: The Battle of the Five Armies&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2014&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;146926&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;The Hobbit: An Unexpected Journey&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2012&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;166752&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;The Hobbit: The Desolation of Smaug&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2013&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;179646&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;The Hobbit: The Swedolation of Smaug&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2014&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h5 id=&quot;counting-values&quot;&gt;Counting values&lt;/h5&gt;
-
-&lt;p&gt;Let’s say we want to count how many movies were released per year. We can do this using&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;titles['year'].value_counts()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;which gives a sorted list from highest count to lowest. In our data set we see that 2017 released the most movies followed by 2016. I suspect that this dataset was compiled in 2017 and that 2018 had more movies released in it than the previous year.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2017&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;9888&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2016&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;8198&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2015&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;7564&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2014&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;7159&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2013&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;6896&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;value_counts&lt;/code&gt; function also has a normalize parameter which divides the counts by the total number of rows.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;titles['year'].value_counts(normalize=True)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2017&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0.0437497&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2016&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0.0362722&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2015&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0.0334671&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2014&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0.0316752&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2013&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0.0305115&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here we can see that about 4% of all movies ever released were released in 2017.&lt;/p&gt;
-
-&lt;h5 id=&quot;plotting-data&quot;&gt;Plotting data&lt;/h5&gt;
-
-&lt;p&gt;If we want to plot the number of movies released per year over time how would we do that? In pandas we can just do&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;counts_per_year = titles['year'].value_counts()
-# This just sorts it so that the years will be in order
-counts_per_year = counts_per_year.sort_index()
-counts_per_year.plot()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/p_is_for_pandas/movie_releases.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;It looks like the number of movies being released has been increasing over time. There are also movies in the dataset that are scheduled for release (including one in 2115!) which explains the sharp dropoff. The &lt;code class=&quot;highlighter-rouge&quot;&gt;.plot()&lt;/code&gt; methods that wrap &lt;a href=&quot;https://matplotlib.org/&quot;&gt;matplotlib&lt;/a&gt; so you can customize your plots as much as you want.&lt;/p&gt;
-
-&lt;h5 id=&quot;grouping-and-merging-data-together&quot;&gt;Grouping and merging data together&lt;/h5&gt;
-
-&lt;p&gt;A common (but slightly more advanced) use case for pandas is grouping data together. Imagine we want to see which actors/actresses mostly played leading roles in their career (who appeared in at least 50 movies). To do so we will first load in the cast dataset&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cast = pd.read_csv('cast.csv')
-print(cast.head())
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;title&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;name&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;type&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;character&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;n&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Closet Monster&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2015&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Buffy #1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Buffy 4&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;31&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Suuri illusioni&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1985&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Homo $&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Guests&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;22&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Battle of the Sexes&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2017&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;$hutter&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Bobby Riggs Fan&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Secret in Their Eyes&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2015&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;$hutter&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;2002 Dodger Fan&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;nan&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Steve Jobs&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2015&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;$hutter&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;1988 Opera House Patron&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;nan&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Here we have the title of the movie, the year it was released, the name of the actor/actress, if they were an actor/actress, the character name, and the listing in the credits (n). A listing number of 1 means they played a leading role and higher numbers usually correspond to extras. Some of the values of n are “nan”, which stands for “not a number”. We want to drop those rows to only get listed roles.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;listed_roles = cast.dropna(subset=['n'])
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Now we want to find how many movies easy actor appeared in&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;num_roles = cast.groupby('name').size()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;name&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;0&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;James Millican&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;67&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Ei Kimura&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Brian Torpe&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Steve Edis&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Carlos Esteban Fonseca&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Note that this is roughly equivalent to the &lt;code class=&quot;highlighter-rouge&quot;&gt;value_counts&lt;/code&gt; method. Now we want to select the actors who appeared in at least 50 movies&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;in_lots_of_roles = num_roles[num_roles&amp;gt;50].reset_index(name='total_roles')
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;name&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;total_roles&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A. Bromley Davenport&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A.K. Hangal&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;87&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Abdur Razzak&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;63&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Abhi Bhattacharya&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;63&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Abhishek Bachchan&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Now we need to get all the roles each of those actors played. We can do this by merging this dataset with the &lt;code class=&quot;highlighter-rouge&quot;&gt;listed_roles&lt;/code&gt; dataframe.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;merged = pd.merge(in_lots_of_roles, listed_roles)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;name&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;total_roles&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;title&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;year&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;type&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;character&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;n&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;0&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A. Bromley Davenport&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A Maid of the Silver Sea&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1922&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Old Tom Hamon&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A. Bromley Davenport&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A Sister to Assist ‘Er&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1927&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Jim Harris&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;2&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A. Bromley Davenport&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Bonnie Prince Charlie&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1923&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Sir John Cope&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;11&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A. Bromley Davenport&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Boy Woodburn&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1922&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Matt Woodburn&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;4&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;A. Bromley Davenport&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;52&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Captivation&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1931&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;actor&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Colonel Jordan&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;6&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Finally, we can see which actors played mostly leading roles in their career. We will group by the actors name, then take the average of their listing number. The closer to 1.0 the number is the more leading roles they played. We will sort the values to see the actors closest to 1.0 at the top.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;merged.groupby('name')['n'].mean().sort_values()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;name&lt;/th&gt;
-      &lt;th style=&quot;text-align: right&quot;&gt;n&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;William S. Hart&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Yilmaz Güney&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1.01724&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Mary Pickford&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1.03509&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Tom Mix&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1.06186&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Mary Miles Minter&lt;/td&gt;
-      &lt;td style=&quot;text-align: right&quot;&gt;1.09804&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;It appears that William S. Hart had a leading role in every film that he appeared in.&lt;/p&gt;
-
-&lt;h3 id=&quot;summary&quot;&gt;Summary&lt;/h3&gt;
-
-&lt;p&gt;Pandas is an extremely powerful python library for doing data analysis. There can be a bit of a learning curve but it is worth spending some time exploring the library. Once you can perform some basic tasks (sorting, filtering, groupbys, plotting) then you will become a data analysis wizard!&lt;/p&gt;
-
-&lt;h3 id=&quot;other-resources&quot;&gt;Other resources&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ZyhVh-qRZPA&amp;amp;list=PL-osiE80TeTsWmV9i9c58mdDCSskIFdDS&quot;&gt;Pandas tutorial series from Corey Schafer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/jvns/pandas-cookbook&quot;&gt;Pandas cookbook&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/brandon-rhodes/pycon-pandas-tutorial&quot;&gt;Pandas From the Ground Up&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Pandas is a very popular data analysis library for python. It’s an invaluable tool for transforming and munging data. Some of my favourite features include:</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">How can we train a computer to play a video game? Here the goal could be something like “beat a level as quickly as possible” or “collect as many points as you can” or both of those objectives at the same time. This is a very different task than the ones we’ve seen previously, such as trying to tell if a picture contains a dog, or how to group data together. To accomplish this we can use a framework of algorithms called reinforcement learning (or RL). Reinforcement learning tries to train an agent to learn a set of actions to achieve some goal. RL is used in a wide variety of disciplines such as</summary></entry></feed>

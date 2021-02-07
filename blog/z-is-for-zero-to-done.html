@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Z is for Zero to Done | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Z is for Zero to Done" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:" />
+<meta property="og:description" content="We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/z-is-for-zero-to-done" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/z-is-for-zero-to-done" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-06T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Z is for Zero to Done","dateModified":"2021-02-06T00:00:00-06:00","datePublished":"2021-02-06T00:00:00-06:00","description":"We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/z-is-for-zero-to-done"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/z-is-for-zero-to-done","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Z is for Zero to Done | ABCs of data science</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Z is for Zero to Done" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:" />
+<meta property="og:description" content="We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:" />
+<link rel="canonical" href="https://abcsofdatascience.ca/blog/z-is-for-zero-to-done" />
+<meta property="og:url" content="https://abcsofdatascience.ca/blog/z-is-for-zero-to-done" />
+<meta property="og:site_name" content="ABCs of data science" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-02-06T00:00:00-06:00" />
+<script type="application/ld+json">
+{"headline":"Z is for Zero to Done","dateModified":"2021-02-06T00:00:00-06:00","datePublished":"2021-02-06T00:00:00-06:00","description":"We’ve covered a lot of topics in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:","mainEntityOfPage":{"@type":"WebPage","@id":"https://abcsofdatascience.ca/blog/z-is-for-zero-to-done"},"@type":"BlogPosting","url":"https://abcsofdatascience.ca/blog/z-is-for-zero-to-done","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://abcsofdatascience.ca/feed.xml" title="ABCs of data science" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">ABCs of data science</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Z is for Zero to Done</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-02-06T00:00:00-06:00" itemprop="datePublished">
+        Feb 6, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      6 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#data_science">data_science</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>We’ve covered a <a href="/categories">lot of topics</a> in these 26 blogs. Kudos to you if you’ve made it this far! In this blog I want to cover what the end-to-end data science process looks like. A lot of this will depend on the goals of the project and your organization:</p>
+
+<ul>
+  <li>Are you trying a smaller data science to learn about a particular topic?</li>
+  <li>Are you trying to build a product to be used by other people?</li>
+  <li>How mature is your organization with regards to data science? If you’re the first one doing this, things will take longer.</li>
+  <li>Do you have a team of people or are you doing this individually?</li>
+</ul>
+
+<p>There are 5 major steps you need to do in most data science projects</p>
+
+<ol>
+  <li>Define your problem</li>
+  <li>Prepare your data</li>
+  <li>Train your model</li>
+  <li>Get feedback</li>
+  <li>Productionize your pipeline</li>
+</ol>
+
+<h3 id="define-your-problem">Define your problem</h3>
+
+<p>As you’re starting you’ll want to answer the following questions. I find it’s helpful to write down your answers or talk about them with a friend/colleague.</p>
+
+<ul>
+  <li><strong>What are you trying to solve?</strong> Talk about the problem that you are trying to solve. You should make this as <strong>specific</strong> as possible. If you are trying to do “machine learning for cyber security” figure out what aspect is most interesting/useful. A more specific problem is “can I predict if a file is malware or not?”</li>
+  <li><strong>Why are you trying to solve it?</strong> Describe how solving this problem will benefit people. This could be benefiting yourself (a learning experience), internal clients (make them more productive), or benefit customers/the world more broadly.</li>
+  <li><strong>How is this solution going to be used?</strong> Write down if the problem is solved how your solution will be used. Is it going to make decisions automatically? Is it going to give context to a human so that they have extra information? Is it trying to predict something about an individual data point or is it trying to group related things together?</li>
+  <li><strong>Who is asking for a solution to this problem?</strong> Document who is asking for this to be solved. These people could be domain experts, your boss, or someone else. Make sure that everyone has the same expectations. For more about this read <a href="/blog/y-is-for-you-should-talk-to-your-clients">Y is for You Should Talk to Your Clients</a>.</li>
+  <li><strong>How would you do it manually?</strong> Try to go through the process of solving the problem manually multiple times. For example, if you’re trying to figure out if a file is malware or not, sit down with some cybersecurity analysts and triage the files together. This will give you a better understanding of the domain and may give you ideas for relevant features.</li>
+  <li><strong>What tools are you going to use?</strong> If this is just an individual project you’re free to use whatever you like! If you’re working in a team you’ll need to figure out which tools people have the most experience with. In some cases you might be forced to use an existing set of tools if they are the ones adopted by your organization.</li>
+</ul>
+
+<h3 id="prepare-your-data">Prepare your data</h3>
+
+<p>Without data, it’s pretty hard to do data science! Make sure you have data that you can use (or at least process into something useful).</p>
+
+<ul>
+  <li><strong>What data do you have available?</strong></li>
+  <li><strong>Are there external datasets you can use to enrich your data?</strong></li>
+  <li><strong>What data processing do you need?</strong> In all real-world cases you’ll need to do <a href="/blog/m-is-for-munging-data">data munging</a>. For text data you’ll need to apply <a href="/blog/n-is-for-natural-language-processing">natural language processing</a> techniques to create features from it.</li>
+  <li><strong>Do you need to embed your data or do dimension reduction?</strong> In many cases you’ll need to embed your data into a feature space. For more information on that I recommend reading <a href="/blog/e-is-for-embeddings">E is for Embeddings</a> and <a href="/blog/u-is-for-umap">U is for UMAP</a>.</li>
+  <li><strong>Do you have labels?</strong> If you’re working on a supervised learning problem then you need labelled data. For more information about ways to get that read <a href="/blog/l-is-for-labelling-data">L is for Labelling Data</a>.</li>
+  <li><strong>Have you explored your data?</strong> You’ll need to look at your data and see if there are missing values, <a href="/blog/v-is-for-visualization">visualize</a> it, look for relevant features etc.</li>
+</ul>
+
+<h3 id="train-your-model">Train your model</h3>
+
+<p>Once you’ve processed your data you’ll actually need to train your model(s).</p>
+
+<ul>
+  <li><strong>Does your problem require a supervised or unsupervised model?</strong> If you are trying to predict something about individual data points you’ll want to use <a href="/blog/s-is-for-supervised-learning">supervised learning</a>. If you’re trying to group stuff together you’ll want to do <a href="/blog/c-is-for-clustering">clustering</a>.</li>
+  <li><strong>What kind of model should you choose?</strong> This depends on the problem and data type but here are my starting points. If you have images you might want to use <a href="Jekyll::Drops::SiteDrop/blog/d-is-for-deep-learning">deep learning</a> (typically convolutional neural networks are used). For text or tabular data it’s a good idea to start with  <a href="/blog/x-is-for-xgboost">Random Forest or Gradient Boosted Trees</a>. It’s worth trying to get a simple model working (even if it’s not the new shiny thing).</li>
+  <li><strong>Are there pretrained models you can start from?</strong> <a href="/blog/t-is-for-transfer-learning">Transfer learning</a> is a powerful technique that can let you make progress quickly.</li>
+  <li><strong>Do you need to do any post-processing?</strong> Especially in the case of clustering you might need to apply additional filters on your clusters for them to be useful. For example, your model could find 1000 groups of stuff but a human might only have time to look at 50 groups. Heuristics on top of your clusters can be a useful way to rank your clusters in terms of usefulness.</li>
+</ul>
+
+<h3 id="get-feedback">Get feedback</h3>
+
+<p>You should continuously ask for feedback on all parts of your pipeline. This will help make sure that you and your clients are on the same page.</p>
+
+<ul>
+  <li><strong>Is the output of your models useful?</strong> If you show the results of your model to subject matter experts do they agree with it? You may want to look into <a href="/blog/i-is-for-interpretability">model interpretability</a> methods to try and figure out why your model made a given prediction.</li>
+  <li><strong>Does your output fit into your customers workflow?</strong></li>
+  <li><strong>Are your models biased in any way?</strong> This can be a hard problem to diagnose but it’s an extremely important one. For more information read <a href="/blog/b-is-for-bias">B is for Bias</a>.</li>
+</ul>
+
+<h3 id="productionize-your-pipeline">Productionize your pipeline</h3>
+
+<p>Once you have a successful prototype, it’s time to put it into production. As your doing so, you’ll want to think about the following:</p>
+
+<ul>
+  <li><strong>How can you access the results of your model?</strong> One option is setting up a REST API using a framework like <a href="https://fastapi.tiangolo.com/">FastAPI</a>. Many cloud providers like Azure and AWS offer SaaS solutions for this. Are you results available as part of an app?</li>
+  <li><strong>Are you retraining the model on a regular basis?</strong> You should retrain the model periodically to ensure that it’s behaving as you expect. You’ll need to measure model drift which is how the performance changes over time on new data.</li>
+  <li><strong>Is your workflow repeatable?</strong> For more on this read <a href="/blog/r-is-for-reproducibility">R is for Reproducibility</a>. How easy is it for someone else to maintain your workflow?</li>
+</ul>
+
+<h3 id="summary">Summary</h3>
+
+<p>There are lots of moving parts involved in completing a fully productionized data science pipeline. It’s okay if it seems overwhelming! No one is an expert in everything, which makes it even more important to work with other people. If you have any questions don’t hesitate to leave a comment, send me a message on <a href="https://twitter.com/abcsofdatasci">twitter</a> send me an email at abcsofdatascience [at] gmail [dot] com.</p>
+
+<h3 id="other-resources">Other resources</h3>
+
+<ul>
+  <li><a href="https://locallyoptimistic.com/post/practical_ml/">Practical Tips for Real-World Data Science</a></li>
+  <li><a href="https://machinelearningmastery.com/process-for-working-through-machine-learning-problems/">Applied Machine Learning Process</a></li>
+  <li><a href="https://machinelearningmastery.com/how-to-define-your-machine-learning-problem/">How to Define Your Machine Learning Problem</a></li>
+</ul>
+
+
+  </div>
+
+  <div class="PageNavigation">
+    
+        <a class="prev" href="/blog/y-is-for-you-should-talk-to-your-clients">&laquo; Y is for You Should Talk to Your Clients</a>
+    
+    
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="gclen/abcs-of-data-science"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/z-is-for-zero-to-done" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A gentle introduction to many data science concepts for readers of all backgrounds</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/gclen" title="gclen"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/abcsofdatasci" title="abcsofdatasci"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
